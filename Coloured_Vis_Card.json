@@ -1,0 +1,804 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "8e177939-16ca-4017-87fc-0d7d91084eb9",
+      "generated": "2025-12-11T08:15:41.122Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Card Visual with bar, Area and waterfall. ",
+      "description": "With reg/green values and thick domain",
+      "author": "Ben Ferry"
+    },
+    "deneb": {
+      "build": "1.8.2.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "6.4.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "selectionMode": "simple",
+      "highlight": true,
+      "dataPointLimit": 50
+    },
+    "config": "{    \"font\":\"Verdana\",\r\n  \"locale\": {\r\n    \"number\": {\r\n      \"decimal\": \".\",\r\n      \"thousands\": \",\",\r\n      \"grouping\": [\r\n        3\r\n      ],\r\n      \"currency\": [\r\n        \"\",\r\n        \" €\"\r\n      ]\r\n    }\r\n  },\r\n  \"padding\": 5,\r\n  \"view\": {\r\n    \"stroke\": \"transparent\"\r\n  },\r\n  \"axis\": {\r\n    \"domainColor\": \"#454545\",\r\n    \"ticks\": false\r\n  },\r\n  \"bar\":{\r\n  \r\n  },\r\n  \"axisX\": {\r\n    \"labelPadding\": 5,\r\n    \"labelAngle\": 0,\r\n    \"labelFontSize\": 12,\r\n    \"grid\": false,\r\n    \"labelOverlap\": true,\r\n    \"domain\": true,\r\n    \"title\": null\r\n  },\r\n  \"axisY\": {\r\n    \"labelPadding\": 5,\r\n    \"labelAngle\": 0,\r\n    \"labelFontSize\": 13,\r\n    \"grid\": false,\r\n    \"title\": null\r\n  },\r\n  \"legend\": {\r\n    \"title\": null,\r\n    \"labelFontSize\": 12,\r\n    \"labelColor\": \"#454545\",\r\n    \"symbolType\": \"square\",\r\n    \"symbolSize\": 200,\r\n    \"orient\": \"top\",\r\n    \"symbolStrokeWidth\": 2\r\n  },\r\n  \"header\": {\r\n    \"titleFontSize\": 16,\r\n    \"titleColor\": \"#252423\",\r\n    \"labelFont\": \"Segoe UI\",\r\n    \"labelFontSize\": 12,\r\n    \"labelColor\": \"#454545\"\r\n  },\r\n  \"title\": {\r\n    \"fontSize\": 22, // <-- Title font size\r\n\r\n    \"subtitleFontSize\": 14, // <-- Subtitle font size\r\n    \"offset\": 20,\r\n    \"anchor\": \"start\",\r\n    \"color\": \"#454545\",\r\n    \"subtitle\": \"Top 10 Players\",\r\n    \"subtitleColor\": \"#454545\"\r\n  }\r\n}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Axis",
+        "description": "The Axis Column",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__1__",
+        "name": "measure",
+        "description": "Measure used for Value",
+        "kind": "measure",
+        "type": "numeric"
+      },
+      {
+        "key": "__2__",
+        "name": "measure_waterfall",
+        "description": "Measure used in the waterfall chart",
+        "kind": "measure",
+        "type": "numeric"
+      }
+    ]
+  },
+  "data": {
+    "name": "dataset" // data is passed in from outside
+  },
+  "spacing": 50, // gap between small multiples
+  "columns": 3, // number of columns in the concat grid
+  "padding": {
+    "top": 25,
+    "left": 25
+  },
+  "concat": [
+    // ─────────────────────────────────────────────
+    // 1) Vertical bars with zero line
+    // ─────────────────────────────────────────────
+    {
+      "height": 100,
+      "width": 150,
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "width": {
+              "band": 0.8 // bar thickness relative to band
+            },
+            "color": {
+              // green if x_ >= 0, red otherwise
+              "expr": "datum['__1__']>= 0 ?  '#8db601':'#fd0008'"
+            }
+          },
+          "encoding": {
+            "x": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null // hide x-axis for this panel
+            },
+            "y": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null // hide y-axis for this panel
+            },
+            "opacity": {
+              // dim when point is not selected
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#a7a4a8",
+            "strokeWidth": 5 // THICK zero line
+          },
+          "encoding": {
+            "y": {
+              "datum": 0 // horizontal line at 0
+            }
+          }
+        }
+      ]
+    },
+    // ─────────────────────────────────────────────
+    // 2) Area chart with zero line and selection-driven opacity
+    // ─────────────────────────────────────────────
+    {
+      "height": 100,
+      "width": 150,
+      "layer": [
+        {
+          "mark": {
+            "type": "rule"
+          },
+          "encoding": {
+            "x": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null
+            },
+            "y": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null
+            },
+            "opacity": {
+              // only visible when __selected__ = "on"
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "on"
+                },
+                "value": 1
+              },
+              "value": 0
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "area",
+            "color": {
+              // vertical gradient (y1=1 bottom, y2=0 top)
+              "gradient": "linear",
+              "x1": 0,
+              "y1": 1,
+              "x2": 0,
+              "y2": 0,
+              "stops": [
+                {
+                  "offset": 0.23,
+                  "color": "#fa1c1c" // red below pivot
+                },
+                {
+                  "offset": 0,
+                  "color": "#8eb632" // green above pivot
+                }
+              ]
+            },
+            "clip": true // keep area within plot
+          },
+          "encoding": {
+            "x": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null
+            },
+            "y": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null
+            },
+            "opacity": {
+              // dim when not selected
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#454545",
+            "strokeWidth": 5 // thick zero line
+          },
+          "encoding": {
+            "y": {
+              "datum": 0
+            }
+          }
+        }
+      ]
+    },
+    // ─────────────────────────────────────────────
+    // 3) Horizontal bars (x quantitative) with vertical zero line
+    // ─────────────────────────────────────────────
+    {
+      "height": 100,
+      "width": 150,
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "height": {
+              "band": 0.8
+            },
+            "color": {
+              "expr": "datum['__1__']>= 0 ?  '#8db601':'#fd0008'"
+            }
+          },
+          "encoding": {
+            "y": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null
+            },
+            "x": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null
+            },
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#a7a4a8",
+            "strokeWidth": 5
+          },
+          "encoding": {
+            "x": {
+              "datum": 0 // vertical line at 0
+            }
+          }
+        }
+      ]
+    },
+    // ─────────────────────────────────────────────
+    // 4) Lollipop-style bars on dark background
+    // ─────────────────────────────────────────────
+    {
+      "height": 100,
+      "width": 150,
+      "layer": [
+        {
+          // dark background squares
+          "mark": {
+            "type": "square",
+            "color": "#454545",
+            "size": 150
+          },
+          "encoding": {
+            "x": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null
+            },
+            "y": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null
+            },
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            }
+          }
+        },
+        {
+          // narrow colored bar in the center
+          "mark": {
+            "type": "bar",
+            "width": {
+              "band": 0.15
+            },
+            "color": {
+              "expr": "datum['__1__']>= 0 ?  '#8db601':'#fd0008'"
+            }
+          },
+          "encoding": {
+            "x": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null
+            },
+            "y": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null
+            },
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            }
+          }
+        },
+        {
+          // thick dark zero line
+          "mark": {
+            "type": "rule",
+            "color": "#454545",
+            "strokeWidth": 5
+          },
+          "encoding": {
+            "y": {
+              "datum": 0
+            }
+          }
+        },
+        {
+          // thin white zero line on top for contrast
+          "mark": {
+            "type": "rule",
+            "color": "#ffffff",
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "y": {
+              "datum": 0
+            }
+          }
+        }
+      ]
+    },
+    // ─────────────────────────────────────────────
+    // 5) White background + white bar (placeholder version)
+    // ─────────────────────────────────────────────
+    {
+      "height": 100,
+      "width": 150,
+      "layer": [
+        {
+          "mark": {
+            "type": "square",
+            "color": "#ffffff",
+            "size": 150
+          },
+          "encoding": {
+            "x": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null
+            },
+            "y": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null
+            },
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "bar",
+            "width": {
+              "band": 0.15
+            },
+            // simplified: previously an expression always returning white
+            "color": "#ffffff"
+          },
+          "encoding": {
+            "x": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null
+            },
+            "y": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null
+            },
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            }
+          }
+        }
+      ]
+    },
+    // ─────────────────────────────────────────────
+    // 6) Horizontal lollipop-style bars
+    // ─────────────────────────────────────────────
+    {
+      "height": 100,
+      "width": 150,
+      "layer": [
+        {
+          "mark": {
+            "type": "square",
+            "color": "#454545",
+            "size": 150
+          },
+          "encoding": {
+            "y": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null
+            },
+            "x": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null
+            },
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "bar",
+            "height": {
+              "band": 0.25
+            },
+            "color": {
+              "expr": "datum['__1__']>= 0 ?  '#8db601':'#fd0008'"
+            }
+          },
+          "encoding": {
+            "y": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null
+            },
+            "x": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null
+            },
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#454545",
+            "strokeWidth": 5
+          },
+          "encoding": {
+            "x": {
+              "datum": 0
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#ffffff",
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "x": {
+              "datum": 0
+            }
+          }
+        }
+      ]
+    },
+    // ─────────────────────────────────────────────
+    // 7) Vertical waterfall chart (x = category)
+    // ─────────────────────────────────────────────
+    {
+      "width": 150,
+      "height": 100,
+      "transform": [
+        {
+          // cumulative sum over x_wf to build waterfall
+          "window": [
+            {
+              "op": "sum",
+              "field": "__2__",
+              "as": "sum"
+            }
+          ]
+        },
+        {
+          // lead(Y) used to draw connectors to next bar
+          "window": [
+            {
+              "op": "lead",
+              "field": "__0__",
+              "as": "lead"
+            }
+          ]
+        },
+        {
+          // replace null lead with current Y (for last element)
+          "calculate": "datum.lead === null ? datum['__0__'] : datum.lead",
+          "as": "lead"
+        },
+        {
+          // bottom of each bar = previous cumulative sum
+          "calculate": "datum['__0__'] === 5 ? 0 : datum.sum - datum['__1__']",
+          "as": "previous_sum"
+        }
+        // NOTE: removed unused x_, text_x_, center calculations
+      ],
+      "encoding": {
+        "x": {
+          "field": "__0__",
+          "type": "ordinal",
+          "sort": null,
+          "axis": {
+            "labelFontSize": 0, // hide labels
+            "domainWidth": 2 // THICK x-axis domain line
+          }
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "size": 15
+          },
+          "encoding": {
+            "y": {
+              "field": "previous_sum",
+              "type": "quantitative",
+              "title": "__1__" // label only, not data reference
+            },
+            "y2": {
+              "field": "sum"
+            },
+            "color": {
+              // special color for first/last and negative changes
+              "condition": [
+                {
+                  "test": "datum['__0__'] === 1 || datum['__0__'] === 5",
+                  "value": "#454545"
+                },
+                {
+                  "test": "datum.sum < datum.previous_sum",
+                  "value": "#fa1c1c"
+                }
+              ],
+              "value": "#8eb632"
+            }
+          }
+        },
+        {
+          // connector lines between bars
+          "mark": {
+            "type": "rule",
+            "color": "#404040",
+            "opacity": 1,
+            "strokeWidth": 0.3,
+            "xOffset": -7,
+            "x2Offset": 7
+          },
+          "encoding": {
+            "x2": {
+              "field": "lead"
+            },
+            "y": {
+              "field": "sum",
+              "type": "quantitative",
+              "axis": null
+            }
+          }
+        }
+      ]
+    },
+    // ─────────────────────────────────────────────
+    // 8) Another white placeholder lollipop-style chart
+    // (same structure as 5)
+    // ─────────────────────────────────────────────
+    {
+      "height": 100,
+      "width": 150,
+      "layer": [
+        {
+          "mark": {
+            "type": "square",
+            "color": "#ffffff",
+            "size": 150
+          },
+          "encoding": {
+            "x": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null
+            },
+            "y": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null
+            },
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "bar",
+            "width": {
+              "band": 0.15
+            },
+            "color": "#ffffff" // simplified constant color
+          },
+          "encoding": {
+            "x": {
+              "field": "__0__",
+              "type": "nominal",
+              "axis": null
+            },
+            "y": {
+              "field": "__1__",
+              "type": "quantitative",
+              "axis": null
+            },
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            }
+          }
+        }
+      ]
+    },
+    // ─────────────────────────────────────────────
+    // 9) Horizontal waterfall chart (y = category)
+    // ─────────────────────────────────────────────
+    {
+      "width": 150,
+      "height": 100,
+      "transform": [
+        {
+          "window": [
+            {
+              "op": "sum",
+              "field": "__2__",
+              "as": "sum"
+            }
+          ]
+        },
+        {
+          "window": [
+            {
+              "op": "lead",
+              "field": "__0__",
+              "as": "lead"
+            }
+          ]
+        },
+        {
+          "calculate": "datum.lead === null ? datum['__0__'] : datum.lead",
+          "as": "lead"
+        },
+        {
+          "calculate": "datum['__0__'] === 5 ? 0 : datum.sum - datum['__1__']",
+          "as": "previous_sum"
+        }
+        // removed unused x_, text_x_, center again
+      ],
+      "encoding": {
+        "y": {
+          "field": "__0__",
+          "type": "ordinal",
+          "sort": null,
+          "axis": {
+            "labelFontSize": 0,
+            "domainWidth": 2 // THICK y-axis domain line here
+          }
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "size": 15
+          },
+          "encoding": {
+            "x": {
+              "field": "previous_sum",
+              "type": "quantitative",
+              "title": "__1__"
+            },
+            "x2": {
+              "field": "sum"
+            },
+            "color": {
+              "condition": [
+                {
+                  "test": "datum['__0__'] === 1 || datum['__0__'] === 5",
+                  "value": "#454545"
+                },
+                {
+                  "test": "datum.sum < datum.previous_sum",
+                  "value": "#fa1c1c"
+                }
+              ],
+              "value": "#8eb632"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#404040",
+            "opacity": 1,
+            "strokeWidth": 0.3,
+            "yOffset": -7,
+            "y2Offset": 7
+          },
+          "encoding": {
+            "y2": {
+              "field": "lead"
+            },
+            "x": {
+              "field": "sum",
+              "type": "quantitative",
+              "axis": null
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
