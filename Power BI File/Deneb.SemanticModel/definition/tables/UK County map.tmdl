@@ -1,0 +1,42 @@
+table 'UK County map'
+	lineageTag: 8a1aefef-df60-4268-a0e0-78b6bbd26df4
+
+	column County
+		dataType: string
+		lineageTag: 8c6cab87-4d46-4f15-8eb5-5e8a29e9808b
+		summarizeBy: none
+		sourceColumn: County
+
+		annotation SummarizationSetBy = Automatic
+
+	column X
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fad393d-fcd6-4926-b06b-8b1d279df52e
+		summarizeBy: sum
+		sourceColumn: X
+
+		annotation SummarizationSetBy = Automatic
+
+	column Y
+		dataType: int64
+		formatString: 0
+		lineageTag: f74b70d8-04a0-4e0d-aa8a-7e0e8b467678
+		summarizeBy: sum
+		sourceColumn: Y
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'UK County map' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("VVNBkoMwDPsL5x6WtrTdIxAgDEnYSdhNmU7//42lkRXaAzORLMtObB6PIuixOBTV9pXF8/AoZv/C54y1URI/Jmz9up0vGccxbOdTxnWjJH4S3G7n646HRvyBfyYn/mfE3SD5wMoxHzgs7LdKuB970QO3ZhK9xGsj8Qv6NawHbBO+pJwX7hK+7lhp0QOrYZX+gUPjBd8Sdg3rAbe2lvxv5P96iQMv0Us9YFOzv/ILhuskCUIMi+WEMKKYFNVO2MAeSwwl7B5QtJpTE4VqVnpIyhLogUG5ZaEHFGbkS4lp0J6mSDHdyBQQ0XKZSNR8jRLjjbOnAoTuevZxlj40y4IYTO4UI5/vXAkhmskypZKlNawiCs+tKbEWurb0AKH2xkCEOY9BFN0frw+inV36LTIxzpGmWJ6pc2lRsqILdxJQxERcdyKk/++tU+MUiZt4BHrgctovn9dv0+Vub2/aT2kB81zCTkDRqP7T1P9mUxllGsPxzXT0Qmyb/fwH", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [County = _t, X = _t, Y = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"County", type text}, {"X", Int64.Type}, {"Y", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,22 @@
+table TopN
+	lineageTag: 304e5d77-a65d-4a99-b39d-84e0a3ded0dd
+
+	column TopN
+		formatString: 0
+		lineageTag: b1671ccd-5351-4df9-90f0-684d76bffb9f
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition TopN-32d52ea1-5b6c-456a-be1b-4614e2deb38d = calculated
+		mode: import
+		source = GENERATESERIES(0, 50, 5)
+
+	annotation PBI_Id = ad20d917f8614d3eb7bb0f2beafcbfa2
+

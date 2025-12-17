@@ -1,0 +1,30 @@
+table 'Current Age'
+	lineageTag: 610dcc99-649e-4701-8f9f-3501e0befdd5
+
+	measure 'LE Param Value' = SELECTEDVALUE('Current Age'[Current Age], 16)
+		formatString: 0
+		lineageTag: 752e9f24-2f69-44bf-9080-6340a0ccb7a6
+
+	measure Current_Age = SUM('Current Age'[Current Age])
+		formatString: 0
+		lineageTag: 032e7168-bb02-431a-a849-75e5eae76da6
+
+	column 'Current Age'
+		formatString: 0
+		lineageTag: b0ae53ec-eb23-4e5b-a7b6-951635dd2d52
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'Current Age' = calculated
+		mode: import
+		source = GENERATESERIES(16, 120, 1)
+
+	annotation PBI_Id = f7ea1b144ba94c71bb7b6f1820561860
+

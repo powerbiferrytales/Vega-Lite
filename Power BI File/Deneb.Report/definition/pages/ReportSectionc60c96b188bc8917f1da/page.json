@@ -1,0 +1,61 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "ReportSectionc60c96b188bc8917f1da",
+  "displayName": "Pie charts",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "objects": {
+    "displayArea": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Middle'"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "694af3a0a862654eaea8",
+      "target": "c831590052dc52d331cd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "694af3a0a862654eaea8",
+      "target": "6c3a9d6ee7be0f05e1c0",
+      "type": "NoFilter"
+    },
+    {
+      "source": "694af3a0a862654eaea8",
+      "target": "1168f02c4e7618ce2e8f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6c3a9d6ee7be0f05e1c0",
+      "target": "c831590052dc52d331cd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6c3a9d6ee7be0f05e1c0",
+      "target": "39dae289ec2051c7de02",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6c3a9d6ee7be0f05e1c0",
+      "target": "1168f02c4e7618ce2e8f",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6c3a9d6ee7be0f05e1c0",
+      "target": "694af3a0a862654eaea8",
+      "type": "NoFilter"
+    }
+  ]
+}

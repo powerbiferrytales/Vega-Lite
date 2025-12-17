@@ -1,0 +1,202 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "08f99e609e4c411000c2",
+  "position": {
+    "x": 0,
+    "y": 470.51124744376278,
+    "z": 0,
+    "height": 249.32515337423314,
+    "width": 399.18200408997956,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "best_in_show"
+                    }
+                  },
+                  "Property": "category"
+                }
+              },
+              "queryRef": "best_in_show.category"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "best_in_show"
+                    }
+                  },
+                  "Property": "Lifetime Cost"
+                }
+              },
+              "queryRef": "best_in_show.Lifetime Cost"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "best_in_show"
+                  }
+                },
+                "Property": "category"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.4.0.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n  \"params\": [\n    {\n      \"name\": \"_colour\",\n      \"value\": [\n        {\n          \"color\": {\n            \"x1\": 0,\n            \"y1\": 1,\n            \"x2\": 1,\n            \"y2\": 1,\n            \"gradient\": \"linear\",\n            \"stops\": [\n              {\n                \"offset\": 0,\n                \"color\": \"#ffffff\"\n              },\n              {\n                \"offset\": 1,\n                \"color\": \"#a56a97\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"area\",\n        \"line\": {\"color\": \"#7b516f\"},\n        \"color\": {\n          \"x1\": 0,\n          \"y1\": 1,\n          \"x2\": 1,\n          \"y2\": 1,\n          \"gradient\": \"linear\",\n          \"stops\": [\n            {\n              \"offset\": 0,\n              \"color\": \"#ffffff\"\n            },\n            {\n              \"offset\": 1,\n              \"color\": \"#7b516f\"\n            }\n          ]\n        }\n      },\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Lifetime Cost\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"cornerRadius\": 50,\n        \"height\": 12,\n        \"color\": {\n          \"x1\": 0,\n          \"y1\": 1,\n          \"x2\": 1,\n          \"y2\": 1,\n          \"gradient\": \"linear\",\n          \"stops\": [\n            {\n              \"offset\": 0,\n              \"color\": \"#7b516f\"\n            },\n            {\n              \"offset\": 1,\n              \"color\": \"#ffffff\"\n            }\n          ]\n        }\n      },\n      \"encoding\": {\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"Lifetime Cost__highlightStatus\",\n              \"equal\": \"on\"\n            },\n            \"value\": 0.8\n          },\n          \"value\": 0\n        },\n        \"x\": {\n          \"field\": \"Lifetime Cost__highlight\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"height\": 12,\n        \"cornerRadius\": 50,\n         \"color\": {\n          \"x1\": 0,\n          \"y1\": 1,\n          \"x2\": 1,\n          \"y2\": 1,\n          \"gradient\": \"linear\",\n          \"stops\": [\n            {\n              \"offset\": 0,\n              \"color\": \"#7b516f\"\n            },\n            {\n              \"offset\": 0.5,\n              \"color\": \"#ffffff\"\n            }\n          ]\n        \n        }\n      },\n      \"encoding\": {\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"on\"\n            },\n            \"value\": 0.8\n          },\n          \"value\": 0\n        },\n        \"x\": {\n          \"field\": \"Lifetime Cost__highlight\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"color\": \"#7b516f\",\n        \"xOffset\": -25\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Lifetime Cost\",\n          \"format\": \"$,.0f\"\n        }\n      }\n    }\n  ],\n  \"encoding\": {\n    \"x\": {\n      \"field\": \"Lifetime Cost\",\n      \"type\": \"quantitative\",\n      \"axis\": null\n    },\n    \"y\": {\n      \"field\": \"category\",\n      \"type\": \"nominal\",\n      \"scale\": {\"zero\": false},\n      \"title\": null\n    }\n  }\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\r\n  \"view\": {\"stroke\": \"transparent\"},\r\n  \"font\": \"Lato\",\r\n  \"arc\": {},\r\n  \"area\": {\r\n    \"line\": true,\r\n    \"opacity\": 0.6\r\n  },\r\n  \"bar\": {},\r\n  \"line\": {\r\n    \"strokeWidth\": 3,\r\n    \"strokeCap\": \"round\",\r\n    \"strokeJoin\": \"round\"\r\n  },\r\n  \"path\": {},\r\n  \"point\": {\"filled\": true, \"size\": 75},\r\n  \"rect\": {},\r\n  \"shape\": {},\r\n  \"symbol\": {\r\n    \"strokeWidth\": 1.5,\r\n    \"size\": 50\r\n  },\r\n  \"text\": {\r\n    \"font\": \"Lato\",\r\n    \"fontSize\": 12,\r\n    \"fill\": \"#605E5C\"\r\n  },\r\n  \"axis\": {\r\n    \"ticks\": false,\r\n    \"grid\": false,\r\n    \"domain\": false,\r\n    \"labelColor\": \"#605E5C\",\r\n    \"labelFontSize\": 12,\r\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\r\n    \"titleColor\": \"#252423\",\r\n    \"titleFontSize\": 16,\r\n    \"titleFontWeight\": \"normal\"\r\n  },\r\n  \"axisQuantitative\": {\r\n    \"tickCount\": 3,\r\n    \"grid\": true,\r\n    \"gridColor\": \"#C8C6C4\",\r\n    \"gridDash\": [1, 5],\r\n    \"labelFlush\": false\r\n  },\r\n  \"axisX\": {\"labelPadding\": 5},\r\n  \"axisY\": {\r\n    \"labelPadding\": 10,\r\n    \"labelColor\": \"#a56a97\",\r\n    \"minExtent\": 10\r\n  },\r\n  \"header\": {\r\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\r\n    \"titleFontSize\": 16,\r\n    \"titleColor\": \"#252423\",\r\n    \"labelFont\": \"Lato\",\r\n    \"labelFontSize\": 13.333333333333332,\r\n    \"labelColor\": \"#605E5C\"\r\n  },\r\n  \"legend\": {\r\n    \"titleFont\": \"Lato\",\r\n    \"titleFontWeight\": \"bold\",\r\n    \"titleColor\": \"#605E5C\",\r\n    \"labelFont\": \"Lato\",\r\n    \"labelFontSize\": 13.333333333333332,\r\n    \"labelColor\": \"#605E5C\",\r\n    \"symbolType\": \"circle\",\r\n    \"symbolSize\": 75\r\n  }\r\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'5.4.0'"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F4F4F4'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "isHidden": true
+}

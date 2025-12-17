@@ -1,0 +1,72 @@
+table Destinations
+	lineageTag: 232d74a7-199b-480a-9bea-479a90ca9aed
+
+	measure 24 = ```
+			
+			
+			    SUM(Destinations[Aug 24]
+			    )
+			```
+		lineageTag: 44756536-a6e6-4db7-9ce2-b22dd80e6531
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 25 = ```
+			
+			
+			    SUM(Destinations[Aug 25]
+			    )
+			```
+		lineageTag: 37340645-d377-437b-a502-5c5ea92102aa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Country
+		dataType: string
+		lineageTag: 792684e3-80bc-4520-852c-640455b72891
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aug 24'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c9b3645-7463-4a3f-9377-59298fad43c7
+		summarizeBy: sum
+		sourceColumn: Aug 24
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Aug 25'
+		dataType: int64
+		formatString: 0
+		lineageTag: dd0f69eb-0aae-462e-9e58-7c24616f2be0
+		summarizeBy: sum
+		sourceColumn: Aug 25
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: d4d6cb8e-eba0-4832-bd75-ca3f94d747d4
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Destinations = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("LY29CsMwDITfxXMGy47/xlJC6VAotJ1MBlNMCA1pcJzBb19L7iKh70533rPHFuaVdcxKVaeDno2dZ5cU4zsiELpO6Li0JDyP9IkF/aZvApckvE4D3QI4bSUU8fs35WMKC2ZJzHJGkDBMZct4W6AHMJr4NYeltCjdukG4f/c673OozDgsN7pVn8uWjh2jVOsG3aJuYclotxztFun4Aw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Country = _t, #"Aug 24" = _t, #"Aug 25" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Country", type text}, {"Aug 24", Int64.Type}, {"Aug 25", Int64.Type}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Changed Type", "Index", 0, 1, Int64.Type)
+				in
+				    #"Added Index"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

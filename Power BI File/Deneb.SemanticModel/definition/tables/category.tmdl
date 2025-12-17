@@ -1,0 +1,101 @@
+table category
+	lineageTag: fab181db-ccf9-44ed-9908-3ed67f86f1b4
+
+	column description
+		dataType: string
+		lineageTag: ad9a280d-8781-4c23-a2e4-5f21f3bc6291
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: b50c0d49-be18-45c6-aad3-1b577095b7d7
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'description.1'
+		dataType: string
+		lineageTag: 5f8f17bf-dc5f-4a83-bb72-2693bbba5ba2
+		summarizeBy: none
+		sourceColumn: description.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column link
+		dataType: string
+		lineageTag: 347753d7-dcc9-4cfe-9125-64d213034143
+		summarizeBy: none
+		sourceColumn: link
+
+		annotation SummarizationSetBy = Automatic
+
+	column image
+		dataType: string
+		lineageTag: c01c910e-ea07-401e-8c30-130cecfe83dd
+		summarizeBy: none
+		sourceColumn: image
+
+		annotation SummarizationSetBy = Automatic
+
+	column lastBuildDate
+		dataType: string
+		lineageTag: 2dd95945-857f-4df1-a5e7-420650f80540
+		summarizeBy: none
+		sourceColumn: lastBuildDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'http://webfeeds.org/rss/1.0'
+		dataType: string
+		lineageTag: ef62e343-99e8-4630-bb92-eeb48f54ae38
+		summarizeBy: none
+		sourceColumn: http://webfeeds.org/rss/1.0
+
+		annotation SummarizationSetBy = Automatic
+
+	column generator
+		dataType: string
+		lineageTag: f5c8b4b6-e57b-4751-8e4a-14f8d37016c2
+		summarizeBy: none
+		sourceColumn: generator
+
+		annotation SummarizationSetBy = Automatic
+
+	column item
+		dataType: string
+		lineageTag: e0465e85-114d-40fe-beda-4be80cea3e1d
+		summarizeBy: none
+		sourceColumn: item
+
+		annotation SummarizationSetBy = Automatic
+
+	partition category-2fe95055-0e26-4c45-a5a1-3774382695b9 = m
+		mode: import
+		queryGroup: Tooting
+		source =
+				let
+				    Source = Xml.Tables(Web.Contents("https://techhub.social/@powerbiguy/with_replies.rss"), null, 65001),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Attribute:version", Int64.Type}}),
+				    channel = #"Changed Type"{0}[channel],
+				    item = channel{0}[item],
+				    #"Changed Type1" = Table.TransformColumnTypes(item,{{"link", type text}, {"pubDate", type datetime}, {"description", type text}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type1", each Text.Contains([description], "@")),
+				    #"Replaced Value" = Table.ReplaceValue(#"Filtered Rows","&#39;","'",Replacer.ReplaceText,{"description"}),
+				    #"Extracted Text Between Delimiters" = Table.TransformColumns(#"Replaced Value", {{"description", each Text.BetweenDelimiters(_, """", """", 2, 0), type text}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Extracted Text Between Delimiters",{"description"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns"),
+				    #"Invoked Custom Function" = Table.AddColumn(#"Removed Duplicates", "Toots (2)", each #"Tooties Toots Function"([description])),
+				    #"Expanded Toots (2)" = Table.ExpandTableColumn(#"Invoked Custom Function", "Toots (2)", {"channel", "Attribute:version"}, {"channel", "Attribute:version"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Expanded Toots (2)",{"Attribute:version"}),
+				    #"Expanded channel" = Table.ExpandTableColumn(#"Removed Columns", "channel", {"title", "description", "link", "image", "lastBuildDate", "http://webfeeds.org/rss/1.0", "generator", "item"}, {"title", "description.1", "link", "image", "lastBuildDate", "http://webfeeds.org/rss/1.0", "generator", "item"})
+				in
+				    #"Expanded channel"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

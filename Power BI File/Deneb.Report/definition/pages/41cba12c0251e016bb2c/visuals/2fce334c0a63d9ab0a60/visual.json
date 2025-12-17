@@ -1,0 +1,421 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "2fce334c0a63d9ab0a60",
+  "position": {
+    "x": 27.931034482758619,
+    "y": 659.70443349753691,
+    "z": 1000,
+    "height": 401.67487684729065,
+    "width": 1864.7290640394087,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Positions"
+                    }
+                  },
+                  "Property": "Pos"
+                }
+              },
+              "queryRef": "Positions.Pos",
+              "nativeQueryRef": "Pos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Total pts by GW"
+                }
+              },
+              "queryRef": "DAX.Total pts by GW",
+              "nativeQueryRef": "Total pts by GW"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Player by GW"
+                    }
+                  },
+                  "Property": "round"
+                }
+              },
+              "queryRef": "Player by GW.round",
+              "nativeQueryRef": "round"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Positions"
+                    }
+                  },
+                  "Property": "id"
+                }
+              },
+              "queryRef": "Positions.id",
+              "nativeQueryRef": "id"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.8.2.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\n    \"name\": \"dataset\"\n  },\n  \"vconcat\": [\n    {\n      \"width\": 150,\n      \"height\": 15,\n      \"layer\": [\n        {\n          \"mark\": {\n            \"type\": \"circle\",\n            \"size\": 200\n          },\n          \"encoding\": {\n            \"fillOpacity\": {\n              \"condition\": {\n                \"test\": {\n                  \"field\": \"__selected__\",\n                  \"equal\": \"off\"\n                },\n                \"value\": 0.5\n              },\n              \"value\": 1\n            },\n            \"color\": {\n              \"field\": \"Pos\"\n            },\n            \"y\": {\n              \"field\": \"Pos\",\n              \"aggregate\": \"min\",\n              \"axis\": null,\n              \"sort\": {\n                \"field\": \"y\"\n              },\n              \"type\": \"nominal\"\n            },\n            \"x\": {\n              \"field\": \"Pos\",\n              \"title\": null,\n              \"sort\": {\n                \"field\": \"id\"\n              },\n              \"axis\": {\n                \"orient\": \"top\",\n                \"labelPadding\": 10\n              }\n            }\n          }\n        }\n      ]\n    },\n    {\n      \"width\": 1800,\n      \"height\": 250,\n      \"layer\": [\n        {\n          \"mark\": {\n            \"type\": \"bar\",\n            \"opacity\": 0.0,\n            \"width\": {\n              \"band\": 0.90\n            },\n            \"cornerRadiusEnd\": 3\n          },\n          \"encoding\": {\n            \"color\": {\n              \"field\": \"Pos\",\n              \"legend\": null\n            },\n            \"order\": {\n              \"field\": \"id\"\n            }\n          }\n        },\n        {\n          \"transform\": [\n            {\n              \"filter\": \"datum[''__selected__''] != ''off''\"\n            }\n          ],\n          \"mark\": {\n            \"type\": \"bar\",\n            \"width\": {\n              \"band\": 0.90\n            },\n            \"cornerRadiusEnd\": 3\n          },\n          \"encoding\": {\n            \"opacity\": {\n              \"condition\": {\n                \"test\": {\n                  \"field\": \"__selected__\",\n                  \"equal\": \"off\"\n                },\n                \"value\": 0\n              },\n              \"value\": 1\n            },\n            \"color\": {\n              \"field\": \"Pos\",\n              \"legend\": null,\n              \"scale\": {\n                \"domain\": [\n                  \"GKP\",\n                  \"DEF\",\n                  \"MID\",\n                  \"FWD\"\n                ],\n                \"range\": [\n                  \"#6eaef4\",\n                  \"#4c78a8\",\n                  \"#b3b3b3\",\n                  \"#454545\"\n                ]\n              }\n            },\n            \"order\": {\n              \"field\": \"id\"\n            },\n            \"y\": {\n              \"field\": \"Total pts by GW__highlight\",\n              \"type\": \"quantitative\",\n              \"title\": null\n            }\n          }\n        },\n        {\n          \"transform\": [\n            {\n              \"filter\": \"datum[''__selected__''] != ''off''\"\n            }\n          ],\n          \"mark\": {\n            \"type\": \"text\",\n            \"fontWeight\": 600,\n            \"yOffset\": -10,\n            \"size\": 10\n          },\n          \"encoding\": {\n            \"text\": {\n              \"field\": \"Total pts by GW__highlight\",\n              \"format\": \",.0f\",\n              \"type\": \"quantitative\",\n              \"aggregate\": \"sum\"\n            },\n            \"y\": {\n              \"field\": \"Total pts by GW__highlight\",\n              \"type\": \"quantitative\",\n              \"aggregate\": \"sum\",\n              \"axis\": null\n            }\n          }\n        }\n      ],\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"round\",\n          \"title\": null\n        }\n      }\n    }\n  ]\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"view\": {\"stroke\": \"transparent\"},\n  \"axis\": {\n    \"domainColor\": \"#ec7629\",\n    \"domainWidth\": 1,\n    \"titleColor\": \"#333\",\n    \"tickColor\": \"#454545\",\n    \"ticks\": false,\n    \"domain\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 5,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 10\n  },\n  \"axisY\": {\n    \"labelPadding\": 0,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 0,\n    \"grid\": false\n  },\n  \"scale\": {\"labelPadding\": 0},\n  \"legend\": {\n    \"title\": null,\n    \"labelFontSize\": 12,\n    \"labelColor\": \"#454545\",\n    \"symbolType\": \"square\",\n    \"symbolSize\": 200,\n    \"orient\": \"top\",\n    \"symbolStrokeWidth\": 2\n  }\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "selectionMaxDataPoints": {
+              "expr": {
+                "Literal": {
+                  "Value": "200D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataLimit": [
+        {
+          "properties": {
+            "override": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "367.0082089090582D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1854.7290640394087D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFF9EE'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Deneb Visual'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "keepLayerOrder": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cdd418d7aea85f801fc9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Act Plan"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "Act Plan",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "a"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -30,
+                          "TimeUnit": 0
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "112321a560c867556ea1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Positions"
+              }
+            },
+            "Property": "Pos"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "Positions",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "p"
+                              }
+                            },
+                            "Property": "Pos"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'MNG'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

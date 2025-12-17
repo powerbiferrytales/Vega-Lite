@@ -1,0 +1,134 @@
+table 'World Map'
+	lineageTag: 3be2578d-5f13-4376-997c-2e32cd458168
+
+	measure X = ```
+			
+			
+			    SUM('World Map'[X Pos])
+			```
+		lineageTag: 6edb6edf-af56-47ea-ab07-d753fa87ae87
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Y = ```
+			
+			
+			    SUM('World Map'[Y Pos])
+			```
+		lineageTag: e1229ad1-920d-425b-8855-89da4207c690
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Reg Max' = ```
+			
+			
+			  10
+			    
+			```
+		lineageTag: 3d3a88e8-995c-413d-a873-3374076b9205
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column name
+		dataType: string
+		lineageTag: 26484fe1-b434-4a68-80cc-8972a5518f5c
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Code1
+		dataType: string
+		lineageTag: 8c71d2ed-6b01-408a-9b74-143f54f3ed50
+		summarizeBy: none
+		sourceColumn: Code1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'alpha.3'
+		dataType: string
+		lineageTag: 1ed34cc2-d74c-4b23-b633-a4dfc7df23f9
+		summarizeBy: none
+		sourceColumn: alpha.3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'country.code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 085d19a7-1928-4542-a05c-25ef789e687a
+		summarizeBy: sum
+		sourceColumn: country.code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'iso_3166.2'
+		dataType: string
+		lineageTag: 3ff5e9c5-11a9-4a49-a248-1768a074fd83
+		summarizeBy: none
+		sourceColumn: iso_3166.2
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: d73471db-d25c-49e6-a70a-b10597c31f54
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'sub.region'
+		dataType: string
+		lineageTag: 1b909668-43e8-423c-aa8d-bcbf60974991
+		summarizeBy: none
+		sourceColumn: sub.region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'region.code'
+		dataType: string
+		lineageTag: dfcb7375-a35f-4d69-a858-869aeec006d1
+		summarizeBy: none
+		sourceColumn: region.code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'sub.region.code'
+		dataType: string
+		lineageTag: f70c742e-432d-4f5b-9704-bd36dca1283a
+		summarizeBy: none
+		sourceColumn: sub.region.code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'X Pos'
+		dataType: int64
+		formatString: 0
+		lineageTag: acd0686b-2059-4470-95ca-ab2f7bb91bab
+		summarizeBy: sum
+		sourceColumn: X Pos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Y Pos'
+		dataType: int64
+		formatString: 0
+		lineageTag: 959e7fc1-7de8-4597-b071-4acc0a8cdbbb
+		summarizeBy: sum
+		sourceColumn: Y Pos
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'World Map' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("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", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [name = _t, alpha.2 = _t, alpha.3 = _t, country.code = _t, iso_3166.2 = _t, region = _t, sub.region = _t, region.code = _t, sub.region.code = _t, #"X Pos" = _t, #"Y Pos" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"name", type text}, {"alpha.2", type text}, {"alpha.3", type text}, {"country.code", Int64.Type}, {"iso_3166.2", type text}, {"region", type text}, {"sub.region", type text}, {"region.code", type text}, {"sub.region.code", type text}, {"X Pos", Int64.Type}, {"Y Pos", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"alpha.2", "Code1"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

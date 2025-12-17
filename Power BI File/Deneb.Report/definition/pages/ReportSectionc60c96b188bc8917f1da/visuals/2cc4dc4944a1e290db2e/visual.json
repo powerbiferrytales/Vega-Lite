@@ -1,0 +1,265 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "2cc4dc4944a1e290db2e",
+  "position": {
+    "x": 1037.4384236453202,
+    "y": 308.57142857142856,
+    "z": 3000,
+    "height": 142.75862068965517,
+    "width": 166.69950738916256,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "best_in_show"
+                    }
+                  },
+                  "Property": "category"
+                }
+              },
+              "queryRef": "best_in_show.category",
+              "nativeQueryRef": "category"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "best_in_show"
+                    }
+                  },
+                  "Property": "Intelligence"
+                }
+              },
+              "queryRef": "best_in_show.Intelligence",
+              "nativeQueryRef": "Intelligence"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "intelligence %"
+                }
+              },
+              "queryRef": "DAX.intelligence %",
+              "nativeQueryRef": "Int",
+              "displayName": "Int"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Pts Pos %"
+                }
+              },
+              "queryRef": "DAX.Pts Pos %",
+              "nativeQueryRef": "Pts Pos %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "best_in_show"
+                  }
+                },
+                "Property": "category"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.5.1.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"arc\",\n        \"tooltip\": true\n      },\n      \"encoding\": {\n        \"radius\": {\n          \"field\": \"Int\",\n          \"scale\": {\"type\": \"quantile\"}\n        },\n        \"xOffset\": {\n          \"field\": \"category\"\n        },\n        \"color\": {\n          \"field\": \"category\",\n          \"scale\": {\n            \"range\": [\n              \"#454546\",\n              \"#f38731\"\n            ]\n          },\n          \"legend\": null\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"tooltip\": true,\n        \"size\": 20,\n        \"fontWeight\": 600,\n        \"color\": \"white\",\n        \"align\": \"center\"\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Int\",\n          \"format\": \",.1%\"\n        },\n        \"xOffset\": {\"field\": \"category\"}\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"tooltip\": true,\n        \"size\": 24,\n        \"fontWeight\": 600,\n        \"color\": \"white\",\n        \"yOffset\": -30,\n        \"align\": \"center\"\n      },\n      \"encoding\": {\n        \"text\": {\"field\": \"category\"}\n      }\n    }\n  ],\n  \"encoding\": {\n    \"text\": {\"field\": \"category\"},\n    \"xOffset\": {\n      \"field\": \"category\",\n      \"labelOverlap\": true\n    }\n  }\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"locale\": {\n    \"number\": {\n      \"decimal\": \".\",\n      \"thousands\": \",\",\n      \"grouping\": [3],\n      \"currency\": [\"\", \" €\"]\n    }\n  },\n  \"padding\": 60,\n  \"view\": {\"stroke\": \"transparent\"},\n  \"axis\": {\n    \"domainColor\": \"#454545\",\n    \"ticks\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 0,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 0,\n    \"grid\": false,\n    \"labelOverlap\": true,\n    \"domain\": false,\n    \"title\": null\n  },\n  \"axisY\": {\n    \"labelPadding\": 30,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 8,\n    \"domain\": false,\n    \"grid\": false\n  },\n  \"scale\": {\"labelPadding\": 0},\n  \"legend\": {\n    \"title\": null,\n    \"labelFontSize\": 12,\n    \"labelColor\": \"#454545\",\n    \"symbolType\": \"square\",\n    \"symbolSize\": 200,\n    \"orient\": \"top\",\n    \"symbolStrokeWidth\": 2\n  }\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'5.6.1'"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8CE1A'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter2947547a399ccf66d20b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "best_in_show"
+              }
+            },
+            "Property": "category"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "b",
+              "Entity": "best_in_show",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "b"
+                          }
+                        },
+                        "Property": "category"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'herding'"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'non-sporting'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "isHidden": true
+}

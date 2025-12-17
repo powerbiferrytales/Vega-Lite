@@ -1,0 +1,866 @@
+table DAX
+	lineageTag: 18d9eef7-6e8d-4236-92cf-2ad735b31155
+
+	/// This measure is the sum of column 'Player Totals'[transfers_out_event]
+	measure 'transfers_out_event ' = SUM('Player Totals'[transfers_out_event])
+		formatString: 0,0
+		lineageTag: 6d80d5ab-435b-462a-ab95-01c127d2dd4f
+
+		changedProperty = IsHidden
+
+	/// This measure is the sum of column 'Player Totals'[transfers_in_event]
+	measure 'transfers_in_event ' = SUM('Player Totals'[transfers_in_event])
+		formatString: 0,0
+		lineageTag: 75ee8518-5386-4251-934a-bf546cd4c1fc
+
+		changedProperty = IsHidden
+
+	/// This measure is the sum of column 'Player Totals'[total_points]
+	measure 'Total Points' = SUM('Player Totals'[total_points])
+		formatString: 0
+		lineageTag: 88d55d4f-8eb3-4e89-aceb-874926b27584
+
+		changedProperty = IsHidden
+
+	/// This measure is the sum of column 'Player Totals'[goals_scored]
+	measure goals_scored = SUM('Player by GW'[goals_scored])
+		formatString: 0
+		lineageTag: 31396009-0ec9-478b-a005-19adb1f9a8be
+
+		changedProperty = IsHidden
+
+	/// This measure is the sum of column 'Player Totals'[bonus]
+	measure Bonus = SUM('Player by GW'[bonus])
+		formatString: #,0
+		lineageTag: 5fcc351a-f70c-49ad-ad26-6642fbe2942f
+
+		changedProperty = IsHidden
+
+	measure 'Price per Point' = DIVIDE([Cost],[Total Points without 0])
+		lineageTag: 361dfefa-4f3d-4d62-b4ae-3c8a183b1108
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cost = SUM('Player Totals'[Cost])
+		lineageTag: 1173cd24-3926-45d0-b61f-c4d5d6010279
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Points without 0' =
+			
+			IF(SUM('Player Totals'[minutes])=0,BLANK(),
+			SUM('Player Totals'[total_points]))
+		lineageTag: a4034f9b-98c4-4662-9dd2-ae81749ba3ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Form Base' = SUM('Player Totals'[form])
+		formatString: 0
+		lineageTag: 58c93d45-da83-47b0-990e-705e85c21aef
+
+	measure 'Pts by GW TopN' = ```
+			
+			VAR SelectedTop = SELECTEDVALUE('TopN'[TopN])
+			RETURN
+			SWITCH(TRUE(),
+			    SelectedTop = 0, [Total pts by GW],
+			    RANKX ( 
+			            ALLSELECTED(  'Player Totals'[Name] ), 
+			          [Total pts by GW],,,Skip
+			                )
+			                  <= SelectedTop,
+			    [Total pts by GW]
+			)
+			```
+		formatString: 0
+		lineageTag: f567aec5-9ac7-4a9e-b401-9a2d72f790da
+
+	measure 'Appearances# last 10 GW' =
+			
+			VAR Last_GW = MAX('Player by GW'[round])
+			
+			RETURN
+			
+			CALCULATE(
+			  COUNT('Player by GW'[round]),'Player by GW'[minutes]>0,
+			    FILTER(ALL('Player by GW'[round]),
+			    'Player by GW'[round] >= Last_GW - 10 )
+			
+			
+			)
+		lineageTag: 3e3d7b10-6af2-460b-a8bd-445ea560d57e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Appearances last 10 GW' =
+			
+			VAR Last_GW = MAX('Player by GW'[round])
+			
+			RETURN
+			
+			CALCULATE(
+			    DIVIDE(SUM('Player by GW'[minutes]),COUNT('Player by GW'[round])),
+			    FILTER(ALL('Player by GW'[round]),
+			    'Player by GW'[round] > Last_GW -11))
+		lineageTag: 5f192ca5-a81a-4c04-adbb-0e2f3dc1a1fa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Return % last 10 GW' = ```
+			
+			VAR Last_GW = MAX('Player by GW'[round])
+			
+			RETURN
+			CALCULATE(
+			
+			[Return %],
+			
+			    FILTER(ALL('Player by GW'[round]),
+			    'Player by GW'[round] > Last_GW -11))
+			
+			
+			
+			
+			
+			```
+		lineageTag: c74f95d1-ed30-41c0-9410-a373fc53b7a0
+
+	measure 'Return %' =
+			
+			IF(
+			  DISTINCTCOUNT('Player by GW'[round])<10,
+			  CALCULATE(
+			    DIVIDE([Return #],[Appearances])
+			    ),
+			
+			IF([mins over 0]>=5,
+			CALCULATE(
+			    DIVIDE([Return #],[Appearances])
+			    )))
+		lineageTag: a5ff6a8e-6a59-45df-b8a6-ef2c19e2346c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Return #' = IF([Blank No]<=0,0,IF([pts 2 months]<>1,0,[Blank No]))
+		lineageTag: 08e558c0-b857-4ce1-b198-0d9dc6442088
+
+	measure 'Blank No' =
+			SUMX('Player by GW',
+			   IF(SELECTEDVALUE('Player Totals'[Pos])="DEF", IF(SUM('Player by GW'[clean_sheets])+SUM('Player by GW'[assists])+SUM('Player by GW'[goals_scored])>0,1,BLANK()),
+			   IF(SELECTEDVALUE('Player Totals'[Pos])="FWD", IF(SUM('Player by GW'[assists])+SUM('Player by GW'[goals_scored])>0,1,BLANK()),
+			   IF(SELECTEDVALUE('Player Totals'[Pos])="GLK", IF(SUM('Player by GW'[clean_sheets])+SUM('Player by GW'[penalties_saved])>0,1,BLANK()),
+			   IF(SELECTEDVALUE('Player Totals'[Pos])="MID", IF(SUM('Player by GW'[goals_scored])+SUM('Player by GW'[assists])>0,1,BLANK()),
+			BLANK()))))-[Blank]
+			)
+		lineageTag: b305a03f-1dbb-4983-9fea-f4fbbf1ed346
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Blank = ```
+			SUMX('Player by GW',
+			   IF(SELECTEDVALUE('Player Totals'[Pos])="DEF", IF(SUM('Player by GW'[clean_sheets])+SUM('Player by GW'[assists])+SUM('Player by GW'[goals_scored])>0,BLANK(),1),
+			   IF(SELECTEDVALUE('Player Totals'[Pos])="FWD", IF(SUM('Player by GW'[assists])+SUM('Player by GW'[goals_scored])>0,BLANK(),1),
+			   IF(SELECTEDVALUE('Player Totals'[Pos])="GLK", IF(SUM('Player by GW'[clean_sheets])+SUM('Player by GW'[penalties_saved])>0,BLANK(),1),
+			   IF(SELECTEDVALUE('Player Totals'[Pos])="MID", IF(SUM('Player by GW'[goals_scored])+SUM('Player by GW'[assists])>0,BLANK(),1),
+			   
+			BLANK()))))
+			)
+			```
+		lineageTag: 00a6ee54-c899-4838-a8f6-0083ad01aeed
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Appearances =
+			SUMX('Player by GW',
+			
+			CALCULATE(COUNT('Player by GW'[round]),'Player by GW'[minutes]>0))
+		lineageTag: 11c39a6b-e620-4fd4-9854-5039b68b3cfc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'pts 2 months' =
+			
+			VAR CurrentMonth = MAX('Player by GW'[Date])
+			
+			RETURN
+			IF(
+			    [average mins]<270,1,IF(
+			CALCULATE(
+			    SUM('Player by GW'[minutes]),FILTER('Player by GW','Player by GW'[Date]>= CurrentMonth -60))>270,1,0))
+		lineageTag: 83b3d469-4b20-42be-b435-18c7fcadce4d
+
+	measure 'average mins' = AVERAGE('Player Totals'[minutes])
+		lineageTag: 85c0650b-e3e2-406f-afd1-145f7eeec77f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Played in Prev 10 GW TopN' = ```
+			
+			VAR SelectedTop = SELECTEDVALUE('TopN'[TopN])
+			RETURN
+			SWITCH(TRUE(),
+			    SelectedTop = 0, [Appearances# last 10 GW],
+			    RANKX ( 
+			            ALLSELECTED(  'Player Totals'[Name] ), 
+			            [Return % last 10 GW]
+			                )
+			                  <= SelectedTop,
+			        [Appearances# last 10 GW]
+			)
+			```
+		formatString: 0
+		lineageTag: 91640f21-52dd-4e91-b0e5-0582fc75e1ec
+
+		changedProperty = FormatString
+
+	measure 'Points last 10 GW' = ```
+			
+			VAR Last_GW = MAX('Player by GW'[round])
+			
+			RETURN
+			
+			CALCULATE(
+			   [Total pts by GW],
+			    FILTER(ALL('Player by GW'[round]),
+			    'Player by GW'[round]> Last_GW -11))
+			
+			
+			
+			
+			
+			
+			```
+		lineageTag: 3b82f6d0-fce0-4c16-b3f6-8608a165968d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total pts by GW' = SUM('Player by GW'[total_points])
+		formatString: #,0
+		lineageTag: a370039b-330c-4087-bc31-d01c659e91d6
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'PPG last 10 GW' = ```
+			
+			VAR Last_GW = MAX('Player by GW'[round])
+			VAR TimePts = [pts 2 months]
+			RETURN
+			
+			CALCULATE(DIVIDE([Total pts by GW],COUNT('Player by GW'[id])),'Player by GW'[minutes]>0,
+			    'Player by GW'[round] > Last_GW -11
+			    
+			    )
+			
+			
+			
+			
+			
+			
+			```
+		lineageTag: e2f6b534-5ed7-4db5-b3dc-e0cf40f1142d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'mins over 0' =
+			CALCULATE(SUM(
+			    'Player by GW'[Mins over 0]))
+		lineageTag: 58d2f8c0-2b6c-427b-a002-cc77ae1f4131
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// This measure is the sum of column 'Player by GW'[transfers_balance]
+	measure 'transfers_balance ' = ```
+			
+			    SUM(
+			        'Player Totals'[transfers_in_event])
+			        -
+			    SUM(
+			        'Player Totals'[transfers_out_event])
+			```
+		formatString: 0,0
+		lineageTag: 3f5dd7a5-dd06-4a4c-956e-fa2e7a3ed4d3
+
+		changedProperty = IsHidden
+
+	measure 'Total Pts by GW No Bonus' = [Total pts by GW]-[Bonus]
+		lineageTag: 6d10d23c-1848-43ad-850d-a1c8268b3d36
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// This measure is the sum of column 'Player by GW'[assists]
+	measure Assists = SUM('Player by GW'[assists])
+		formatString: #,0
+		lineageTag: 8fc84a7b-a1d2-41c8-baf3-ecef72d9ed1a
+
+		changedProperty = IsHidden
+
+	/// This measure is the sum of column 'Player by GW'[minutes]
+	measure 'Minutes by GW' = SUM('Player by GW'[minutes])
+		formatString: 0
+		lineageTag: bbdb1bff-53b0-4f92-92dc-3a07b25f2965
+
+		changedProperty = IsHidden
+
+	measure 'Count of Pos' =
+			
+			calculate(
+			    COUNT('Player Totals'[Pos]),
+			'Player Totals'[total_points]>0)
+		lineageTag: a9b7f51e-7a60-4d47-a8d5-bae98700c5a0
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected % GW' = DIVIDE([Selected MAX GW],[Total Players])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 79ca67f5-9e6c-4a61-9316-be68e96226f5
+
+		changedProperty = FormatString
+
+	/// This measure is the sum of column 'Player by GW'[yellow_cards]
+	measure Yellow =
+			if(
+			    SUM('Player by GW'[yellow_cards])=0,
+			    BLANK(),
+			    SUM('Player by GW'[yellow_cards]))
+		formatString: 0
+		lineageTag: a7acd6ad-4729-41ee-8559-8183db715582
+
+		changedProperty = IsHidden
+
+	measure 'Pts vs Target' =
+			
+			IF([Minutes by GW]=0,BLANK(),
+			[Total pts by GW]-[Target Value])
+		formatString: 0
+		lineageTag: e70de32b-f6dd-4757-9add-840ca1b959a3
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Points = ```
+			
+			VAR SelectedTop = SELECTEDVALUE('TopN'[TopN])
+			RETURN
+			SWITCH(TRUE(),
+			    SelectedTop = 0, [Points last 10 GW],
+			    RANKX ( 
+			            ALLSELECTED(  'Player Totals'[Name]), 
+			            [Return % last 10 GW]
+			                )
+			                  <= SelectedTop,
+			        [Points last 10 GW]
+			)
+			```
+		formatString: 0
+		lineageTag: 59f2cf5f-85b7-458d-a602-dec8f230afc0
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Actual = SUM('Act Plan'[Actual])
+		formatString: #,0.00
+		lineageTag: ae4c1b12-98d2-4f3e-aeff-d1b4b9095521
+
+	measure Plan = SUM('Act Plan'[Plan])
+		lineageTag: 76cacee4-6531-4137-ac74-9f1acb7210a7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Dif =
+			
+			[Actual]-[Plan]
+		lineageTag: 27bebed8-7377-48cc-8f25-5cb15647f578
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SelTeam = ```
+			
+			
+			    IF(
+			        ISFILTERED(
+			            'Team ID'[Team Abr]),
+			            SELECTEDVALUE(
+			                'Team ID'[Team Abr]),
+			                "all teams")
+			
+			
+			                
+			```
+		lineageTag: a8962050-0e9f-43df-ae1e-266b894e991f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Target = 15000
+		formatString: 0
+		lineageTag: 60da9f88-7977-42bb-827a-62b737e5aad4
+
+		changedProperty = FormatString
+
+	measure Target2 = 20000
+		lineageTag: eede8d8e-002c-4224-9b0e-3ab34eebb596
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Target% = ```
+			
+			
+			 DIVIDE([ThermoTest Value],[Target])*1
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: adf5cc4a-6fa6-4b21-b8b2-f83a899a66c5
+
+		changedProperty = FormatString
+
+	measure 'Labels Top1' = ```
+			
+			
+			VAR SelectedTop = 1
+			RETURN
+			SWITCH(TRUE(),
+			    SelectedTop = 0,  [Total pts by GW],
+			    RANKX ( 
+			            ALLSELECTED(  'Player by GW'[round] ), 
+			         [Total pts by GW],,,Dense
+			                )
+			                  <= SelectedTop,
+			      [Total pts by GW]
+			)
+			```
+		lineageTag: 89d04e8a-c148-4ea3-8650-c0411bc22b6b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual % Measure' = DIVIDE ( [Actual], RANDBETWEEN(50000,5000000))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 755d0d77-ea05-4228-ab9e-29b8d3cf4231
+
+		changedProperty = FormatString
+
+	measure 'Actual PY' =
+			
+			
+			CALCULATE([Actual],SAMEPERIODLASTYEAR('Act Plan'[Date]))
+		lineageTag: ce954214-15fc-4187-bbfe-8c180515d196
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Actual YoY% All' = ```
+			
+			
+			
+					CALCULATE(DIVIDE([Actual],[Actual PY])-1,ALLSELECTED('Act Plan'[Date]))
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f30e6364-b862-40c0-b4f5-664c93652257
+
+	measure Actual2 =
+			
+			DIVIDE([Actual],RAND())
+		lineageTag: 97e1dd10-cdfc-411a-80eb-a29c1098d3ee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Customers =
+			
+			DIVIDE([Actual],RANDBETWEEN(1,5))
+		lineageTag: 381eea70-772b-4926-9844-47bb0316fc29
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Customers PY' =
+			
+			CALCULATE([Sum of Customers],SAMEPERIODLASTYEAR('Act Plan'[Date]))
+		lineageTag: 18c00ddb-ccee-49ba-99fa-e6f0f1083af8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Customers YoY% All' = ```
+			
+			
+			
+					CALCULATE(DIVIDE([Sum of Customers],[Customers PY])-1,ALLSELECTED('Act Plan'[Date]))
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: e47faf66-b9f0-41a0-b15d-c4f54c8112b5
+
+	measure 'Orders PY' =
+			
+			CALCULATE([Sum of Orders],SAMEPERIODLASTYEAR('Act Plan'[Date]))
+		lineageTag: f62a32b9-2855-494b-b85d-af8f109ff650
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Orders YoY% All' = ```
+			
+			
+			
+					CALCULATE(DIVIDE([Sum of Orders],[Orders PY])-1,ALLSELECTED('Act Plan'[Date]))
+			```
+		lineageTag: 1f2b4e0f-4373-40a4-bec5-c7a7c36103a1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Reviews PY' =
+			
+			
+			CALCULATE([Sum of Reviews],SAMEPERIODLASTYEAR('Act Plan'[Date]))
+		lineageTag: 7f556074-1e6e-40cf-aa9f-48b16cdfdecc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Reviews YoY% All' = ```
+			
+			
+			
+					CALCULATE(DIVIDE([Sum of Reviews],[Reviews PY])-1,ALLSELECTED('Act Plan'[Date]))
+			```
+		lineageTag: 560bc618-a058-4270-bc51-142d0f49b3bd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pts Pos %' =
+			
+			
+			VAR TotalProfit =
+			  [Total pts by GW]
+			VAR SegmentVariable =
+			    CALCULATE([Total pts by GW],ALLSELECTED(Positions[Pos]))
+			    RETURN
+			    DIVIDE ( TotalProfit, SegmentVariable )
+		lineageTag: 91bed24d-de2b-472a-a03e-258a669ebb66
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure sel%_ = SUM('Player Totals'[selected_by_percent])
+		lineageTag: bb5fd22c-498c-4db8-8a4f-9e19fdf71ab0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sel% by GW TopN' = ```
+			
+			VAR SelectedTop = SELECTEDVALUE('TopN'[TopN])
+			RETURN
+			SWITCH(TRUE(),
+			    SelectedTop = 0, [sel%],
+			    RANKX ( 
+			            ALLSELECTED(  'Player Totals'[Name] ), 
+			          [sel%],,,Skip
+			                )
+			                  <= SelectedTop,
+			    [sel%]
+			)
+			```
+		lineageTag: ba8e1011-2cea-47b1-8f6f-e5319576df15
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Round Top1' = ```
+			
+			
+			VAR SelectedTop = 1
+			RETURN
+			SWITCH(TRUE(),
+			    SelectedTop = 0,  'Player by GW'[round ],
+			    RANKX ( 
+			            ALLSELECTED(  'Player by GW'[round] ), 
+			        'Player by GW'[round ]
+			                )
+			                  <= SelectedTop,
+			     MAX('Player by GW'[round]
+			))
+			```
+		lineageTag: 2e891796-2072-46b2-8a52-1d0894d2d912
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total pts by GW Av' =
+			
+			CALCULATE(
+			AVERAGE('Player by GW'[total_points]),
+			ALL('Player by GW'[round]),
+			'Player by GW'[minutes]>65)
+		lineageTag: 7d086500-2850-4efb-88e1-656ce5693588
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total pts by GW Max' = max('Player by GW'[total_points])
+		lineageTag: 28fa2ebd-31ae-45fe-b6d0-f198d4d6d38a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Bonus Pts by GW TopN' = ```
+			
+			VAR SelectedTop = SELECTEDVALUE('TopN'[TopN])
+			RETURN
+			SWITCH(TRUE(),
+			    SelectedTop = 0, [bonus],
+			    RANKX ( 
+			            ALLSELECTED(  'Player Totals'[Name] ), 
+			          [Pts by GW TopN],,,Skip
+			                )
+			                  <= SelectedTop,
+			    [bonus]
+			)
+			```
+		lineageTag: 3edb45bc-03a4-4104-86bc-c9560d63ff3d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PPG =
+			
+			CALCULATE(
+			    DIVIDE( [Total pts by GW], COUNT( 'Player by GW'[id] ) ),
+			    'Player by GW'[minutes] > 0
+			)
+		lineageTag: b0f509cd-525a-4652-bfdd-0715af870b5c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MapMeasure = ```
+			
+			
+			VAR MySelection = SELECTEDVALUE(MapTest[Name]) 
+			
+			    RETURN
+			        SWITCH (
+			                    TRUE (),
+			
+			MySelection = "2", 'Player by GW'[Pts by GW],
+			MySelection = "7", 'DAX'[Appearances],
+			MySelection = "12", [Bonus],
+			MySelection = "17", [PPG],
+			
+			BLANK()
+			)
+			
+			```
+		lineageTag: a5576d3b-941a-4360-8362-d09fb5bd2785
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MapMeasure2 = ```
+			
+			
+			VAR MySelection = SELECTEDVALUE(MapTest[Name]) 
+			
+			    RETURN
+			        SWITCH (
+			                    TRUE (),
+			
+			MySelection = "1", "Pts by GW",
+			MySelection = "6", "Appearances",
+			MySelection = "11", "Bonus Pts",
+			MySelection = "16", "PPG",
+			
+			BLANK()
+			)
+			
+			
+			
+			
+			```
+		lineageTag: 15e75879-65a8-4de9-b66f-a9f2ea0a3d0d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MapMeasure3 = ```
+			
+			
+			0
+			
+			```
+		lineageTag: 54e69b9e-d8bc-4b0c-ae68-4db2a4583f4c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MapMeasureKPI = ```
+			
+			
+			VAR MySelection = SELECTEDVALUE(MapTest[Name]) 
+			
+			    RETURN
+			        SWITCH (
+			                    TRUE (),
+			
+			MySelection = "2", COMBINEVALUES("-","Bum",FORMAT([PPG],"#.##")),
+			MySelection = "7", 'DAX'[Appearances],
+			MySelection = "12", [Bonus],
+			MySelection = "17", [PPG],
+			
+			BLANK()
+			)
+			
+			```
+		lineageTag: 44376065-1780-4396-ba15-36c0d5063bd9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MapMeasure4 = ```
+			
+			
+			VAR MySelection = SELECTEDVALUE(MapTest[Name]) 
+			
+			    RETURN
+			        SWITCH (
+			                    TRUE (),
+			
+			MySelection = "3", "😄",
+			MySelection = "7", "😉",
+			MySelection = "8", "😐",
+			MySelection = "9", "😀",
+			MySelection = "11", "🤩",
+			MySelection = "12", "🤨",
+			MySelection = "13", "🫡",
+			MySelection = "14", "🙄",
+			MySelection = "15", "😮",
+			MySelection = "17","😉",
+			MySelection = "18", "😐",
+			MySelection = "19","😀",
+			MySelection = "23", "😄",
+			
+			BLANK()
+			)
+			
+			```
+		lineageTag: 683f2ffd-0e92-4924-9ea3-fc401b453411
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total pts by GW ALL round' = ```
+			
+			
+			    CALCULATE(
+			    SUM('Player by GW'[total_points]),
+			    ALLSELECTED('Player by GW'[round]
+			    )
+			    )
+			```
+		lineageTag: 28eae8bf-d083-40b3-8940-e79074b55a74
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Pts_MaxRound' = ```
+			
+			VAR MaxRound =
+			    CALCULATE(
+			        MAX('Player by GW'[round]),
+			        ALL('Player by GW')       -- ignore filters on round
+			    )
+			RETURN
+			    CALCULATE(
+			       [Total pts by GW],
+			        'Player by GW'[round] = MaxRound,
+			        ALL('Player by GW')       -- for safety, ensures we always get the true max
+			    )
+			
+			```
+		lineageTag: efee2238-1798-4ad8-a38a-160dbcff20d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'total pts diff' =
+			
+			
+			[Total pts by GW ALL round]-[Total pts by GW]
+		lineageTag: 2c972c95-dcaa-4986-b7d5-1cd49fee92bc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total pts cum' =
+			
+			CALCULATE(
+				SUM('Player by GW'[total_points]),
+				FILTER(
+					ALLSELECTED('Player by GW'[round]),
+					ISONORAFTER('Player by GW'[round], MAX('Player by GW'[round]), DESC)
+				)
+			)
+		formatString: #,0
+		lineageTag: fa097dcd-00e4-45f5-9f49-0a901acfcf8f
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "RunningTotal"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Total Pts_MaxRoundcum' = ```
+			
+			VAR MaxRound =
+			    CALCULATE(
+			        MAX('Player by GW'[round]),
+			        ALL('Player by GW')       -- ignore filters on round
+			    )
+			RETURN
+			    CALCULATE(
+			       [Total pts cum],
+			        'Player by GW'[round] = MaxRound,
+			        ALL('Player by GW')       -- for safety, ensures we always get the true max
+			    )
+			
+			```
+		lineageTag: 1a45ce35-185d-485a-b168-024474fe44de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total pts by GW ALL round2' = ```
+			
+			VAR CurrentRound =
+			    SELECTEDVALUE ( 'Player by GW'[round] )
+			RETURN
+			CALCULATE (
+			    SUM ( 'Player by GW'[total_points] ),
+			    ALLSELECTED ( 'Player by GW'[round] ),        -- keep only external filters
+			    'Player by GW'[round] >= CurrentRound         -- from current round to max visible round
+			)
+			
+			```
+		lineageTag: 9d778c78-36e0-45fa-a710-f869187fe6b6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure IsAfterOrEqualSelectedRound = ```
+			
+			
+			VAR SelectedRound = SELECTEDVALUE('Player by GW'[round])
+			VAR ThisRound = MAX('Player by GW'[round])
+			
+			RETURN
+			IF(
+			    ThisRound = SelectedRound,
+			    1,
+			    0
+			)
+			
+			```
+		lineageTag: df8cb7a6-0c10-45a4-9ff7-d93a1b9521a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'POS MAX' = ```
+			
+			
+			    CALCULATE(
+			        MAX(Positions[Pos]))
+			```
+		lineageTag: 1321a66f-bed1-4ef5-b4e2-3c784eab9d97
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DAX-a4f88376-1fe2-4374-a3b0-074feec33e30 = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

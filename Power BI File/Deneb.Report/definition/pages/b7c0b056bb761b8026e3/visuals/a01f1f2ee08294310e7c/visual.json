@@ -1,0 +1,254 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "a01f1f2ee08294310e7c",
+  "position": {
+    "x": 584.55356046277416,
+    "y": 73.446488663997442,
+    "z": 0,
+    "height": 340.06730367713885,
+    "width": 777.72788681191821,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Destinations"
+                    }
+                  },
+                  "Property": "Country"
+                }
+              },
+              "queryRef": "Destinations.Country",
+              "nativeQueryRef": "Country"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Destinations"
+                    }
+                  },
+                  "Property": "25"
+                }
+              },
+              "queryRef": "Destinations.25",
+              "nativeQueryRef": "25"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Destinations"
+                    }
+                  },
+                  "Property": "24"
+                }
+              },
+              "queryRef": "Destinations.24",
+              "nativeQueryRef": "24"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Destinations"
+                    }
+                  },
+                  "Property": "Index"
+                }
+              },
+              "queryRef": "Destinations.Index",
+              "nativeQueryRef": "Index"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Destinations"
+                  }
+                },
+                "Property": "Country"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "302.06730367713885D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "767.7278868119182D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\n    \"name\": \"dataset\"\n  },\n  \"layer\": [\n    {\n      \"title\": {\n        \"text\": \"Most destinations are more expensive\",\n        \"anchor\": \"start\",\n        \"fontSize\": 18,\n        \"subtitleFontSize\": 14,\n        \"color\": \"#454545\",\n        \"subtitle\": \"Change in average cost per person of all-inclusive family holiday for one week in Aug 2024 vs 𝗔𝘂𝗴 𝟮𝟬𝟮𝟱.\",\n        \"subtitleColor\": \"#454545\",\n        \"offset\": 20,\n        \"subtitlePadding\": 5\n      },\n      \"mark\": {\n        \"type\": \"rule\",\n        \"color\": {\n          \"expr\": \"pbiColor(0)\"\n        },\n        \"size\": 2\n      },\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"Country\",\n          \"type\": \"nominal\",\n          \"sort\": {\n            \"field\": \"Index\"\n          }\n        },\n        \"x\": {\n          \"field\": \"24\",\n          \"type\": \"quantitative\",\n          \"axis\": null,\n          \"scale\": {\n            \"domain\": [\n              600,\n              1500\n            ]\n          }\n        },\n        \"x2\": {\n          \"field\": \"25\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"point\",\n        \"size\": 50,\n        \"opacity\": 1,\n        \"color\": {\n          \"expr\": \"pbiColor(0)\"\n        }\n      },\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"Country\",\n          \"type\": \"nominal\",\n          \"sort\": {\n            \"field\": \"Index\"\n          }\n        },\n        \"x\": {\n          \"field\": \"24\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"point\",\n        \"shape\": {\n          \"expr\": \"datum[''25'']> datum[''24'']? ''triangle-right'': ''triangle-left''\"\n        },\n        \"color\": {\n          \"expr\": \"pbiColor(0)\"\n        },\n        \"opacity\": 1,\n        \"size\": 250\n      },\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"Country\",\n          \"type\": \"nominal\",\n          \"sort\": {\n            \"field\": \"Index\"\n          }\n        },\n        \"x\": {\n          \"field\": \"25\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"opacity\": 1,\n        \"size\": 14,\n        \"xOffset\": {\n          \"expr\": \"datum[''25'']> datum[''24'']? -15: 15\"\n        },\n        \"align\": {\n          \"expr\": \"datum[''25'']> datum[''24'']? ''right'': ''left''\"\n        }\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"24\",\n          \"format\": \"$,.0f\"\n        },\n        \"y\": {\n          \"field\": \"Country\",\n          \"type\": \"nominal\",\n          \"sort\": {\n            \"field\": \"Index\"\n          }\n        },\n        \"x\": {\n          \"field\": \"24\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"opacity\": 1,\n        \"fontWeight\": 800,\n        \"size\": 14,\n        \"xOffset\": {\n          \"expr\": \"datum[''25'']> datum[''24'']? 15: -15\"\n        },\n        \"align\": {\n          \"expr\": \"datum[''25'']> datum[''24'']? ''left'': ''right''\"\n        }\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"25\",\n          \"format\": \"$,.0f\"\n        },\n        \"y\": {\n          \"field\": \"Country\",\n          \"type\": \"nominal\",\n          \"sort\": {\n            \"field\": \"Index\"\n          }\n        },\n        \"x\": {\n          \"field\": \"25\",\n          \"type\": \"quantitative\"\n        }\n      }\n    }\n  ]\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\r\n    \"locale\": {\r\n      \"number\": {\r\n        \"decimal\": \".\",\r\n        \"thousands\": \",\",\r\n        \"grouping\": [3],\r\n        \"currency\": [\"£\",\"\"]   // German: space before euro symbol\r\n      }\r\n    },\r\n  \"view\": {\r\n    \"stroke\": \"transparent\"\r\n  },\r\n    \"font\":\"Verdana\",\r\n  \"point\": {\r\n    \"filled\": true\r\n  },\r\n  \"axis\": {\r\n    \"domainColor\": \"#ec7629\",\r\n    \"domainWidth\": 1,\r\n    \"titleColor\": \"#333\",\r\n    \"tickColor\": \"#454545\",\r\n    \"ticks\": false,\r\n    \"domain\": false\r\n  },\r\n  \"axisX\": {\r\n    \"labelPadding\": 5,\r\n    \"labelAngle\": 0,\r\n    \"labelFontSize\": 10,\r\n    \"grid\": false\r\n  },\r\n  \"axisY\": {\r\n    \"labelPadding\": 5,\r\n    \"labelAngle\": 0,\r\n    \"labelFontSize\": 15,\r\n    \"title\": null\r\n  },\r\n  \"scale\": {\r\n    \"labelPadding\": 0\r\n  },\r\n  \"legend\": {\r\n    \"title\": null,\r\n    \"labelFontSize\": 12,\r\n    \"labelColor\": \"#454545\",\r\n    \"symbolType\": \"square\",\r\n    \"symbolSize\": 200,\r\n    \"orient\": \"top\",\r\n    \"symbolStrokeWidth\": 2\r\n  }\r\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableContextMenu": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "selectionMaxDataPoints": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.8.2.0'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F6F6F6'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'After'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

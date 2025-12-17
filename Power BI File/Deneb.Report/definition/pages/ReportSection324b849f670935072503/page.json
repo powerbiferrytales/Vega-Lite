@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.3.0/schema.json",
+  "name": "ReportSection324b849f670935072503",
+  "displayName": "Bars",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "201L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "displayArea": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Middle'"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "448d636b1f7fba9ce8eb",
+      "target": "a3eb70bd059b77018039",
+      "type": "HighlightFilter"
+    },
+    {
+      "source": "a3eb70bd059b77018039",
+      "target": "448d636b1f7fba9ce8eb",
+      "type": "HighlightFilter"
+    },
+    {
+      "source": "a3eb70bd059b77018039",
+      "target": "82686f6268bc5b46308c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "82686f6268bc5b46308c",
+      "target": "720b9f9d4a7b96d286b7",
+      "type": "NoFilter"
+    },
+    {
+      "source": "82686f6268bc5b46308c",
+      "target": "a3eb70bd059b77018039",
+      "type": "NoFilter"
+    },
+    {
+      "source": "720b9f9d4a7b96d286b7",
+      "target": "a3eb70bd059b77018039",
+      "type": "HighlightFilter"
+    },
+    {
+      "source": "a3eb70bd059b77018039",
+      "target": "720b9f9d4a7b96d286b7",
+      "type": "HighlightFilter"
+    }
+  ]
+}

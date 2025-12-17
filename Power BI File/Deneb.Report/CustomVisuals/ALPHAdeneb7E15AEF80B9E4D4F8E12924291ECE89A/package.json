@@ -1,0 +1,29 @@
+{
+  "version": "1.7.3.20250402#8a8c732",
+  "author": {
+    "name": "Daniel Marsh-Patrick",
+    "email": "daniel@coacervo.co"
+  },
+  "resources": [
+    {
+      "resourceId": "rId0",
+      "sourceType": 5,
+      "file": "resources/ALPHAdeneb7E15AEF80B9E4D4F8E12924291ECE89A.pbiviz.json"
+    }
+  ],
+  "visual": {
+    "guid": "ALPHAdeneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "name": "deneb",
+    "displayName": "Deneb (Alpha Channel Build)",
+    "version": "1.7.3.20250402#8a8c732",
+    "description": "NOT FOR PRODUCTION USE",
+    "supportUrl": "https://deneb-viz.github.io/",
+    "gitHubUrl": "https://github.com/deneb-viz/deneb",
+    "visualClassName": "Deneb"
+  },
+  "metadata": {
+    "pbivizjson": {
+      "resourceId": "rId0"
+    }
+  }
+}

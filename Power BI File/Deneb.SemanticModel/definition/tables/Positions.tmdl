@@ -1,0 +1,62 @@
+table Positions
+	lineageTag: 0fdeee03-4b97-476f-b9ff-5d859e0c4b17
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: f9f455a1-756a-44d2-ac0b-49b6df690d8f
+		summarizeBy: none
+		sourceColumn: id
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pos
+		dataType: string
+		lineageTag: 44ea8c0c-cd11-4f7f-8e2c-d64b1b05f056
+		summarizeBy: none
+		sourceColumn: Pos
+		sortByColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column squad_min_play
+		dataType: string
+		lineageTag: c75c7d88-7fa0-4c22-ac7a-162e3ff7f359
+		summarizeBy: none
+		sourceColumn: squad_min_play
+
+		annotation SummarizationSetBy = Automatic
+
+	column squad_max_play
+		dataType: string
+		lineageTag: f878634d-3920-491f-8d5c-1e62846e3cf8
+		summarizeBy: none
+		sourceColumn: squad_max_play
+
+		annotation SummarizationSetBy = Automatic
+
+	column element_count
+		dataType: string
+		lineageTag: f108ccb9-df90-40c6-aac7-d4f3339bdffa
+		summarizeBy: none
+		sourceColumn: element_count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Positions-766f7a7b-b552-4ccb-ba29-e92934ac9039 = m
+		mode: import
+		queryGroup: 'Game Info'
+		source =
+				let
+				    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/api/bootstrap-static/")),
+				    element_types = Source[element_types],
+				    #"Converted to Table" = Table.FromList(element_types, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"id", "plural_name_short", "squad_min_play", "squad_max_play", "element_count"}, {"id", "plural_name_short", "squad_min_play", "squad_max_play", "element_count"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded Column1",{{"plural_name_short", "Pos"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+

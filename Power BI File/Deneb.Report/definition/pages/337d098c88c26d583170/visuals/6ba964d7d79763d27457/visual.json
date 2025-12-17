@@ -1,0 +1,209 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "6ba964d7d79763d27457",
+  "position": {
+    "x": 126.53984625086814,
+    "y": 94.1691879076228,
+    "z": 2000,
+    "height": 891.66449800030341,
+    "width": 1039.7847831466684,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "World Map"
+                    }
+                  },
+                  "Property": "Code1"
+                }
+              },
+              "queryRef": "World Map.Code1",
+              "nativeQueryRef": "Code1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "World Map"
+                    }
+                  },
+                  "Property": "region"
+                }
+              },
+              "queryRef": "World Map.region",
+              "nativeQueryRef": "region"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "World Map"
+                    }
+                  },
+                  "Property": "Y"
+                }
+              },
+              "queryRef": "World Map.Y",
+              "nativeQueryRef": "Y"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "World Map"
+                    }
+                  },
+                  "Property": "X"
+                }
+              },
+              "queryRef": "World Map.X",
+              "nativeQueryRef": "X"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "World Map"
+                  }
+                },
+                "Property": "Code1"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "881.6644980003034D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1029.7847831466684D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\n    \"name\": \"dataset\"\n  },\n  \"spacing\": 50,\n  \"center\": true,\n  \"vconcat\": [\n    {\n      \"width\": 600,\n      \"height\": 10,\n      \"layer\": [\n        {\n\n          \"mark\": {\n            \"type\": \"square\",\n            \"size\": 200\n          },\n          \"encoding\": {\n            \"opacity\": {\n              \"condition\": {\n                \"test\": {\n                  \"field\": \"__selected__\",\n                  \"equal\": \"on\"\n                },\n                \"value\": 0.1\n              },\n              \"value\": 1\n            },\n            \"color\": {\n              \"field\": \"region\"\n            },\n            \"y\": {\n              \"field\": \"region\",\n              \"aggregate\":\"average\",\n              \"axis\": null,\n              \"type\": \"nominal\"\n            },\n            \"x\": {\n              \"field\": \"region\",\n              \"title\": null,\n              \"axis\": {\n                \"orient\": \"top\",\n                \"labelPadding\": 10,\n                \"labelFontSize\": 12\n              }\n            }\n          }\n        }\n      ]\n    },\n    {\n      \"height\": {\n        \"step\": 35\n      },\n      \"width\": {\n        \"step\": 35\n      },\n      \"layer\": [\n        {\n          \"mark\": {\n            \"type\": \"rect\",\n            \"opacity\": 0.1,\n            \"filled\": false\n          },\n          \"encoding\": {}\n        },\n        {\n          \"transform\": [\n            {\n              \"filter\": \"datum[''Y__highlight''] != null\"\n            },\n            {\n              \"filter\": \"datum[''X__highlight''] != null\"\n            }\n          ],\n          \"mark\": {\n            \"type\": \"rect\",\n            \"tooltip\": true,\n            \"filled\": false,\n            \"strokeWidth\": 1\n          },\n          \"encoding\": {\n            \"opacity\": {\n              \"condition\": {\n                \"test\": {\n                  \"field\": \"__selected__\",\n                  \"equal\": \"off\"\n                },\n                \"value\": 0.2\n              },\n              \"value\": 1\n            },\n            \"color\": {\n              \"field\": \"region\",\n              \"legend\": null,\n              \"scale\": {\n                \"scheme\": \"tableau10\"\n              }\n            },\n            \"y\": {\n              \"field\": \"Y__highlight\"\n            },\n            \"x\": {\n              \"field\": \"X__highlight\"\n            }\n          }\n        },\n        {\n          \"mark\": {\n            \"type\": \"text\",\n            \"color\": \"#ffffff\",\n            \"size\": 14,\n            \"fontWeight\": 600,\n            \"opacity\": 0.2\n          },\n          \"encoding\": {\n            \"text\": {\n              \"field\": \"Code1\"\n            }\n          }\n        },\n        {\n          \"transform\": [\n            {\n              \"filter\": \"datum[''Y__highlight''] != null\"\n            },\n            {\n              \"filter\": \"datum[''X__highlight''] != null\"\n            }\n          ],\n          \"mark\": {\n            \"type\": \"text\",\n            \"color\": \"#454545\",\n            \"size\": 14,\n            \"fontWeight\": 400\n          },\n          \"encoding\": {\n            \"text\": {\n              \"field\": \"Code1\"\n            },\n            \"opacity\": {\n              \"condition\": {\n                \"test\": {\n                  \"field\": \"__selected__\",\n                  \"equal\": \"off\"\n                },\n                \"value\": 0.2\n              },\n              \"value\": 1\n            }\n          }\n        }\n      ],\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"Y\",\n          \"axis\": null,\n          \"scale\": {\n            \"padding\": 0.1\n          }\n        },\n        \"x\": {\n          \"field\": \"X\",\n          \"axis\": null,\n          \"scale\": {\n            \"padding\": 0.1\n          }\n        }\n      }\n    }\n  ]\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"view\": {\n    \"stroke\": \"transparent\"\n  },\n  \"axis\": {\n    \"domainColor\": \"#e4e4e4\",\n    \"domainWidth\": 0,\n    \"titleColor\": \"#333\",\n    \"tickColor\": \"#454545\",\n    \"ticks\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 5,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 9,\n    \"grid\": false,\n    \"domainWidth\": 0,\n    \"ticks\": false\n  },\n  \"axisY\": {\n    \"labelPadding\": 5,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 10,\n    \"grid\": false\n  },\n  \"scale\": {\n    \"labelPadding\": 0\n  },\n  \"legend\": {\n    \"title\": null,\n    \"labelFontSize\": 14,\n    \"labelColor\": \"#454545\",\n    \"offset\": 50,\n    \"symbolSize\": 400,\n    \"orient\": \"top\",\n    \"format\": \".2s\",\n    \"layout\": {\n      \"top\": {\n        \"anchor\": \"middle\"\n      }\n    }\n  }\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableContextMenu": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "selectionMaxDataPoints": {
+              "expr": {
+                "Literal": {
+                  "Value": "100D"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.8.2.0'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

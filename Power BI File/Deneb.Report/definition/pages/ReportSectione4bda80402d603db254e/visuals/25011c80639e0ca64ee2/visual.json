@@ -1,0 +1,421 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "25011c80639e0ca64ee2",
+  "position": {
+    "x": 1222.4312839281768,
+    "y": 85.519884060818939,
+    "z": 4000,
+    "height": 593.6086070103903,
+    "width": 583.54744417970574,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "ALPHAdeneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Player Totals"
+                    }
+                  },
+                  "Property": "Name"
+                }
+              },
+              "queryRef": "Player Totals.Name",
+              "nativeQueryRef": "Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "sel%_"
+                }
+              },
+              "queryRef": "DAX.sel%_",
+              "nativeQueryRef": "sel%",
+              "displayName": "sel%"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Total Points"
+                }
+              },
+              "queryRef": "DAX.Total Points",
+              "nativeQueryRef": "Total Points"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX Formatting"
+                    }
+                  },
+                  "Property": "SizeTextFilter2"
+                }
+              },
+              "queryRef": "DAX Formatting.SizeTextFilter2",
+              "nativeQueryRef": "SizeTextFilter2"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Player Totals"
+                  }
+                },
+                "Property": "Name"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\n    \"name\": \"dataset\"\n  },\n  \"title\": {\n    \"text\": \"Most selected players\",\n    \"anchor\": \"middle\",\n    \"color\": \"#454545\",\n    \"subtitle\": \"Percentage of managers who select each player\",\n    \"subtitleColor\": \"#454545\"\n  },\n  \"encoding\": {\n    \"x\": {\n      \"field\": \"Total Points\",\n      \"type\": \"quantitative\",\n      \"axis\": null\n    },\n    \"y\": {\n      \"field\": \"Name\",\n      \"type\": \"nominal\"\n    }\n  },\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"color\": \"#454545\",\n        \"tooltip\": true,\n        \"fillOpacity\": {\n          \"expr\": \"datum[''SizeTextFilter2__highlight'']  > 0 ? 1 : 0.1\"\n        },\n        \"stroke\": \"#454545\",\n        \"strokeWidth\": 1,\n        \"strokeDash\": [\n          6,\n          2\n        ],\n        \"strokeOpacity\": {\n          \"expr\": \"datum[''SizeTextFilter2__highlight'']  > 0 ? 0 : 0.5\"\n        }\n      },\n      \"encoding\": {\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": 0.1\n          },\n          \"value\": 1\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"color\": {\n          \"expr\": \"datum[''SizeTextFilter2__highlight'']  > 0 ? ''#454545'' : ''#e3e3e3''\"\n        },\n        \"xOffset\": 5,\n        \"tooltip\": true,\n        \"align\": \"left\",\n        \"size\": 14\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Total Points\"\n        }\n      }\n    },\n    //Hover Text\n    {\n      \"transform\": [\n        {\n          \"calculate\": \"datum[''sel%'']/100\",\n          \"as\": \"_label\"\n        }\n      ],\n      \"params\": [\n        {\n          \"name\": \"sue\",\n          \"select\": {\n            \"type\": \"point\",\n            \"on\": \"pointerover\"\n          }\n        }\n      ],\n      \"mark\": {\n        \"type\": \"text\",\n        \"color\": \"#ffffff\",\n        \"xOffset\": -5,\n        \"fontWeight\": 600,\n        \"align\": \"right\"\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"_label\",\n          \"format\": \",.0%\"\n        },\n        \"size\": {\n          \"condition\": [\n            {\n              \"param\": \"sue\",\n              \"empty\": false,\n              \"value\": 12\n            }\n          ],\n          \"value\": 0\n        }\n      }\n    },\n    {\n      \"params\": [\n        {\n          \"name\": \"jeff\",\n          \"select\": {\n            \"type\": \"point\",\n            \"on\": \"pointerover\"\n          }\n        }\n      ],\n      \"mark\": {\n        \"type\": \"bar\",\n        \"color\": \"#ffffff\"\n      },\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Total Points\",\n          \"type\": \"quantitative\"\n        },\n        \"size\": {\n          \"condition\": [\n            {\n              \"param\": \"jeff\",\n              \"empty\": false,\n              \"value\": 5\n            }\n          ],\n          \"value\": 0\n        }\n      }\n    }\n  ],\n  \"resolve\": {\n    \"scale\": {\n      \"x\": \"independent\"\n    }\n  }\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"font\": \"Verdana\",\n  \"locale\": {\n    \"number\": {\n      \"decimal\": \".\",\n      \"thousands\": \",\",\n      \"grouping\": [\n        3\n      ],\n      \"currency\": [\n        \"\",\n        \" €\"\n      ]\n    }\n  },\n  \"padding\": 5,\n  \"view\": {\n    \"stroke\": \"transparent\"\n  },\n  \"axis\": {\n    \"domainColor\": \"#454545\",\n    \"ticks\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 0,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 10,\n    \"grid\": false,\n    \"labelOverlap\": true,\n    \"domain\": false,\n    \"title\": null\n  },\n  \"axisY\": {\n    \"labelPadding\": 10,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 12,\n    \"domain\": false,\n    \"grid\": false,\n    \"title\":null\n  },\n  \"scale\": {\n    \"labelPadding\": 0\n  },\n  \"legend\": {\n    \"title\": null,\n    \"labelFontSize\": 12,\n    \"labelColor\": \"#454545\",\n    \"symbolType\": \"square\",\n    \"symbolSize\": 200,\n    \"orient\": \"top\",\n    \"symbolStrokeWidth\": 2\n  },\n  \"header\": {\n    \"titleFontSize\": 16,\n    \"titleColor\": \"#252423\",\n    \"labelFont\": \"Segoe UI\",\n    \"labelFontSize\": 12,\n    \"labelColor\": \"#454545\"\n  }\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableContextMenu": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "selectionMaxDataPoints": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.1.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.7.3.20250402#8a8c732'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "583.6086070103903D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "573.5474441797057D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Play'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'label shown % selected'"
+                }
+              }
+            },
+            "italic": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFF9EF'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filter7940e4e5ec224861eaec",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Player Totals"
+              }
+            },
+            "Property": "minutes"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "e50298304e04b6ba226d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Player Totals"
+              }
+            },
+            "Property": "Name"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "p",
+                        "Entity": "Player Totals",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "d",
+                        "Entity": "DAX",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "p"
+                            }
+                          },
+                          "Property": "Name"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Total pts by GW"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 20
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "p",
+              "Entity": "Player Totals",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "p"
+                          }
+                        },
+                        "Property": "Name"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,319 @@
+table 'Player by GW'
+	lineageTag: 93a73700-8c98-448f-b76a-81d70fe0ead8
+
+	/// This measure is the sum of column 'Player by GW'[goals_conceded]
+	measure 'goals_conceded  1' = SUM('Player by GW'[goals_conceded])
+		formatString: 0,0
+		lineageTag: c7ab654a-a719-4a4e-9c66-67ab81fc833f
+
+		changedProperty = IsHidden
+
+	/// This measure is the sum of column 'Player by GW'[round]
+	measure 'round ' = SUM('Player by GW'[round])
+		formatString: 0,0
+		lineageTag: 7efc7419-dad3-467e-b6ed-28d349d89f76
+
+		changedProperty = IsHidden
+
+	/// This measure is the sum of column 'Player by GW'[selected]
+	measure 'Selected MAX GW' = ```
+			
+			CALCULATE(
+			SUM('Player by GW'[selected]),
+			
+			        'Player by GW'[round]= MAX('Player by GW'[round]))
+			
+			```
+		formatString: 0,0
+		lineageTag: 5c155200-4981-4f90-aa15-d4d7009994c8
+
+		changedProperty = IsHidden
+
+	/// This measure is the sum of column 'Player by GW'[total_points]
+	measure 'Pts by GW' = SUM('Player by GW'[total_points])
+		formatString: 0
+		lineageTag: b55a6731-8eb4-4e9c-b6d6-ea306327f43c
+
+		changedProperty = IsHidden
+
+	measure 'Hide Filter' = CALCULATE( IF(ISFILTERED('Player Totals'[Name]),1,0),ALLSELECTED('Player Totals'))
+		formatString: 0
+		lineageTag: 7f05b705-8125-4eda-9a2f-be2e5ffa9cb1
+
+		changedProperty = IsHidden
+
+	measure 'Total Players' = SUM('Total Players'[Value])
+		lineageTag: 24412e7f-5433-42c5-a6e7-be763bdd7c81
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'pts for %' = ```
+			
+			CALCULATE(
+			SUM('Player by GW'[total_points]),
+			
+			        'Player by GW'[round]= MAX('Player by GW'[round]))
+			
+			```
+		lineageTag: 9b3f9041-905e-42f8-bb6c-67a2c6f7536a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Player %' = ```
+			
+			VAR MySelection =
+			SELECTEDVALUE 
+			('Selected %'[Metric],"Overall" )
+			RETURN
+			SWITCH (
+			TRUE (),
+			
+			MySelection = "Overall", 'Player by GW'[Pts by GW],
+			
+			MySelection = "GW Differential", 'Player by GW'[pts for %],
+			
+			[Selected % GW]
+			)
+			
+			```
+		lineageTag: 3d4039f8-a76d-4336-a811-bc3f4b81fe43
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Selected Player % TopN' = ```
+			
+			VAR SelectedTop = SELECTEDVALUE('TopN'[TopN])
+			RETURN
+			SWITCH(TRUE(),
+			    SelectedTop = 0, [Selected Player %],
+			    RANKX ( 
+			            ALLSELECTED(  'Player Totals'[Name] ), 
+			            [Selected Player %]
+			                )
+			                  <= SelectedTop,
+			        [Selected Player %]
+			)
+			```
+		lineageTag: f1503684-56f5-4a10-947b-a97a09e83be4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RoundCounts = DISTINCTCOUNT('Player by GW'[round])
+		formatString: 0
+		lineageTag: 53bba279-8ca8-475f-a3d7-63109f8f6215
+
+		changedProperty = FormatString
+
+	measure 'Goals Threshold' =
+			
+			
+			IF(
+			    [goals_scored]
+			    >30,
+			    1,
+			    BLANK()
+			)
+		lineageTag: 9789b9c6-0401-4b47-9e56-8c229866aafa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pts all rounds' = ```
+			
+			
+			   CALCULATE(
+			    SUM('Player by GW'[total_points]),
+			    REMOVEFILTERS('Total Players'[Name])
+			)
+			```
+		lineageTag: 887e1ce0-d2f1-4b6c-b955-214e2c52bf20
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 15db0473-09a8-4ee3-8eca-466244c07aef
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_points
+		dataType: int64
+		formatString: 0
+		lineageTag: 68a9f7f9-9ece-4ec5-ac89-d74614992549
+		summarizeBy: sum
+		sourceColumn: total_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column minutes
+		dataType: int64
+		formatString: 0
+		lineageTag: ceb717d5-6f12-4e36-932a-f9b6472c71c9
+		summarizeBy: sum
+		sourceColumn: minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_scored
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a436157-fee4-4d87-90e5-f2ed83d03973
+		summarizeBy: sum
+		sourceColumn: goals_scored
+
+		annotation SummarizationSetBy = Automatic
+
+	column assists
+		dataType: int64
+		formatString: 0
+		lineageTag: 9337d163-0db6-421f-ab8d-0de185016203
+		summarizeBy: sum
+		sourceColumn: assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column clean_sheets
+		dataType: int64
+		formatString: 0
+		lineageTag: aa054630-4821-40c4-956b-6f3f2f907fb6
+		summarizeBy: sum
+		sourceColumn: clean_sheets
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_conceded
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f728e68-c4cc-4681-bb17-71ed31582725
+		summarizeBy: sum
+		sourceColumn: goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalties_saved
+		dataType: int64
+		formatString: 0
+		lineageTag: e8843d52-951a-4a4a-936c-0ab54c00dcb9
+		summarizeBy: sum
+		sourceColumn: penalties_saved
+
+		annotation SummarizationSetBy = Automatic
+
+	column yellow_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a75b530-6e86-453f-8d6f-429520f20653
+		summarizeBy: sum
+		sourceColumn: yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column bonus
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ebaf182-8d98-43f1-bf1b-5cde7199c46d
+		summarizeBy: sum
+		sourceColumn: bonus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d01c576e-7891-4693-9459-1e2747243077
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 62e30b41-cb0d-4f53-ba76-06ee72030ead
+			defaultHierarchy: LocalDateTable_d368747e-742e-440b-9a10-1318601afae7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column round
+		dataType: int64
+		formatString: 0
+		lineageTag: 91f7f688-3966-48b9-ba67-f32e3022f6e6
+		summarizeBy: sum
+		sourceColumn: round
+
+		annotation SummarizationSetBy = Automatic
+
+	column selected
+		dataType: int64
+		formatString: 0
+		lineageTag: 14689256-069b-447b-8cd0-977568bfd575
+		summarizeBy: sum
+		sourceColumn: selected
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mins over 0'
+		dataType: int64
+		formatString: 0
+		lineageTag: c300c139-d0ac-4827-8094-bc107e87624f
+		summarizeBy: sum
+		sourceColumn: Mins over 0
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Player by GW-b4c6a9e9-bc46-4b73-b615-c7f3719ae8af' = m
+		mode: import
+		queryGroup: Player
+		source = ```
+				let
+				    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/api/bootstrap-static/")),
+				    elements = Source[elements],
+				    #"Converted to Table" = Table.FromList(elements, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"id"}, {"id"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Column1",{{"id", type text}}),
+				    #"Invoked Custom Function" = Table.AddColumn(#"Changed Type", "Player by GW Param", each #"Player by GW Param"([id])),
+				    #"Expanded Player by GW Param" = Table.ExpandTableColumn(#"Invoked Custom Function", "Player by GW Param", {"Column1"}, {"Column1"}),
+				    #"Expanded Column2" = Table.ExpandRecordColumn(#"Expanded Player by GW Param", "Column1", {"element", "fixture", "opponent_team", "total_points", "was_home", "kickoff_time", "team_h_score", "team_a_score", "round", "minutes", "goals_scored", "assists", "clean_sheets", "goals_conceded", "own_goals", "penalties_saved", "penalties_missed", "yellow_cards", "red_cards", "saves", "bonus", "bps", "influence", "creativity", "threat", "ict_index", "value", "transfers_balance", "selected", "transfers_in", "transfers_out"}, {"element", "fixture", "opponent_team", "total_points", "was_home", "kickoff_time", "team_h_score", "team_a_score", "round", "minutes", "goals_scored", "assists", "clean_sheets", "goals_conceded", "own_goals", "penalties_saved", "penalties_missed", "yellow_cards", "red_cards", "saves", "bonus", "bps", "influence", "creativity", "threat", "ict_index", "value", "transfers_balance", "selected", "transfers_in", "transfers_out"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Expanded Column2",{{"team_h_score", Int64.Type}, {"team_a_score", Int64.Type}, {"round", Int64.Type}, {"minutes", Int64.Type}, {"goals_scored", Int64.Type}, {"assists", Int64.Type}, {"clean_sheets", Int64.Type}, {"goals_conceded", Int64.Type}, {"own_goals", Int64.Type}, {"penalties_saved", Int64.Type}, {"penalties_missed", Int64.Type}, {"yellow_cards", Int64.Type}, {"red_cards", Int64.Type}, {"saves", Int64.Type}, {"bonus", Int64.Type}, {"bps", Int64.Type}, {"influence", type number}, {"creativity", type number}, {"ict_index", type number}, {"threat", type number}, {"value", Int64.Type}, {"transfers_balance", Int64.Type}, {"selected", Int64.Type}, {"transfers_in", Int64.Type}, {"transfers_out", Int64.Type}, {"total_points", Int64.Type}}),
+				    #"Divided Column" = Table.TransformColumns(#"Changed Type1", {{"value", each _ / 10, type number}}),
+				    #"Added Custom" = Table.AddColumn(#"Divided Column", "Mins over 0", each if [minutes]>0 then 1 else 0),
+				    #"Extracted Text Before Delimiter" = Table.TransformColumns(#"Added Custom", {{"kickoff_time", each Text.BeforeDelimiter(_, "T"), type text}}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Extracted Text Before Delimiter",{{"kickoff_time", type date}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type2",{{"kickoff_time", "Date"}}),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Renamed Columns",{{"Mins over 0", Int64.Type}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Changed Type3", each [Date] <> null),
+				    #"Added Conditional Column" = Table.AddColumn(#"Filtered Rows1", "Custom", each if [was_home] = false then "Away" else "Home"),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Added Conditional Column",{{"Custom", "H/A"}}),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Renamed Columns1", "Result", each Text.Combine({Text.From([team_h_score], "en-GB"), Text.From([team_a_score], "en-GB")}, ":"), type text),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Inserted Merged Column", "Result Logic", each if [team_h_score] = [team_a_score] then 3 else if [team_h_score] > [team_a_score] then 1 else 2),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Added Conditional Column1",{{"was_home",type text}}),
+				    #"Uppercased Text" = Table.TransformColumns(#"Changed Type4",{{"was_home", Text.Upper, type text}}),
+				    #"Added Custom1" = Table.AddColumn(#"Uppercased Text", "Win Logic", each if [team_h_score] = null then null 
+				
+				else if [was_home] = "TRUE" and [team_h_score]>[team_a_score] then "1"
+				
+				else if [was_home] = "TRUE" and [team_h_score]<[team_a_score] then "2"
+				
+				else if [was_home]="FALSE" and [team_h_score]>[team_a_score]then "2" 
+				
+				else if [was_home]="FALSE" and [team_h_score]<[team_a_score]then "1" 
+				
+				else if  [team_h_score]=[team_a_score]then "3"
+				
+				else null),
+				    #"Changed Type5" = Table.TransformColumnTypes(#"Added Custom1",{{"Result Logic", Int64.Type}, {"Win Logic", Int64.Type}}),
+				    #"Inserted Month Name" = Table.AddColumn(#"Changed Type5", "Month Name", each Date.MonthName([Date]), type text),
+				    #"Uppercased Text1" = Table.TransformColumns(#"Inserted Month Name",{{"Month Name", Text.Upper, type text}}),
+				    #"Extracted First Characters" = Table.TransformColumns(#"Uppercased Text1", {{"Month Name", each Text.Start(_, 3), type text}}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Extracted First Characters",{{"Month Name", "Month"}}),
+				    #"Changed Type6" = Table.TransformColumnTypes(#"Renamed Columns2",{{"id", Int64.Type}}),
+				#"Columns removed by Measure Killer"= Table.SelectColumns(#"Changed Type6",{"id","Mins over 0","Date","penalties_saved","assists","goals_conceded","minutes","total_points","yellow_cards","goals_scored","selected","clean_sheets","round","bonus"})
+				in
+				#"Columns removed by Measure Killer"
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

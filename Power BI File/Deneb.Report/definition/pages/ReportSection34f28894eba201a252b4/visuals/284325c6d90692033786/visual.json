@@ -1,0 +1,312 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "284325c6d90692033786",
+  "position": {
+    "x": 723.60217714002965,
+    "y": 69.668480950024744,
+    "z": 1000,
+    "height": 548.63928748144485,
+    "width": 770.31172686788716,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Total pts by GW"
+                }
+              },
+              "queryRef": "DAX.Total pts by GW",
+              "nativeQueryRef": "Total Pts",
+              "displayName": "Total Pts"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Positions"
+                    }
+                  },
+                  "Property": "Pos"
+                }
+              },
+              "queryRef": "Positions.Pos",
+              "nativeQueryRef": "Pos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Bonus"
+                }
+              },
+              "queryRef": "DAX.Bonus",
+              "nativeQueryRef": "Bonus Pts",
+              "displayName": "Bonus Pts"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Yellow"
+                }
+              },
+              "queryRef": "DAX.Yellow",
+              "nativeQueryRef": "Yellow Cards",
+              "displayName": "Yellow Cards"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.5.1.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n  \"repeat\": [\n       \"Total Pts\",\n    \"Yellow Cards\",\n \n    \"Bonus Pts\"\n  ],\n  \"columns\": 3,\n  \"spec\": {\n    \"vconcat\": [\n      {\n        \"width\": 150,\n        \"height\": 20,\n        \"mark\": {\n          \"type\": \"text\",\n          \"size\": 30,\n          \"align\": \"center\"\n        },\n        \"encoding\": {\n          \"text\": {\n            \"field\": {\n              \"repeat\": \"repeat\"\n            },\n            \"type\": \"quantitative\",\n            \"aggregate\": \"sum\",\n            \"format\": \",.0f\"\n          }\n        }\n      },\n      {\n        \"width\": 150,\n        \"height\": 90,\n        \"layer\": [\n          {\n            \"mark\": {\"type\": \"bar\",\n              \"color\":\"#454545\"\n            },\n            \"encoding\": {\n              \"x\": {\n                \"field\": {\n                  \"repeat\": \"repeat\"\n                },\n                \"type\": \"quantitative\"\n              },\n              \"y\": {\n                \"field\": \"Pos\",\n                \"axis\": {\"title\": null}\n              }\n            }\n          },\n          {\n            \"mark\": {\"type\": \"text\",\n               \"size\": 12,\n               \"xOffset\":20,\n               \"fontWeight\":600\n            },\n            \"encoding\": {\n              \"x\": {\n                \"field\": {\n                  \"repeat\": \"repeat\"\n                },\n                \"type\": \"quantitative\"\n              },\n              \"y\": {\n                \"field\": \"Pos\",\n                \"axis\": {\"title\": null}\n              },\n              \"text\": {\n                \"field\": {\n                  \"repeat\": \"repeat\"\n                },\n                \"type\": \"quantitative\",\n                \"aggregate\": \"sum\",\n                \"format\": \",.0f\"\n              }\n            }\n          }\n        ]\n      }\n    ]\n  }\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"locale\": {\n    \"number\": {\n      \"decimal\": \",\",\n      \"thousands\": \".\",\n      \"grouping\": [3],\n      \"currency\": [\"\", \" €\"]\n    },\n    \"time\": {\n      \"dateTime\": \"%A, der %e. %B %Y, %X\",\n      \"date\": \"%d.%m.%Y\",\n      \"time\": \"%H:%M:%S\",\n      \"periods\": [\"AM\", \"PM\"],\n      \"days\": [\n        \"Sonntag\",\n        \"Montag\",\n        \"Dienstag\",\n        \"Mittwoch\",\n        \"Donnerstag\",\n        \"Freitag\",\n        \"Samstag\"\n      ],\n      \"shortDays\": [\n        \"So\",\n        \"Mo\",\n        \"Di\",\n        \"Mi\",\n        \"Do\",\n        \"Fr\",\n        \"Sa\"\n      ],\n      \"months\": [\n        \"Januar\",\n        \"Februar\",\n        \"März\",\n        \"April\",\n        \"Mai\",\n        \"Juni\",\n        \"Juli\",\n        \"August\",\n        \"September\",\n        \"Oktober\",\n        \"November\",\n        \"Dezember\"\n      ],\n      \"shortMonths\": [\n        \"Jan\",\n        \"Feb\",\n        \"Mrz\",\n        \"Apr\",\n        \"Mai\",\n        \"Jun\",\n        \"Jul\",\n        \"Aug\",\n        \"Sep\",\n        \"Okt\",\n        \"Nov\",\n        \"Dez\"\n      ]\n    }\n  },\n  \"padding\": 10,\n  \"view\": {\"stroke\": \"transparent\"},\n  \"axis\": {\n    \"domainColor\": \"#454545\",\n    \"ticks\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 3,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 0,\n    \"grid\": false,\n    \"labelOverlap\": true,\n    \"domain\": false,\n    \"titleOrient\": \"top\",\n    \"titleY\": -120,\n    \"titleFontSize\": 20\n  },\n  \"axisY\": {\n    \"labelPadding\": 5,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 8,\n    \"domain\": false,\n    \"grid\": false\n  },\n  \"scale\": {\"labelPadding\": 0},\n  \"legend\": {\n    \"title\": null,\n    \"labelFontSize\": 12,\n    \"labelColor\": \"#454545\",\n    \"symbolType\": \"square\",\n    \"symbolSize\": 200,\n    \"orient\": \"top\",\n    \"symbolStrokeWidth\": 2\n  }\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'5.6.1'"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFF9EE'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'test'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0fc4ef53e023f13aab4e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Act Plan"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "Act Plan",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "a"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "DateAdd": {
+                                  "Expression": {
+                                    "Now": {}
+                                  },
+                                  "Amount": -1,
+                                  "TimeUnit": 0
+                                }
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -15,
+                          "TimeUnit": 0
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "Now": {}
+                          },
+                          "Amount": -1,
+                          "TimeUnit": 0
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "isHidden": true
+}

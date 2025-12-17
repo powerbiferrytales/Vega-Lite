@@ -1,0 +1,52 @@
+table Transfers
+	lineageTag: fce8b4f5-82fe-44c7-8cdf-e8b905141fc4
+
+	calculationGroup
+		precedence: 2
+
+		calculationItem 'Transfer Balance' =
+				IF(
+				    ISSELECTEDMEASURE(
+				        [Transfers Selected]
+				    ), [transfers_balance ],
+				    SELECTEDMEASURE()
+				)
+
+		calculationItem 'GW Transfers In' =
+				IF(
+				    ISSELECTEDMEASURE(
+				         [Transfers Selected]
+				    ), [transfers_in_event ],
+				    SELECTEDMEASURE()
+				)
+
+		calculationItem 'GW Transfers Out' =
+				IF(
+				    ISSELECTEDMEASURE(
+				         [Transfers Selected]
+				    ), [transfers_out_event ],
+				    SELECTEDMEASURE()
+				)
+
+	measure 'Transfers Selected'
+		formatString: 0,0
+		lineageTag: 97238faf-b53f-4b9d-a16e-47d6483f6076
+
+	column Name
+		dataType: string
+		lineageTag: 10981318-6359-44a8-b411-00333a4072b3
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: 4b0c412e-9c3e-437a-bd86-833dc3d3bfd1
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

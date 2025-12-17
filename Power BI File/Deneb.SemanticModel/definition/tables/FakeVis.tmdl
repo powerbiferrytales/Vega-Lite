@@ -1,0 +1,77 @@
+table FakeVis
+	lineageTag: 65db2d08-5493-4531-9c24-f244d14f84e8
+
+	measure x_ =
+			
+			
+			SUM(FakeVis[X])
+		lineageTag: 122780ae-2327-47a9-a5b6-15614b56ba6b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure X_max = ```
+			
+			
+			    IF(
+			        [x_] < 0
+			        ,0
+			        ,[x_]
+			    )
+			```
+		lineageTag: 2e0a8944-5214-4ec9-81a3-223924788b4a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure X_min = ```
+			
+			
+			    IF(
+			        [x_] > 0
+			        ,0
+			        ,[x_]
+			    )
+			```
+		lineageTag: 590e7db9-0004-4089-a986-186d32b0b2b5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure x_wf =
+			
+			
+			IF(SUM(FakeVis[Y])=5,0,[x_])
+		lineageTag: f97f8809-070c-4287-af98-b2ea26d225bb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Y
+		dataType: int64
+		formatString: 0
+		lineageTag: 71f83691-0db9-42c7-aea5-2217fe50a568
+		summarizeBy: sum
+		sourceColumn: Y
+
+		annotation SummarizationSetBy = Automatic
+
+	column X
+		dataType: int64
+		formatString: 0
+		lineageTag: 082ec04b-bf95-4394-93db-c2ac9884ad0c
+		summarizeBy: sum
+		sourceColumn: X
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FakeVis = m
+		mode: import
+		queryGroup: Player
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlTSUTI0UIrViVYyAjLNwSxjIEvXCMw0ATGNwUxTINNUKTYWAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Y = _t, X = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Y", Int64.Type}, {"X", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

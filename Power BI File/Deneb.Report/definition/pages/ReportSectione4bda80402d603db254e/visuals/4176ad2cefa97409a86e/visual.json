@@ -1,0 +1,286 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "4176ad2cefa97409a86e",
+  "position": {
+    "x": 17.10397681216379,
+    "y": 694.22023531723619,
+    "z": 5000,
+    "height": 381.31807128294565,
+    "width": 1788.8747512957186,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Total pts by GW ALL round"
+                }
+              },
+              "queryRef": "DAX.Total pts by GW ALL round",
+              "nativeQueryRef": "Total pts by GW ALL round"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Total pts by GW"
+                }
+              },
+              "queryRef": "DAX.Total pts by GW",
+              "nativeQueryRef": "Total pts by GW"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Total pts cum"
+                }
+              },
+              "queryRef": "DAX.Total pts cum",
+              "nativeQueryRef": "Total pts cum"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Player by GW"
+                    }
+                  },
+                  "Property": "round"
+                }
+              },
+              "queryRef": "Player by GW.round",
+              "nativeQueryRef": "round"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DAX"
+                  }
+                },
+                "Property": "Total pts by GW ALL round"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.8.2.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\n    \"name\": \"dataset\"\n  },  \n  \"padding\": {\n    \"left\": 10,\n    \"right\": 50,\n    \"top\": 10,\n    \"bottom\": 0\n  },\n  \"title\": {\n    \"text\": \"Cumulative Points Total\",\n    \"fontSize\": 18,\n    \"subtitleFontSize\": 16,\n    \"color\": \"#454545\",\n    \"subtitle\": \"Click values to see extra info\",\n    \"subtitleColor\": \"#454545\",\n    \"offset\": 20,\n    \"subtitlePadding\": 5\n  },\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"rule\",\n        \"size\": 2\n      },\n      \"encoding\": {\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"on\"\n            },\n            \"value\": 0.85\n          },\n          \"value\": 0\n        },\n        \"y\": {\n          \"field\": \"Total pts by GW ALL round\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        },\n        \"y2\": {\n          \"field\": \"Total pts cum\"\n        }\n      }\n    },\n    {\n      \"params\": [\n        {\n          \"name\": \"startRound\",\n          \"select\": {\n            \"type\": \"point\",\n            \"fields\": [\n              \"round\"\n            ]\n          }\n        }\n      ],\n      \"transform\": [\n        {\n          \"filter\": \"isValid(startRound.round) ? datum.round >= startRound.round : true\"\n        }\n      ],\n      \"mark\": {\n        \"type\": \"rect\",\n        \"width\": {\n          \"band\": 1.003\n        }\n      },\n      \"encoding\": {\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": 0.1\n          },\n          \"value\": 0\n        },\n        \"y\": {\n          \"field\": \"Total pts by GW ALL round\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"opacity\": 0.5,\n\n        \"width\": {\n          \"band\": 0.75\n        },\n        \"color\": \"#454545\"\n      },\n      \"encoding\": {}\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n\n        \"width\": {\n          \"band\": 0.75\n        },\n        \"color\": \"#454545\"\n      },\n      \"encoding\": {\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": 0\n          },\n          \"value\": 0.85\n        }\n      }\n    },\n    { //Cum total text\n      \"mark\": {\n        \"type\": \"text\",\n        \"dy\": -60,\n        \"size\": 16,\n        \"lineBreak\": \"-\",\n        \"align\":\"right\",\n        \"tooltip\":true\n      },\n      \"transform\": [\n        {\n          \"calculate\": \"''Grand total: ''+ format(datum[''Total pts by GW ALL round''],'',.0f'') +''-'' + ''Cumulative Total: '' + format(datum[''Total pts cum''], '',.0f'') +''-'' + ''Week Total: '' + format(datum[''Total pts by GW''], '',.0f'')\",\n          \"as\": \"_counter\"\n        }\n      ],\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"_counter\"\n        },\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"on\"\n            },\n            \"value\": 1\n          },\n          \"value\": 0\n        },\n        \"y\": {\n          \"field\": \"Total pts by GW ALL round\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        }\n      }\n    },\n    { //Cum total text\n      \"mark\": {\n        \"type\": \"text\",\n        \"dy\": -8,\n        \"size\": 14\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Total pts cum\",\n          \"format\":\",.2s\"\n        },\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"on\"\n            },\n            \"value\": 0\n          },\n          \"value\": 1\n        },\n        \"y\": {\n          \"field\": \"Total pts cum\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        }\n      }\n    }\n  ],\n  \"encoding\": {\n    \"x\": {\n      \"field\": \"round\",\n      \"type\": \"nominal\"\n    },\n    \"y\": {\n      \"type\": \"quantitative\",\n      \"field\": \"Total pts cum\",\n      \"axis\": null\n    }\n  }\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{    \"font\":\"Verdana\",\r\n  \"locale\": {\r\n    \"number\": {\r\n      \"decimal\": \".\",\r\n      \"thousands\": \",\",\r\n      \"grouping\": [\r\n        3\r\n      ],\r\n      \"currency\": [\r\n        \"\",\r\n        \" €\"\r\n      ]\r\n    }\r\n  },\r\n  \"padding\": 5,\r\n  \"view\": {\r\n    \"stroke\": \"transparent\"\r\n  },\r\n  \"axis\": {\r\n    \"domainColor\": \"#454545\",\r\n    \"ticks\": false\r\n  },\r\n  \"bar\":{\r\n    \"cornerRadiusEnd\":3\r\n  },\r\n  \"axisX\": {\r\n    \"labelPadding\": 5,\r\n    \"labelAngle\": 0,\r\n    \"labelFontSize\": 12,\r\n    \"grid\": false,\r\n    \"labelOverlap\": true,\r\n    \"domain\": true,\r\n    \"title\": null\r\n  },\r\n  \"axisY\": {\r\n    \"labelPadding\": 5,\r\n    \"labelAngle\": 0,\r\n    \"labelFontSize\": 13,\r\n    \"domain\": false,\r\n    \"grid\": false,\r\n    \"title\": null\r\n  },\r\n  \"legend\": {\r\n    \"title\": null,\r\n    \"labelFontSize\": 12,\r\n    \"labelColor\": \"#454545\",\r\n    \"symbolType\": \"square\",\r\n    \"symbolSize\": 200,\r\n    \"orient\": \"top\",\r\n    \"symbolStrokeWidth\": 2\r\n  },\r\n  \"header\": {\r\n    \"titleFontSize\": 16,\r\n    \"titleColor\": \"#252423\",\r\n    \"labelFont\": \"Segoe UI\",\r\n    \"labelFontSize\": 12,\r\n    \"labelColor\": \"#454545\"\r\n  },\r\n  \"title\": {\r\n    \"fontSize\": 22, // <-- Title font size\r\n\r\n    \"subtitleFontSize\": 14, // <-- Subtitle font size\r\n    \"offset\": 20,\r\n    \"anchor\": \"start\",\r\n    \"color\": \"#454545\",\r\n    \"subtitle\": \"Top 10 Players\",\r\n    \"subtitleColor\": \"#454545\"\r\n  }\r\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "selectionMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'simple'"
+                }
+              }
+            },
+            "enableTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableContextMenu": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "selectionMaxDataPoints": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "371.31807128294565D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1778.8747512957186D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFF9F0'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'8aaca229b60098580c24'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "bec34a90a9e0bd5d0959",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Player Totals"
+              }
+            },
+            "Property": "Name"
+          }
+        },
+        "type": "TopN",
+        "howCreated": "User"
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+table NASATemp
+	lineageTag: 4ee9563d-92f5-4bce-8146-6b8c1a931604
+
+	/// This measure is the sum of column 'NASATemp'[No Smoothing]
+	measure 'Average No Smoothing' =
+			
+			AVERAGE('NASATemp'[No Smoothing])
+		formatString: 0.00
+		lineageTag: e1d9faca-859d-47e2-96f4-0896e1af9e8d
+
+	/// This measure is the sum of column 'NASATemp'[Lowess]
+	measure 'Average of Lowess' =
+			
+			AVERAGE('NASATemp'[Lowess])
+		formatString: 0.00
+		lineageTag: 5a7417f2-1d78-4902-8490-b2cf38be112c
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 84e4c409-ca6b-4a35-8673-adc4d9d38f3a
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'No Smoothing'
+		dataType: double
+		isHidden
+		lineageTag: fa88f4ae-b8a5-4a75-a06d-fba6126628cf
+		summarizeBy: sum
+		sourceColumn: No Smoothing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Lowess
+		dataType: double
+		isHidden
+		lineageTag: df5c220c-b494-4921-b4fe-bc2e6701e001
+		summarizeBy: sum
+		sourceColumn: Lowess
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition NASATemp-7fdd4c10-2d36-448b-807b-b6cc394cf53f = m
+		mode: import
+		queryGroup: Player
+		source =
+				let
+				    Source = Table.FromColumns({Lines.FromBinary(Web.Contents("https://data.giss.nasa.gov/gistemp/graphs/graph_data/Global_Mean_Estimates_based_on_Land_and_Ocean_Data/graph.txt"), null, null, 1252)}),
+				    #"Removed Top Rows" = Table.Skip(Source,5),
+				    #"Cleaned Text" = Table.TransformColumns(#"Removed Top Rows",{{"Column1", Text.Clean, type text}}),
+				    #"Split Column by Position" = Table.SplitColumn(#"Cleaned Text", "Column1", Splitter.SplitTextByRepeatedLengths(5), {"Column1.1", "Column1.2", "Column1.3", "Column1.4", "Column1.5"}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Split Column by Position",{{"Column1.1", Text.Trim, type text}, {"Column1.2", Text.Trim, type text}, {"Column1.3", Text.Trim, type text}, {"Column1.4", Text.Trim, type text}, {"Column1.5", Text.Trim, type text}}),
+				    #"Merged Columns" = Table.CombineColumns(#"Trimmed Text",{"Column1.2", "Column1.3"},Combiner.CombineTextByDelimiter("", QuoteStyle.None),"Merged"),
+				    #"Merged Columns1" = Table.CombineColumns(#"Merged Columns",{"Column1.4", "Column1.5"},Combiner.CombineTextByDelimiter("", QuoteStyle.None),"Merged.1"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Merged Columns1",{{"Column1.1", "Year"}, {"Merged", "No Smoothing"}, {"Merged.1", "Lowess"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Lowess", type number}, {"No Smoothing", type number}, {"Year", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

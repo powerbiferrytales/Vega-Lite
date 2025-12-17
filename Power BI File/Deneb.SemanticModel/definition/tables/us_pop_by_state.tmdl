@@ -1,0 +1,73 @@
+table us_pop_by_state
+	lineageTag: b1a3d558-b898-4329-b83d-80499e41f2df
+
+	measure State_Pop = ```
+			
+			
+			    SUM(
+			        us_pop_by_state[2020_census]
+			    )
+			```
+		lineageTag: 96a6130f-4230-4359-9c7a-c50ee60279b9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 1dc120cb-51d2-4325-9cdb-583215eaca87
+		summarizeBy: sum
+		sourceColumn: rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 913f00f4-94ad-409c-89ed-4f312b0393fd
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column state_code
+		dataType: string
+		lineageTag: d6e0958c-8b1d-4a1c-ba2f-e770be8c45ae
+		summarizeBy: none
+		sourceColumn: state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2020_census
+		dataType: int64
+		formatString: 0
+		lineageTag: ea9cefab-3c0e-4a56-9a6b-919250ba674a
+		summarizeBy: sum
+		sourceColumn: 2020_census
+
+		annotation SummarizationSetBy = Automatic
+
+	column percent_of_total
+		dataType: double
+		lineageTag: 4eed2553-8e3c-4ce6-96ee-d8a813db08c2
+		summarizeBy: sum
+		sourceColumn: percent_of_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition us_pop_by_state = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\ferry\Downloads\archive (9)\us_pop_by_state.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"rank", Int64.Type}, {"state", type text}, {"state_code", type text}, {"2020_census", Int64.Type}, {"percent_of_total", type number}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([state_code] <> "Total"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

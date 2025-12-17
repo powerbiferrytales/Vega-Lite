@@ -1,0 +1,79 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Teams
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Player
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup 'Game Info'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup Fixtures
+
+	annotation PBI_QueryGroupOrder = 3
+
+queryGroup Tooting
+
+	annotation PBI_QueryGroupOrder = 4
+
+annotation PBI_QueryOrder = ["Player by GW Param","Player Totals","Player by GW","Fixtures Param","Team ID","Gameweeks","Positions","Team Extra Info","DAX","Total Players","fixtures Base","GetPlayer fixtures","Selected %","DAX Formatting","Act Plan","Cats","Tooties Toots Function","category","NASATemp","LE","Name Count","US State Map","UK County map","us_pop_by_state","MapTest","Italy Grid","Ita Data","World Map","Destinations","Timeline","FakeVis"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'Player Totals'
+ref table DateTableTemplate_e618fce6-b34d-4504-a80e-89178f7fe12e
+ref table 'Player by GW'
+ref table 'Team ID'
+ref table Gameweeks
+ref table LocalDateTable_442d2f56-c31d-42d5-9d98-41621299ae09
+ref table Positions
+ref table DAX
+ref table Views
+ref table 'Total Players'
+ref table 'Selected %'
+ref table TopN
+ref table 'DAX Formatting'
+ref table 'Player Comparison'
+ref table Transfers
+ref table 'GW Target'
+ref table Parameter
+ref table ThermoTest
+ref table 'Act Plan'
+ref table LocalDateTable_d368747e-742e-440b-9a10-1318601afae7
+ref table LocalDateTable_a5a5e1c0-5235-4274-92c4-cc31d77f1ddc
+ref table Cats
+ref table category
+ref table NASATemp
+ref table 'Card Param'
+ref table LE
+ref table 'Current Age'
+ref table 'Gender Select'
+ref table LocalDateTable_0c51dcf6-cca6-4668-a477-e1ba055eea23
+ref table 'US State Map'
+ref table 'UK County map'
+ref table us_pop_by_state
+ref table MapTest
+ref table 'Italy Grid'
+ref table 'Ita Data'
+ref table 'World Map'
+ref table Destinations
+ref table Timeline
+ref table FakeVis
+
+ref cultureInfo en-US
+

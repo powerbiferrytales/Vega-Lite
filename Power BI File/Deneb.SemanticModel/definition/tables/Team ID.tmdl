@@ -1,0 +1,76 @@
+table 'Team ID'
+	lineageTag: 9ee41aef-d902-4730-b115-7a8198ac71ca
+
+	column 'Club ID'
+		dataType: string
+		lineageTag: 0355bf38-5fd0-490c-b1ea-f2eff0e6abef
+		summarizeBy: none
+		sourceColumn: Club ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Team
+		dataType: string
+		lineageTag: df8e00ec-39a7-4770-97ef-46f393ab66ce
+		summarizeBy: none
+		sourceColumn: Team
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Team Abr'
+		dataType: string
+		lineageTag: 054df4bd-905e-4094-aedd-7378d7819d22
+		summarizeBy: none
+		sourceColumn: Team Abr
+
+		annotation SummarizationSetBy = Automatic
+
+	column strength
+		dataType: int64
+		formatString: 0
+		lineageTag: 044bd720-9291-445c-b440-9fe38d58bcbc
+		summarizeBy: none
+		sourceColumn: strength
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: string
+		lineageTag: 98db4c99-a4e9-4cc8-aa43-f3b5421c46fe
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Team ID-07b0adb4-3c13-415a-ac3c-bc25177604ee' = m
+		mode: import
+		queryGroup: Teams
+		source =
+				let
+				    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/api/bootstrap-static/")),
+				    teams = Source[teams],
+				    #"Converted to Table" = Table.FromList(teams, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"id", "current_event_fixture", "next_event_fixture", "name", "code", "short_name", "unavailable", "strength", "position", "played", "win", "loss", "draw", "points", "form", "link_url", "strength_overall_home", "strength_overall_away", "strength_attack_home", "strength_attack_away", "strength_defence_home", "strength_defence_away", "team_division"}, {"id", "current_event_fixture", "next_event_fixture", "name", "code", "short_name", "unavailable", "strength", "position", "played", "win", "loss", "draw", "points", "form", "link_url", "strength_overall_home", "strength_overall_away", "strength_attack_home", "strength_attack_away", "strength_defence_home", "strength_defence_away", "team_division"}),
+				    #"Expanded next_event_fixture" = Table.ExpandListColumn(#"Expanded Column1", "next_event_fixture"),
+				    #"Expanded next_event_fixture1" = Table.ExpandRecordColumn(#"Expanded next_event_fixture", "next_event_fixture", {"is_home", "day", "event_day", "month", "id", "opponent"}, {"is_home", "day", "event_day", "month", "id.1", "opponent"}),
+				    #"Expanded current_event_fixture" = Table.ExpandListColumn(#"Expanded next_event_fixture1", "current_event_fixture"),
+				    #"Expanded current_event_fixture1" = Table.ExpandRecordColumn(#"Expanded current_event_fixture", "current_event_fixture", {"is_home", "day", "event_day", "month", "id", "opponent"}, {"is_home.1", "day.1", "event_day.1", "month.1", "id.2", "opponent.1"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Expanded current_event_fixture1",{{"id", "Club ID"}}),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"Club ID", "name", "short_name", "strength"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Removed Other Columns",{{"name", "Team"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns2",{{"Club ID", type text}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"Club ID", Int64.Type}, {"Team", type text}, {"strength", Int64.Type}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Changed Type1", {"Club ID"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Duplicates",{{"short_name", "Team Abr"}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns1","Sheffield Utd","Sheff Utd",Replacer.ReplaceText,{"Team"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Replaced Value",{{"Club ID", type text}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type2",{{"Team", Order.Ascending}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Sorted Rows", "Index", 1, 1, Int64.Type),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Added Index",{{"Index", type text}})
+				in
+				    #"Changed Type3"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

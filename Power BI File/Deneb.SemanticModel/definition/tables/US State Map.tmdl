@@ -1,0 +1,40 @@
+table 'US State Map'
+	lineageTag: e5dcc49a-dbaa-4e11-bb0c-add2c314e34d
+
+	column State
+		dataType: string
+		lineageTag: ae942f8e-5c83-4c35-a6c6-abd71c89d6cc
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'X Pos'
+		dataType: int64
+		formatString: 0
+		lineageTag: c21917f1-790b-4799-919c-2a3efed55433
+		summarizeBy: sum
+		sourceColumn: X Pos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Y Pos'
+		dataType: int64
+		formatString: 0
+		lineageTag: b209fba8-a08b-44b2-9386-dc60816038fa
+		summarizeBy: sum
+		sourceColumn: Y Pos
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'US State Map' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("RdJLcoMwEIThu7D2Is47SxVyggISKSBgh/L9rxEz/Q9eUMVXUjdoYF2r0FaH6mjX9bBWTYLvxiXAJ2M/wGdj7asvxhRvt4/75jJDbf6doDaHP/hqzJPlPLtcIA/qobIlQ2VLtI2eHZ3KlhNUth2hsn0L34zTGer4uVjOm1OAas495EQDVHPnm9W8JFvZzmxVHaS5QDW3F6jmyVeZ1QjVnJPd7t+ogapaZsjoaqiq0EFV/QQ7umdnp7JjDZX98lVly/bOH/ev/w2ZVYSqijVU1WcHNfZ5+xmOD/uwcnCru97XVR5PbrVn8/2nLo1bfUNy3/LXfw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [State = _t, #"X Pos" = _t, #"Y Pos" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"State", type text}, {"X Pos", Int64.Type}, {"Y Pos", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

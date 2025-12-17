@@ -1,0 +1,284 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "30044f019b21b05c72e8",
+  "position": {
+    "x": 371.96214208697734,
+    "y": 63.7929795135977,
+    "z": 1000,
+    "height": 428.88510842218761,
+    "width": 1461.349946088415,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Plan"
+                }
+              },
+              "queryRef": "DAX.Plan"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Dif"
+                }
+              },
+              "queryRef": "DAX.Dif"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Act Plan"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "Act Plan.Date"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Actual"
+                }
+              },
+              "queryRef": "DAX.Actual",
+              "nativeQueryRef": "Actual"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DAX"
+                  }
+                },
+                "Property": "Plan"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.8.2.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n        \"title\": {\n    \"text\": \"Bar Chart\"\n  },\n  \"layer\": [\n\n    {\n      \"transform\": [\n        {\n          \"fold\": [\"Actual\", \"Plan\"],\n          \"as\": [\"metrics\", \"Number\"]\n        }\n      ],\n      \"mark\": {\n        \"type\": \"circle\",\n        \"size\": 0\n      },\n      \"encoding\": {\n        \"color\": {\n          \"field\": \"metrics\",\n          \"scale\": {\n            \"range\": [\n              \"#5c5c5c\",\n              \"#e3e3e3\"\n            ]\n          }\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"color\": \"#5c5c5c\",\n        \"width\": {\"band\": 0.7},\n        \"opacity\": 0.4\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"color\": \"#e3e3e3\",\n        \"width\": {\"band\": 0.4},\n        \"opacity\": 0.4,\n            \"xOffset\": 10\n      },\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"Plan\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"color\": \"#5c5c5c\",\n        \"width\": {\"band\": 0.7}\n      },\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"Actual__highlight\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        },\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"on\"\n            },\n            \"value\": \"orange\"\n          },\n          \"value\": \"#5c5c5c\"\n        },\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": 0.2\n          },\n          \"value\": 1\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"width\": {\"band\": 0.4},\n        \"stroke\": \"black\",\n        \"xOffset\": 10\n      },\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"Plan__highlight\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        },\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"on\"\n            },\n            \"value\": \"#7b516f\"\n          },\n          \"value\": \"#e3e3e3\"\n        },\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": 0.2\n          },\n          \"value\": 1\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"color\": \"black\",\n        \"align\":\"right\",\n        \"yOffset\": -10,\n        \"dx\": -6\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Actual__highlight\"\n        },\n        \"y\": {\n          \"field\": \"Actual__highlight\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"color\": \"black\",\n        \"yOffset\": 10,\n        \"xOffset\": 10,\n        \"size\": 10\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Plan__highlight\"\n        },\n        \"y\": {\n          \"field\": \"Plan__highlight\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        }\n      }\n    }\n  ],\n  \"encoding\": {\n    \"x\": {\n      \"field\": \"Date\",\n      \"type\": \"nominal\",\n      \"timeUnit\": \"yearmonthdate\",\n      \"axis\":\n           {  \"labelExpr\": \"[timeFormat(datum.value,''%d''),timeFormat(datum.value, ''%d'')==''01''?timeFormat(datum.value,''%b''):timeFormat(datum.value, ''%d'')==''15''?timeFormat(datum.value,''%b''):timeFormat(datum.value, ''%d'')==''30''?timeFormat(datum.value,''%b''):'''']\",\n      \"labelColor\":\"black\",\n      \"title\":null\n      \n    }},\n    \"y\": {\n      \"field\": \"Actual\",\n      \"type\": \"quantitative\",\n      \"axis\": null\n    }\n  }\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\r\n  \"view\": {\"stroke\": \"transparent\"},\r\n  \"font\": \"Segoe UI\",\r\n  \"arc\": {},\r\n  \"area\": {\r\n    \"line\": true,\r\n    \"opacity\": 0.6\r\n  },\r\n  \"bar\": {},\r\n  \"line\": {\r\n    \"strokeWidth\": 3,\r\n    \"strokeCap\": \"round\",\r\n    \"strokeJoin\": \"round\"\r\n  },\r\n  \"path\": {},\r\n  \"point\": {\"filled\": true, \"size\": 75},\r\n  \"rect\": {},\r\n  \"shape\": {},\r\n  \"symbol\": {\r\n    \"strokeWidth\": 1.5,\r\n    \"size\": 50\r\n  },\r\n  \"text\": {\r\n    \"font\": \"Segoe UI\",\r\n    \"fontSize\": 12,\r\n    \"fill\": \"#605E5C\"\r\n  },\r\n  \"axis\": {\r\n    \"ticks\": false,\r\n    \"grid\": false,\r\n    \"domain\": false,\r\n    \"labelColor\": \"#605E5C\",\r\n    \"labelFontSize\": 12,\r\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\r\n    \"titleColor\": \"#252423\",\r\n    \"titleFontSize\": 16,\r\n    \"titleFontWeight\": \"normal\"\r\n  },\r\n  \"axisQuantitative\": {\r\n    \"tickCount\": 3,\r\n    \"grid\": true,\r\n    \"gridColor\": \"#C8C6C4\",\r\n    \"gridDash\": [1, 5],\r\n    \"labelFlush\": false\r\n  },\r\n  \"axisBand\": {\"tickExtra\": false},\r\n  \"axisX\": {\r\n    \"labelPadding\": 5,\r\n    \"labelAngle\": 0\r\n  },\r\n  \"axisY\": {\"labelPadding\": 10},\r\n  \"header\": {\r\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\r\n    \"titleFontSize\": 16,\r\n    \"titleColor\": \"#252423\",\r\n    \"labelFont\": \"Segoe UI\",\r\n    \"labelFontSize\": 13.333333333333332,\r\n    \"labelColor\": \"#605E5C\"\r\n  },\r\n  \"legend\": {\r\n    \"titleFont\": \"Segoe UI\",\r\n    \"titleFontWeight\": \"bold\",\r\n    \"titleColor\": \"#605E5C\",\r\n    \"labelFont\": \"Segoe UI\",\r\n    \"titleFontSize\": 10,\r\n    \"orient\": \"top\",\r\n    \"labelFontSize\": 11,\r\n    \"labelColor\": \"#605E5C\",\r\n    \"symbolType\": \"square\",\r\n    \"symbolSize\": 50\r\n  }\r\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "renderMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'svg'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "418.8851084221876D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1451.349946088415D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filterb4d4b425fd4fd95b4222",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Team ID"
+              }
+            },
+            "Property": "Team Abr"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "Team ID",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "t"
+                            }
+                          },
+                          "Property": "Team Abr"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

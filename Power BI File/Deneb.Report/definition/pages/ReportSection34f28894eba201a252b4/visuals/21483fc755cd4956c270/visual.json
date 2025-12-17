@@ -1,0 +1,502 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "21483fc755cd4956c270",
+  "position": {
+    "x": 551.0822382991289,
+    "y": 265.33589251439543,
+    "z": 0,
+    "height": 698.32907974942532,
+    "width": 816.41813081352427,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Actual YoY% All"
+                }
+              },
+              "queryRef": "DAX.Actual YoY%",
+              "nativeQueryRef": "Actual YoY%"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Actual"
+                }
+              },
+              "queryRef": "DAX.Actual",
+              "nativeQueryRef": "Net Sales",
+              "displayName": "Net Sales"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Act Plan"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "Act Plan.Date",
+              "nativeQueryRef": "Date"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Customers YoY% All"
+                }
+              },
+              "queryRef": "DAX.Customers YoY% All",
+              "nativeQueryRef": "Customers YoY% All"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Orders YoY% All"
+                }
+              },
+              "queryRef": "DAX.Orders YoY% All",
+              "nativeQueryRef": "Orders YoY% All"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Reviews YoY% All"
+                }
+              },
+              "queryRef": "DAX.Reviews YoY% All",
+              "nativeQueryRef": "Reviews YoY% All"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Customers"
+                }
+              },
+              "queryRef": "DAX.Customers",
+              "nativeQueryRef": "Customers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Act Plan"
+                    }
+                  },
+                  "Property": "Sum of Orders"
+                }
+              },
+              "queryRef": "Act Plan.Sum of Orders",
+              "nativeQueryRef": "Sum of Orders"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Act Plan"
+                    }
+                  },
+                  "Property": "Sum of Reviews"
+                }
+              },
+              "queryRef": "Act Plan.Sum of Reviews",
+              "nativeQueryRef": "Sum of Reviews"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DAX"
+                  }
+                },
+                "Property": "Actual YoY% All"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.8.2.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\n    \"name\": \"dataset\"\n  },\n  \"spacing\": 125,\n  \"columns\": 2,\n  \"concat\": [\n    //Area\n    {\n      \"spacing\": 8,\n      \"vconcat\": [\n        {\n          \"title\": {\n            \"text\": \"Net Sales\",\n            \"fontSize\": 25,\n            \"color\": \"#454545\",\n            \"align\": \"left\"\n          },\n          \"height\": 50,\n          \"mark\": {\n            \"type\": \"text\",\n            \"fontWeight\": 600,\n            \"size\": 38,\n            \"color\": \"#454545\",\n            \"align\": \"left\"\n          },\n          \"encoding\": {\n            \"text\": {\n              \"field\": \"Net Sales__highlight\",\n              \"aggregate\": \"sum\",\n              \"type\": \"quantitative\",\n              \"format\": \"$,.0f\"\n            }\n          }\n        },\n        {\n          \"spacing\": 10,\n          \"hconcat\": [\n            {\n              \"height\": 25,\n              \"mark\": {\n                \"type\": \"text\",\n                \"align\": \"left\",\n                \"size\": 18,\n                \"color\": {\n                  \"expr\": \"datum[''Actual YoY% All'']>= 0 ?  ''green'':''red''\"\n                }\n              },\n              \"transform\": [\n                {\n                  \"calculate\": \"format(datum[''Actual YoY% All''],'',.1%'') +'' '' + ''vs PY''\",\n                  \"as\": \"_counter\"\n                }\n              ],\n              \"encoding\": {\n                \"text\": {\n                  \"field\": \"_counter\"\n                }\n              }\n            }\n          ]\n        },\n        {\n          \"height\": 100,\n          \"transform\": [\n            {\n              \"window\": [\n                {\n                  \"op\": \"rank\",\n                  \"as\": \"rank\"\n                }\n              ],\n              \"sort\": [\n                {\n                  \"field\": \"Net Sales\",\n                  \"order\": \"descending\"\n                }\n              ]\n            }\n          ],\n          \"layer\": [\n            {\n              \"mark\": {\n                \"type\": \"area\",\n                \"tooltip\": true,\n                \"color\": {\n                  \"expr\": \"datum[''rank''] == 1 ? ''#ec7629'': ''#454545''\"\n                }\n              }\n            },\n            {\n              \"mark\": {\n                \"type\": \"point\",\n                \"width\": {\n                  \"band\": 0.95\n                },\n                \"tooltip\": true,\n                \"filled\": true,\n                \"color\": {\n                  \"expr\": \"datum[''rank''] == 1 ? ''#ec7629'': ''#454545''\"\n                },\n                \"size\": {\n                  \"expr\": \"datum[''rank''] == 1 ? ''125'': ''0''\"\n                }\n              }\n            }\n          ],\n          \"encoding\": {\n            \"opacity\": {\n              \"condition\": {\n                \"test\": {\n                  \"field\": \"__selected__\",\n                  \"equal\": \"off\"\n                },\n                \"value\": 0.2\n              },\n              \"value\": 1\n            },\n            \"x\": {\n              \"field\": \"Date\",\n              \"type\": \"ordinal\",\n              \"timeUnit\": \"yearmonthdate\",\n              \"title\": null,\n              \"axis\": {\n                \"format\": \"%d.%m\"\n              }\n            },\n            \"y\": {\n              \"field\": \"Net Sales__highlight\",\n              \"type\": \"quantitative\",\n              \"title\": null,\n              \"axis\": {\n                \"title\": null,\n                \"gridColor\": {\n                  \"condition\": {\n                    \"test\": \"datum.value === 0\",\n                    \"value\": \"#ea7838\"\n                  },\n                  \"value\": \"#fff9ee\"\n                }\n              }\n            }\n          }\n        }\n      ]\n    },\n    //Bar\n    {\n      \"spacing\": 8,\n      \"vconcat\": [\n        {\n          \"title\": {\n            \"text\": \"Customers\",\n            \"fontSize\": 25,\n            \"color\": \"#454545\",\n            \"align\": \"left\"\n          },\n          \"height\": 50,\n          \"mark\": {\n            \"type\": \"text\",\n            \"fontWeight\": 600,\n            \"size\": 38,\n            \"color\": \"#454545\",\n            \"align\": \"left\"\n          },\n          \"encoding\": {\n            \"text\": {\n              \"field\": \"Customers__highlight\",\n              \"aggregate\": \"sum\",\n              \"type\": \"quantitative\",\n              \"format\": \",.0f\"\n            }\n          }\n        },\n        {\n          \"spacing\": 10,\n          \"hconcat\": [\n            {\n              \"height\": 25,\n              \"mark\": {\n                \"type\": \"text\",\n                \"align\": \"left\",\n                \"size\": 18,\n                \"color\": {\n                  \"expr\": \"datum[''Customers YoY% All'']>= 0 ?  ''green'':''red''\"\n                }\n              },\n              \"transform\": [\n                {\n                  \"calculate\": \"format(datum[''Customers YoY% All''],'',.1%'') +'' '' + ''vs PY''\",\n                  \"as\": \"_counter\"\n                }\n              ],\n              \"encoding\": {\n                \"text\": {\n                  \"field\": \"_counter\"\n                }\n              }\n            }\n          ]\n        },\n        {\n          \"height\": 100,\n          \"transform\": [\n            {\n              \"window\": [\n                {\n                  \"op\": \"rank\",\n                  \"as\": \"rank2\"\n                }\n              ],\n              \"sort\": [\n                {\n                  \"field\": \"Customers\",\n                  \"order\": \"descending\"\n                }\n              ]\n            }\n          ],\n          \"layer\": [\n            {\n              \"mark\": {\n                \"type\": \"bar\",\n                \"width\": {\n                  \"band\": 0.95\n                },\n                \"tooltip\": true,\n                \"color\": \"#454545\"\n              }\n            },\n            {\n              \"mark\": {\n                \"type\": \"point\",\n                \"width\": {\n                  \"band\": 0.95\n                },\n                \"tooltip\": true,\n                \"filled\": true,\n                \"color\": {\n                  \"expr\": \"datum[''rank2''] == 1 ? ''#ec7629'': ''#454545''\"\n                },\n                \"size\": {\n                  \"expr\": \"datum[''rank2''] == 1 ? ''125'': ''0''\"\n                }\n              }\n            }\n          ],\n          \"encoding\": {\n            \"opacity\": {\n              \"condition\": {\n                \"test\": {\n                  \"field\": \"__selected__\",\n                  \"equal\": \"off\"\n                },\n                \"value\": 0.2\n              },\n              \"value\": 1\n            },\n            \"x\": {\n              \"field\": \"Date\",\n              \"type\": \"ordinal\",\n              \"timeUnit\": \"yearmonthdate\",\n              \"title\": null,\n              \"axis\": {\n                \"format\": \"%d.%m\"\n              }\n            },\n            \"y\": {\n              \"field\": \"Customers__highlight\",\n              \"type\": \"quantitative\",\n              \"title\": null,\n              \"axis\": {\n                \"title\": null,\n                \"gridColor\": {\n                  \"condition\": {\n                    \"test\": \"datum.value === 0\",\n                    \"value\": \"#ea7838\"\n                  },\n                  \"value\": \"#fff9ee\"\n                }\n              }\n            }\n          }\n        }\n      ]\n    },\n    //Line\n    {\n      \"spacing\": 8,\n      \"vconcat\": [\n        {\n          \"title\": {\n            \"text\": \"Reviews\",\n            \"fontSize\": 25,\n            \"color\": \"#454545\",\n            \"align\": \"left\"\n          },\n          \"height\": 50,\n          \"mark\": {\n            \"type\": \"text\",\n            \"fontWeight\": 600,\n            \"size\": 38,\n            \"color\": \"#454545\",\n            \"align\": \"left\"\n          },\n          \"encoding\": {\n            \"text\": {\n              \"field\": \"Sum of Reviews__highlight\",\n              \"aggregate\": \"sum\",\n              \"type\": \"quantitative\",\n              \"format\": \",.0f\"\n            }\n          }\n        },\n        {\n          \"spacing\": 10,\n          \"hconcat\": [\n            {\n              \"height\": 25,\n              \"mark\": {\n                \"type\": \"text\",\n                \"align\": \"left\",\n                \"size\": 18,\n                \"color\": {\n                  \"expr\": \"datum[''Reviews YoY% All'']>= 0 ?  ''green'':''red''\"\n                }\n              },\n              \"transform\": [\n                {\n                  \"calculate\": \"format(datum[''Reviews YoY% All''],'',.1%'') +'' '' + ''vs PY''\",\n                  \"as\": \"_counter\"\n                }\n              ],\n              \"encoding\": {\n                \"text\": {\n                  \"field\": \"_counter\"\n                }\n              }\n            }\n          ]\n        },\n        {\n          \"height\": 100,\n          \"transform\": [\n            {\n              \"window\": [\n                {\n                  \"op\": \"rank\",\n                  \"as\": \"rank3\"\n                }\n              ],\n              \"sort\": [\n                {\n                  \"field\": \"Sum of Reviews\",\n                  \"order\": \"descending\"\n                }\n              ]\n            }\n          ],\n          \"layer\": [\n            {\n              \"mark\": {\n                \"type\": \"line\",\n                \"point\":{\"color\":\"#454545\"},\n                \"width\": {\n                  \"band\": 0.95\n                },\n                \"tooltip\": true,\n                \"color\": {\n                  \"expr\": \"datum[''rank3''] == 1 ? ''#ec7629'': ''#454545''\"\n                }\n              }\n            },\n            {\n              \"mark\": {\n                \"type\": \"point\",\n                \"width\": {\n                  \"band\": 0.95\n                },\n                \"tooltip\": true,\n                \"filled\": true,\n                \"color\": {\n                  \"expr\": \"datum[''rank3''] == 1 ? ''#ec7629'': ''#454545''\"\n                },\n                \"size\": {\n                  \"expr\": \"datum[''rank3''] == 1 ? ''125'': ''0''\"\n                }\n              }\n            }\n          ],\n          \"encoding\": {\n            \"opacity\": {\n              \"condition\": {\n                \"test\": {\n                  \"field\": \"__selected__\",\n                  \"equal\": \"off\"\n                },\n                \"value\": 0.2\n              },\n              \"value\": 1\n            },\n            \"x\": {\n              \"field\": \"Date\",\n              \"type\": \"ordinal\",\n              \"timeUnit\": \"yearmonthdate\",\n              \"title\": null,\n              \"axis\": {\n                \"format\": \"%d.%m\"\n              }\n            },\n            \"y\": {\n              \"field\": \"Sum of Reviews__highlight\",\n              \"type\": \"quantitative\",\n              \"title\": null,\n              \"axis\": {\n                \"title\": null,\n                \"gridColor\": {\n                  \"condition\": {\n                    \"test\": \"datum.value === 0\",\n                    \"value\": \"#ea7838\"\n                  },\n                  \"value\": \"#fff9ee\"\n                }\n              }\n            }\n          }\n        }\n      ]\n    },\n    //Tick\n    {\n      \"spacing\": 8,\n      \"vconcat\": [\n        {\n          \"title\": {\n            \"text\": \"Orders\",\n            \"fontSize\": 25,\n            \"color\": \"#454545\",\n            \"align\": \"left\"\n          },\n          \"height\": 50,\n          \"mark\": {\n            \"type\": \"text\",\n            \"fontWeight\": 600,\n            \"size\": 38,\n            \"color\": \"#454545\",\n            \"align\": \"left\"\n          },\n          \"encoding\": {\n            \"text\": {\n              \"field\": \"Sum of Orders__highlight\",\n              \"aggregate\": \"sum\",\n              \"type\": \"quantitative\",\n              \"format\": \",.0f\"\n            }\n          }\n        },\n        {\n          \"spacing\": 10,\n          \"hconcat\": [\n            {\n              \"height\": 25,\n              \"mark\": {\n                \"type\": \"text\",\n                \"align\": \"left\",\n                \"size\": 18,\n                \"color\": {\n                  \"expr\": \"datum[''Orders YoY% All'']>= 0 ?  ''green'':''red''\"\n                }\n              },\n              \"transform\": [\n                {\n                  \"calculate\": \"format(datum[''Orders YoY% All''],'',.1%'') +'' '' + ''vs PY''\",\n                  \"as\": \"_counter\"\n                }\n              ],\n              \"encoding\": {\n                \"text\": {\n                  \"field\": \"_counter\"\n                }\n              }\n            }\n          ]\n        },\n        {\n          \"height\": 100,\n          \"transform\": [\n            {\n              \"window\": [\n                {\n                  \"op\": \"rank\",\n                  \"as\": \"rank4\"\n                }\n              ],\n              \"sort\": [\n                {\n                  \"field\": \"Sum of Orders\",\n                  \"order\": \"descending\"\n                }\n              ]\n            }\n          ],\n          \"layer\": [\n            {\n              \"mark\": {\n                \"type\": \"rule\",\n                \"point\": {\n                  \"color\": \"#454545\"\n                },\n                \"width\": {\n                  \"band\": 0.95\n                },\n                \"tooltip\": true,\n                \"color\": {\n                  \"expr\": \"datum[''rank4''] == 1 ? ''#ec7629'': ''#454545''\"\n                }\n              }\n            },\n            {\n              \"mark\": {\n                \"type\": \"point\",\n                \"width\": {\n                  \"band\": 0.95\n                },\n                \"tooltip\": true,\n                \"filled\": true,\n                \"color\": {\n                  \"expr\": \"datum[''rank4''] == 1 ? ''#ec7629'': ''#454545''\"\n                },\n                \"size\": {\n                  \"expr\": \"datum[''rank4''] == 1 ? ''125'': ''0''\"\n                }\n              }\n            }\n          ],\n          \"encoding\": {\n            \"opacity\": {\n              \"condition\": {\n                \"test\": {\n                  \"field\": \"__selected__\",\n                  \"equal\": \"off\"\n                },\n                \"value\": 0.2\n              },\n              \"value\": 1\n            },\n            \"x\": {\n              \"field\": \"Date\",\n              \"type\": \"ordinal\",\n              \"timeUnit\": \"yearmonthdate\",\n              \"title\": null,\n              \"axis\": {\n                \"format\": \"%d.%m\"\n              }\n            },\n            \"y\": {\n              \"field\": \"Sum of Orders__highlight\",\n              \"type\": \"quantitative\",\n              \"title\": null,\n              \"axis\": {\n                \"title\": null,\n                \"gridColor\": {\n                  \"condition\": {\n                    \"test\": \"datum.value === 0\",\n                    \"value\": \"#ea7838\"\n                  },\n                  \"value\": \"#fff9ee\"\n                }\n              }\n            }\n          }\n        }\n      ]\n    }\n  ]\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"locale\": {\n    \"number\": {\n      \"decimal\": \".\",\n      \"thousands\": \",\",\n      \"grouping\": [3],\n      \"currency\": [\"\", \" €\"]\n    }\n  },\n        \"font\":\"Verdana\",\n  \"padding\": 10,\n  \"view\": {\"stroke\": \"transparent\"},\n  \"axis\": {\n    \"domainColor\": \"#454545\",\n    \"ticks\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 3,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 8,\n    \"grid\": false,\n    \"labelOverlap\": true\n  },\n  \"axisY\": {\n    \"labelPadding\": 5,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 8,\n    \"domain\": false,\n    \"grid\": false\n  },\n  \"scale\": {\"labelPadding\": 0},\n  \"legend\": {\n    \"title\": null,\n    \"labelFontSize\": 12,\n    \"labelColor\": \"#454545\",\n    \"symbolType\": \"square\",\n    \"symbolSize\": 200,\n    \"orient\": \"top\",\n    \"symbolStrokeWidth\": 2\n  }\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "638.3290797494253D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "806.4181308135243D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "editor": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "theme": {
+              "expr": {
+                "Literal": {
+                  "Value": "'light'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFF9EE'"
+                    }
+                  }
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX Formatting"
+                    }
+                  },
+                  "Property": "DateRange"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#454545'"
+                    }
+                  }
+                }
+              }
+            },
+            "underline": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "' Orange marks indicate highest value within selected date range'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "italic": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e17ed46b083a1a687077",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Act Plan"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "Act Plan",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "a"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -15,
+                          "TimeUnit": 0
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

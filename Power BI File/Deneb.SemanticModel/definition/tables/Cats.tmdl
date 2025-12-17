@@ -1,0 +1,23 @@
+table Cats
+	lineageTag: 84fad518-0d85-4488-ac61-6e81168c87bc
+
+	column Category
+		dataType: string
+		lineageTag: 62c896c2-c600-43c9-8703-393c6ced933c
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Cats-93992e81-ab62-4c1d-a096-1ed77a4e8497 = m
+		mode: import
+		source =
+				let
+				    Source = #"Act Plan",
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Category"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Other Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_ResultType = Table
+

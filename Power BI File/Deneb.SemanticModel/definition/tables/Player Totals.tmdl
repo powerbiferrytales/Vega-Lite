@@ -1,0 +1,834 @@
+table 'Player Totals'
+	lineageTag: fb75144b-046a-4ba8-97a2-83807bbb9eaa
+
+	measure sel% = SUM('Player Totals'[selected_by_percent])
+		formatString: 0
+		lineageTag: 5398566e-7871-4757-8a7d-bf5aea9fdfda
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column element_type
+		dataType: int64
+		formatString: 0
+		lineageTag: 715e959d-80a5-40b6-b8d8-fa82a53aa960
+		summarizeBy: none
+		sourceColumn: element_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column form
+		dataType: int64
+		formatString: 0
+		lineageTag: b161a02e-b974-46c2-8826-353ff2d07e37
+		summarizeBy: sum
+		sourceColumn: form
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e9c242b-2593-42e9-acac-c6b36b21f5a7
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column selected_by_percent
+		dataType: double
+		formatString: 0.00
+		lineageTag: d3f60a6d-1b89-4c93-bba5-a8906bd60986
+		summarizeBy: sum
+		sourceColumn: selected_by_percent
+
+		annotation SummarizationSetBy = Automatic
+
+	column team
+		dataType: int64
+		formatString: 0
+		lineageTag: e25c74a8-b4d8-4b1c-a231-040a7e2bd115
+		summarizeBy: none
+		sourceColumn: team
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_points
+		dataType: int64
+		formatString: 0
+		lineageTag: dc9b81e0-33db-4963-8391-94320c59c270
+		summarizeBy: sum
+		sourceColumn: total_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfers_in_event
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e23bc90-3ab6-43cc-89ba-c733fdd18f38
+		summarizeBy: sum
+		sourceColumn: transfers_in_event
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfers_out_event
+		dataType: int64
+		formatString: 0
+		lineageTag: bc8964f0-e5ab-4f26-bb40-c8495f8b4c47
+		summarizeBy: sum
+		sourceColumn: transfers_out_event
+
+		annotation SummarizationSetBy = Automatic
+
+	column web_name
+		dataType: string
+		lineageTag: c8262f5f-d2f2-4794-ad2b-9347436e165f
+		summarizeBy: none
+		sourceColumn: web_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column minutes
+		dataType: int64
+		formatString: 0
+		lineageTag: 679f8bb3-4be2-411b-b11f-afdb9eceedeb
+		summarizeBy: sum
+		sourceColumn: minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost
+		dataType: double
+		lineageTag: 0ba5b1b1-451e-4805-be94-013cd2f01b90
+		summarizeBy: sum
+		sourceColumn: Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Pos
+		dataType: string
+		lineageTag: 6f14e752-5689-4646-98d6-9e50d2ef7858
+		summarizeBy: none
+		sourceColumn: Pos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 66c310e0-7c8c-4a8e-bd60-1bd15830588b
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column chance_of_playing_next_round
+		dataType: int64
+		formatString: 0
+		lineageTag: fdbbed1d-471a-4be7-9145-9ab1b81c54e9
+		summarizeBy: sum
+		sourceColumn: chance_of_playing_next_round
+
+		annotation SummarizationSetBy = Automatic
+
+	column chance_of_playing_this_round
+		dataType: int64
+		formatString: 0
+		lineageTag: 177dc345-8a11-45d4-880b-a25affd45806
+		summarizeBy: sum
+		sourceColumn: chance_of_playing_this_round
+
+		annotation SummarizationSetBy = Automatic
+
+	column code
+		dataType: int64
+		formatString: 0
+		lineageTag: bea4042e-bb58-4dc8-8e21-9189b9779c33
+		summarizeBy: sum
+		sourceColumn: code
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_change_event
+		dataType: int64
+		formatString: 0
+		lineageTag: 60219b0d-4f69-4674-92da-1058fc4e389c
+		summarizeBy: sum
+		sourceColumn: cost_change_event
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_change_event_fall
+		dataType: int64
+		formatString: 0
+		lineageTag: 9cc2c43f-c66f-4f53-afc5-81a4780b6946
+		summarizeBy: sum
+		sourceColumn: cost_change_event_fall
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_change_start
+		dataType: int64
+		formatString: 0
+		lineageTag: bf116556-b297-41a1-8882-ceff47459c4e
+		summarizeBy: sum
+		sourceColumn: cost_change_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_change_start_fall
+		dataType: int64
+		formatString: 0
+		lineageTag: db47c41d-ca31-41b6-8df2-b368a7f12435
+		summarizeBy: sum
+		sourceColumn: cost_change_start_fall
+
+		annotation SummarizationSetBy = Automatic
+
+	column dreamteam_count
+		dataType: int64
+		formatString: 0
+		lineageTag: ac263d84-c4d2-4075-a1c6-d7d3a6d809cc
+		summarizeBy: sum
+		sourceColumn: dreamteam_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column ep_next
+		dataType: double
+		lineageTag: d42b272a-8290-46e8-bea0-dd23f7367673
+		summarizeBy: sum
+		sourceColumn: ep_next
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ep_this
+		dataType: double
+		lineageTag: 7c72d58b-4bdf-44db-8d4f-7c615d87bf99
+		summarizeBy: sum
+		sourceColumn: ep_this
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column event_points
+		dataType: int64
+		formatString: 0
+		lineageTag: 4210f422-a0e2-44c7-b207-4a62460304ce
+		summarizeBy: sum
+		sourceColumn: event_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column in_dreamteam
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 46fc58c5-e62b-4b1d-b69a-ee41c2adfe84
+		summarizeBy: none
+		sourceColumn: in_dreamteam
+
+		annotation SummarizationSetBy = Automatic
+
+	column news
+		dataType: string
+		lineageTag: e4754b06-bf42-4192-af75-1ccf8458d366
+		summarizeBy: none
+		sourceColumn: news
+
+		annotation SummarizationSetBy = Automatic
+
+	column news_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 74bda963-9295-4cd8-b85c-b77cda4bcf2a
+		summarizeBy: none
+		sourceColumn: news_added
+
+		variation Variation
+			isDefault
+			relationship: 651c74bd-14ad-4292-863b-4b0e41642c4c
+			defaultHierarchy: LocalDateTable_0c51dcf6-cca6-4668-a477-e1ba055eea23.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Short'
+		dataType: double
+		lineageTag: b32b4ad0-d0ac-4a58-aeee-51365c7b97e6
+		summarizeBy: sum
+		sourceColumn: Cost Short
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column photo
+		dataType: string
+		lineageTag: d7da49dc-a484-40c6-a769-a1a8cd499d0b
+		summarizeBy: none
+		sourceColumn: photo
+
+		annotation SummarizationSetBy = Automatic
+
+	column points_per_game
+		dataType: double
+		lineageTag: ee706c39-bac6-46a0-a6f7-7a08222c2432
+		summarizeBy: sum
+		sourceColumn: points_per_game
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column special
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: dd8483c8-b0e1-4586-a2a6-a0b4fa744665
+		summarizeBy: none
+		sourceColumn: special
+
+		annotation SummarizationSetBy = Automatic
+
+	column squad_number
+		dataType: string
+		lineageTag: 3cab598d-ad45-42b6-b93f-10f5f15801e9
+		summarizeBy: none
+		sourceColumn: squad_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 3a02976f-5c79-4c8d-9642-190441ffd59c
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_code
+		dataType: int64
+		formatString: 0
+		lineageTag: 44f23b80-6e24-4f9e-a0d0-c7a4a4264c38
+		summarizeBy: sum
+		sourceColumn: team_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfers_in
+		dataType: int64
+		formatString: 0
+		lineageTag: 83fb63c2-1528-473b-a128-649dbf0a3c40
+		summarizeBy: sum
+		sourceColumn: transfers_in
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfers_out
+		dataType: int64
+		formatString: 0
+		lineageTag: ad71d832-8dff-48dc-9f6d-781b11a69831
+		summarizeBy: sum
+		sourceColumn: transfers_out
+
+		annotation SummarizationSetBy = Automatic
+
+	column value_form
+		dataType: double
+		lineageTag: e4ff4ad5-3d35-49b8-aeb2-b2a356ca9d95
+		summarizeBy: sum
+		sourceColumn: value_form
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column value_season
+		dataType: double
+		lineageTag: 745a6b18-07b0-4abb-868b-347d00bd4acc
+		summarizeBy: sum
+		sourceColumn: value_season
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column goals_scored
+		dataType: int64
+		formatString: 0
+		lineageTag: 93422b22-3ef6-43de-87e6-fb8c6d98406c
+		summarizeBy: sum
+		sourceColumn: goals_scored
+
+		annotation SummarizationSetBy = Automatic
+
+	column assists
+		dataType: int64
+		formatString: 0
+		lineageTag: 868ef7b6-5b0d-4a9c-8015-2ecf0a2be1a8
+		summarizeBy: sum
+		sourceColumn: assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column clean_sheets
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e742690-6a4b-4a9e-b179-f2adb4ad9a86
+		summarizeBy: sum
+		sourceColumn: clean_sheets
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_conceded
+		dataType: int64
+		formatString: 0
+		lineageTag: e254d92a-899d-4de1-b2aa-a4089f6fba59
+		summarizeBy: sum
+		sourceColumn: goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+	column own_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: 28f7125f-f1fb-4862-be20-9bfa3a372559
+		summarizeBy: sum
+		sourceColumn: own_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalties_saved
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a9bc88d-0c0e-4a77-bcf5-5b749db20a9c
+		summarizeBy: sum
+		sourceColumn: penalties_saved
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalties_missed
+		dataType: int64
+		formatString: 0
+		lineageTag: 42efe31a-0389-4e88-90e9-4cd27e3392c6
+		summarizeBy: sum
+		sourceColumn: penalties_missed
+
+		annotation SummarizationSetBy = Automatic
+
+	column yellow_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: bacc8fae-e8ec-411f-b134-8ac5e9d04093
+		summarizeBy: sum
+		sourceColumn: yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column red_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: 72d7195e-a50f-45ce-980f-b566dff0aaea
+		summarizeBy: sum
+		sourceColumn: red_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column saves
+		dataType: int64
+		formatString: 0
+		lineageTag: 042945c8-f8e0-4176-a363-3830845030fc
+		summarizeBy: sum
+		sourceColumn: saves
+
+		annotation SummarizationSetBy = Automatic
+
+	column bonus
+		dataType: int64
+		formatString: 0
+		lineageTag: af2fc9b1-2fb3-4523-8604-4ebb1fbe9cdf
+		summarizeBy: sum
+		sourceColumn: bonus
+
+		annotation SummarizationSetBy = Automatic
+
+	column bps
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d7e720a-cf2a-4225-aa8e-64e44b1959e5
+		summarizeBy: sum
+		sourceColumn: bps
+
+		annotation SummarizationSetBy = Automatic
+
+	column influence
+		dataType: double
+		lineageTag: 657e5350-98a5-4cd1-86f9-22e671d060ab
+		summarizeBy: sum
+		sourceColumn: influence
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column creativity
+		dataType: double
+		lineageTag: f4d20ffa-fbdf-45f7-ad5d-4a50fdbad91f
+		summarizeBy: sum
+		sourceColumn: creativity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column threat
+		dataType: int64
+		formatString: 0
+		lineageTag: 94c1bf6a-ff19-478b-ad54-12dab7dd129c
+		summarizeBy: sum
+		sourceColumn: threat
+
+		annotation SummarizationSetBy = Automatic
+
+	column ict_index
+		dataType: double
+		lineageTag: 4ec7f51a-9b3e-4455-9905-8b97fd0398b6
+		summarizeBy: sum
+		sourceColumn: ict_index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_goals
+		dataType: double
+		lineageTag: 5db8bbb4-4be9-4cf6-ada0-46a1a85551c1
+		summarizeBy: sum
+		sourceColumn: expected_goals
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_assists
+		dataType: double
+		lineageTag: da89484c-e315-433f-af67-fbca5dc01e07
+		summarizeBy: sum
+		sourceColumn: expected_assists
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_goal_involvements
+		dataType: double
+		lineageTag: 7b6bd22a-9361-4f98-8996-8178214826ac
+		summarizeBy: sum
+		sourceColumn: expected_goal_involvements
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_goals_conceded
+		dataType: double
+		lineageTag: e0385096-8c83-4c9f-bb2a-8434dbba2755
+		summarizeBy: sum
+		sourceColumn: expected_goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column influence_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b6a940f-c07c-48ff-a9fb-dbbc7fab5e92
+		summarizeBy: sum
+		sourceColumn: influence_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column influence_rank_type
+		dataType: int64
+		formatString: 0
+		lineageTag: 07cd6dd2-013f-4fdf-a78b-17eeeb8c4d40
+		summarizeBy: sum
+		sourceColumn: influence_rank_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column creativity_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c12fe66-89f5-43f2-b6e3-c7f5a5eee9b2
+		summarizeBy: sum
+		sourceColumn: creativity_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column creativity_rank_type
+		dataType: int64
+		formatString: 0
+		lineageTag: 2deb03d2-0477-4681-90c5-ef8a829f193c
+		summarizeBy: sum
+		sourceColumn: creativity_rank_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column threat_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d3705b3-f939-4d4f-a305-b022c372387c
+		summarizeBy: sum
+		sourceColumn: threat_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column threat_rank_type
+		dataType: int64
+		formatString: 0
+		lineageTag: 50f930b9-ade9-44b1-8291-b4f7ccf7a943
+		summarizeBy: sum
+		sourceColumn: threat_rank_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ict_index_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: bb9b470e-a529-4571-a2f0-80e3a8d7fdc1
+		summarizeBy: sum
+		sourceColumn: ict_index_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column ict_index_rank_type
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d3fa113-a774-4969-b8dc-8279b93d1958
+		summarizeBy: sum
+		sourceColumn: ict_index_rank_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column corners_and_indirect_freekicks_order
+		dataType: int64
+		formatString: 0
+		lineageTag: d118a2ec-ced8-4ac4-9374-22e78ac2c293
+		summarizeBy: sum
+		sourceColumn: corners_and_indirect_freekicks_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column corners_and_indirect_freekicks_text
+		dataType: string
+		lineageTag: d2c6a5cd-b53f-4d5c-a90a-bf074315425f
+		summarizeBy: none
+		sourceColumn: corners_and_indirect_freekicks_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column direct_freekicks_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 443fa39a-f7e0-40aa-ab11-335bcc8cf176
+		summarizeBy: sum
+		sourceColumn: direct_freekicks_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column direct_freekicks_text
+		dataType: string
+		lineageTag: a28ff891-b87e-419d-b973-0496b00ce571
+		summarizeBy: none
+		sourceColumn: direct_freekicks_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalties_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 11bcc27e-cac6-4f53-ae02-fc87cce29233
+		summarizeBy: sum
+		sourceColumn: penalties_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalties_text
+		dataType: string
+		lineageTag: 69193973-99c6-486f-9cbc-8a8df09d29d5
+		summarizeBy: none
+		sourceColumn: penalties_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_goals_per_90
+		dataType: double
+		lineageTag: 5c4af6a0-650d-478c-962f-79a8854317da
+		summarizeBy: sum
+		sourceColumn: expected_goals_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_assists_per_90
+		dataType: double
+		lineageTag: ac9abb4b-fb79-4413-b1d1-86f5ac243852
+		summarizeBy: sum
+		sourceColumn: expected_assists_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_goals_conceded_per_90
+		dataType: double
+		lineageTag: 2dd28ec3-9bb1-47ce-82c7-3b67457abf7f
+		summarizeBy: sum
+		sourceColumn: expected_goals_conceded_per_90
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column form_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 53bde4ee-2c18-4563-a80d-2ec3a0cee6b7
+		summarizeBy: sum
+		sourceColumn: form_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column points_per_game_rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 948eddc0-7f1e-497d-8bf8-ace2542a1aaa
+		summarizeBy: sum
+		sourceColumn: points_per_game_rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Image Url'
+		dataType: string
+		lineageTag: d96b6b13-e4dd-49ee-bfca-32e1a615a11b
+		summarizeBy: none
+		sourceColumn: Image Url
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Name Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3826495c-5be4-41c1-a1e0-e116184e7def
+		summarizeBy: sum
+		sourceColumn: Name Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: eda967e4-880b-4fa5-bcd4-02ec30886fd8
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column second_name
+		dataType: string
+		lineageTag: c8d4019b-3be0-4f9b-85e0-059297e4b287
+		summarizeBy: none
+		sourceColumn: second_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost M'
+		dataType: string
+		lineageTag: ad37885d-24bf-4cef-8085-b32516c882c9
+		summarizeBy: none
+		sourceColumn: Cost M
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custom
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a2cf3f1-a632-4e58-8994-6a322d9593b2
+		summarizeBy: sum
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fitness
+		dataType: double
+		lineageTag: 1987be83-2822-496d-b82e-eee41b925522
+		summarizeBy: sum
+		sourceColumn: Fitness
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FitFlag
+		dataType: string
+		lineageTag: 736c1922-5289-40b7-a690-273001c3b3b9
+		summarizeBy: none
+		sourceColumn: FitFlag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Player Totals-50def86e-6f35-4576-b762-9288b113da02' = m
+		mode: import
+		queryGroup: Player
+		source = ```
+				let
+				    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/api/bootstrap-static/")),
+				    elements = Source[elements],
+				    #"Converted to Table" = Table.FromList(elements, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"chance_of_playing_next_round", "chance_of_playing_this_round", "code", "cost_change_event", "cost_change_event_fall", "cost_change_start", "cost_change_start_fall", "dreamteam_count", "element_type", "ep_next", "ep_this", "event_points", "first_name", "form", "id", "in_dreamteam", "news", "news_added", "now_cost", "photo", "points_per_game", "second_name", "selected_by_percent", "special", "squad_number", "status", "team", "team_code", "total_points", "transfers_in", "transfers_in_event", "transfers_out", "transfers_out_event", "value_form", "value_season", "web_name", "minutes", "goals_scored", "assists", "clean_sheets", "goals_conceded", "own_goals", "penalties_saved", "penalties_missed", "yellow_cards", "red_cards", "saves", "bonus", "bps", "influence", "creativity", "threat", "ict_index", "expected_goals", "expected_assists", "expected_goal_involvements", "expected_goals_conceded", "influence_rank", "influence_rank_type", "creativity_rank", "creativity_rank_type", "threat_rank", "threat_rank_type", "ict_index_rank", "ict_index_rank_type", "corners_and_indirect_freekicks_order", "corners_and_indirect_freekicks_text", "direct_freekicks_order", "direct_freekicks_text", "penalties_order", "penalties_text", "expected_goals_per_90", "expected_assists_per_90", "expected_goals_conceded_per_90", "form_rank", "points_per_game_rank"}, {"chance_of_playing_next_round", "chance_of_playing_this_round", "code", "cost_change_event", "cost_change_event_fall", "cost_change_start", "cost_change_start_fall", "dreamteam_count", "element_type", "ep_next", "ep_this", "event_points", "first_name", "form", "id", "in_dreamteam", "news", "news_added", "now_cost", "photo", "points_per_game", "second_name", "selected_by_percent", "special", "squad_number", "status", "team", "team_code", "total_points", "transfers_in", "transfers_in_event", "transfers_out", "transfers_out_event", "value_form", "value_season", "web_name", "minutes", "goals_scored", "assists", "clean_sheets", "goals_conceded", "own_goals", "penalties_saved", "penalties_missed", "yellow_cards", "red_cards", "saves", "bonus", "bps", "influence", "creativity", "threat", "ict_index", "expected_goals", "expected_assists", "expected_goal_involvements", "expected_goals_conceded", "influence_rank", "influence_rank_type", "creativity_rank", "creativity_rank_type", "threat_rank", "threat_rank_type", "ict_index_rank", "ict_index_rank_type", "corners_and_indirect_freekicks_order", "corners_and_indirect_freekicks_text", "direct_freekicks_order", "direct_freekicks_text", "penalties_order", "penalties_text", "expected_goals_per_90", "expected_assists_per_90", "expected_goals_conceded_per_90", "form_rank", "points_per_game_rank"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Column1",{{"chance_of_playing_next_round", Int64.Type}, {"chance_of_playing_this_round", Int64.Type}, {"code", Int64.Type}, {"cost_change_event", Int64.Type}, {"cost_change_event_fall", Int64.Type}, {"cost_change_start", Int64.Type}, {"cost_change_start_fall", Int64.Type}, {"dreamteam_count", Int64.Type}, {"element_type", Int64.Type}, {"ep_next", type number}, {"ep_this", type number}, {"event_points", Int64.Type}, {"first_name", type text}, {"form", type number}, {"id", Int64.Type}, {"in_dreamteam", type logical}, {"news", type text}, {"news_added", type datetime}, {"now_cost", Int64.Type}, {"photo", type text}, {"points_per_game", type number}, {"second_name", type text}, {"selected_by_percent", type number}, {"special", type logical}, {"squad_number", type any}, {"status", type text}, {"team", Int64.Type}, {"team_code", Int64.Type}, {"total_points", Int64.Type}, {"transfers_in", Int64.Type}, {"transfers_in_event", Int64.Type}, {"transfers_out", Int64.Type}, {"transfers_out_event", Int64.Type}, {"value_form", type number}, {"value_season", type number}, {"web_name", type text}, {"minutes", Int64.Type}, {"goals_scored", Int64.Type}, {"assists", Int64.Type}, {"clean_sheets", Int64.Type}, {"goals_conceded", Int64.Type}, {"own_goals", Int64.Type}, {"penalties_saved", Int64.Type}, {"penalties_missed", Int64.Type}, {"yellow_cards", Int64.Type}, {"red_cards", Int64.Type}, {"saves", Int64.Type}, {"bonus", Int64.Type}, {"bps", Int64.Type}, {"influence", type number}, {"creativity", type number}, {"threat", Int64.Type}, {"ict_index", type number}, {"expected_goals", type number}, {"expected_assists", type number}, {"expected_goal_involvements", type number}, {"expected_goals_conceded", type number}, {"influence_rank", Int64.Type}, {"influence_rank_type", Int64.Type}, {"creativity_rank", Int64.Type}, {"creativity_rank_type", Int64.Type}, {"threat_rank", Int64.Type}, {"threat_rank_type", Int64.Type}, {"ict_index_rank", Int64.Type}, {"ict_index_rank_type", Int64.Type}, {"corners_and_indirect_freekicks_order", Int64.Type}, {"corners_and_indirect_freekicks_text", type any}, {"direct_freekicks_order", Int64.Type}, {"direct_freekicks_text", type any}, {"penalties_order", Int64.Type}, {"penalties_text", type any}, {"expected_goals_per_90", type number}, {"expected_assists_per_90", type number}, {"expected_goals_conceded_per_90", type number}, {"form_rank", Int64.Type}, {"points_per_game_rank", Int64.Type}}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Changed Type",".jpg",".png",Replacer.ReplaceText,{"photo"}),
+				    #"Added Custom" = Table.AddColumn(#"Replaced Value1", "Image Url", each "https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p"&[photo]),
+				    #"Divided Column" = Table.TransformColumns(#"Added Custom", {{"now_cost", each _ / 10, type number}}),
+				    #"cost calc" = Table.AddColumn(#"Divided Column", "Multiplication", each [now_cost] * 1000000, type number),
+				    #"Renamed Columns1" = Table.RenameColumns(#"cost calc",{{"Multiplication", "Cost"}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Renamed Columns1",{{"now_cost", "Cost Short"}}),
+				    #"Add position name" = Table.AddColumn(#"Renamed Columns", "Pos", each if [element_type] = 1 then "GLK" else if [element_type] = 2 then "DEF" else if [element_type] = 3 then "MID" else "FWD"),
+				    #"Merged Queries" = Table.NestedJoin(#"Add position name", {"web_name"}, #"Name Count", {"web_name"}, "Player Totals (2)", JoinKind.LeftOuter),
+				    #"Expanded Player Totals (2)" = Table.ExpandTableColumn(#"Merged Queries", "Player Totals (2)", {"Count"}, {"Count"}),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Expanded Player Totals (2)",{{"Count", "Name Count"}}),
+				    #"Create Name" = Table.AddColumn(#"Renamed Columns4", "First Characters", each if [Name Count]>1 and [second_name] = [web_name]then [web_name]&"("&[first_name]&")" else if [Name Count]>1 and [first_name] = [web_name]then [web_name]&"("&[second_name]&")" else  if [Name Count]>1 then [web_name]&"("&[first_name]&")"else [web_name]),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Create Name",{"chance_of_playing_next_round", "chance_of_playing_this_round", "code", "cost_change_event", "cost_change_event_fall", "cost_change_start", "cost_change_start_fall", "dreamteam_count", "element_type", "ep_next", "ep_this", "event_points", "form", "id", "in_dreamteam", "news", "news_added", "Cost Short", "photo", "points_per_game", "selected_by_percent", "special", "squad_number", "status", "team", "team_code", "total_points", "transfers_in", "transfers_in_event", "transfers_out", "transfers_out_event", "value_form", "value_season", "minutes", "goals_scored", "assists", "clean_sheets", "goals_conceded", "own_goals", "penalties_saved", "penalties_missed", "yellow_cards", "red_cards", "saves", "bonus", "bps", "influence", "creativity", "threat", "ict_index", "expected_goals", "expected_assists", "expected_goal_involvements", "expected_goals_conceded", "influence_rank", "influence_rank_type", "creativity_rank", "creativity_rank_type", "threat_rank", "threat_rank_type", "ict_index_rank", "ict_index_rank_type", "corners_and_indirect_freekicks_order", "corners_and_indirect_freekicks_text", "direct_freekicks_order", "direct_freekicks_text", "penalties_order", "penalties_text", "expected_goals_per_90", "expected_assists_per_90", "expected_goals_conceded_per_90", "form_rank", "points_per_game_rank", "Image Url", "Cost", "Pos", "Name Count", "First Characters", "first_name", "second_name", "web_name"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Reordered Columns",{{"First Characters", "Name"}}),
+				    #"Added Custom2" = Table.AddColumn(#"Renamed Columns2", "Cost M", each Text.From([Cost Short])&"M"),
+				    #"Uppercased Text" = Table.TransformColumns(#"Added Custom2",{{"news", Text.Upper, type text}}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Uppercased Text","","100",Replacer.ReplaceValue,{"news"}),
+				    #"Fitness Logic" = Table.AddColumn(#"Replaced Value2", "Custom", each if Text.Contains([news],"JOINED") then -1 else 
+				if Text.Contains([news],"LEFT") then -1 else 
+				if Text.Contains([news],"LOAN") then -1 else
+				if Text.Contains([news],"TRANSFERRED") then -1 else
+				if Text.Contains([news],"EXPECTED") then 0 else 
+				if Text.Contains([news],"SUSPENDED") then 0 else 
+				if Text.Contains([news],"UNKNOWN") then 0 else
+				if Text.Contains([news],"null") then 100 
+				
+				else 
+				Text.Select([news],{"0".."9"})),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Fitness Logic",{{"Custom", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type1", each ([Custom] <> -1)),
+				    #"Inserted Division" = Table.AddColumn(#"Filtered Rows", "Division", each [Custom] / 100, type number),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Inserted Division",{{"Division", "Fitness"}}),
+				    FitFlag = Table.AddColumn(#"Renamed Columns3", "FitFlag", each if [Fitness]=1 then "Yes" else "No")
+				in
+				    FitFlag
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

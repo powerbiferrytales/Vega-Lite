@@ -1,0 +1,163 @@
+expression 'Player by GW Param' =
+		let
+		    Source = (player as text) as table=>
+		let
+		    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/",
+		    /* api/element-summary/"&(player)&"/"*/
+		    [RelativePath="api/element-summary/"&(player)&"/"]
+		    )),
+		    history = Source[history],
+		     #"Converted to Table" = Table.FromList(history, Splitter.SplitByNothing(), null, null, ExtraValues.Error)
+		in
+		    #"Converted to Table"
+		in
+		    Source
+	lineageTag: 9af4c746-42c9-4b7d-9cb7-893851014c28
+	queryGroup: Player
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression 'Fixtures Param' =
+		(id as text) as table =>
+		
+		let
+		    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/",
+		
+		
+		
+		
+		    [RelativePath="api/element-summary/"&(id)&"/"])),
+		
+		    #"Converted to Table" = Table.FromRecords({Source}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Converted to Table",{{"fixtures", type any}, {"history", type any}, {"history_past", type any}}),
+		    fixtures = #"Changed Type"{0}[fixtures],
+		    #"Converted to Table1" = Table.FromList(fixtures, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+		    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table1", "Column1", {"id", "code", "team_h", "team_h_score", "team_a", "team_a_score", "event", "finished", "minutes", "provisional_start_time", "kickoff_time", "event_name", "is_home", "difficulty"}, {"id", "code", "team_h", "team_h_score", "team_a", "team_a_score", "event", "finished", "minutes", "provisional_start_time", "kickoff_time", "event_name", "is_home", "difficulty"})
+		
+		in
+		    #"Expanded Column1"
+	lineageTag: 620e6255-13b2-4265-a008-3c326b4b87d7
+	queryGroup: Player
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression 'Team Extra Info' =
+		let
+		    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/api/bootstrap-static/")),
+		    teams = Source[teams],
+		    #"Converted to Table" = Table.FromList(teams, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+		    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"id", "current_event_fixture", "next_event_fixture", "name", "code", "short_name", "unavailable", "strength", "position", "played", "win", "loss", "draw", "points", "form", "link_url", "strength_overall_home", "strength_overall_away", "strength_attack_home", "strength_attack_away", "strength_defence_home", "strength_defence_away", "team_division"}, {"id", "current_event_fixture", "next_event_fixture", "name", "code", "short_name", "unavailable", "strength", "position", "played", "win", "loss", "draw", "points", "form", "link_url", "strength_overall_home", "strength_overall_away", "strength_attack_home", "strength_attack_away", "strength_defence_home", "strength_defence_away", "team_division"}),
+		    #"Expanded next_event_fixture" = Table.ExpandListColumn(#"Expanded Column1", "next_event_fixture"),
+		    #"Expanded next_event_fixture1" = Table.ExpandRecordColumn(#"Expanded next_event_fixture", "next_event_fixture", {"is_home", "day", "event_day", "month", "id", "opponent"}, {"is_home", "day", "event_day", "month", "id.1", "opponent"}),
+		    #"Expanded current_event_fixture" = Table.ExpandListColumn(#"Expanded next_event_fixture1", "current_event_fixture"),
+		    #"Expanded current_event_fixture1" = Table.ExpandRecordColumn(#"Expanded current_event_fixture", "current_event_fixture", {"is_home", "day", "event_day", "month", "id", "opponent"}, {"is_home.1", "day.1", "event_day.1", "month.1", "id.2", "opponent.1"}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Expanded current_event_fixture1",{{"id", "Club ID"}}),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"Club ID", "name", "short_name", "strength"}),
+		    #"Renamed Columns2" = Table.RenameColumns(#"Removed Other Columns",{{"name", "Team"}}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns2",{{"Club ID", type text}}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"Club ID", Int64.Type}, {"Team", type text}, {"strength", Int64.Type}}),
+		    #"Removed Duplicates" = Table.Distinct(#"Changed Type1", {"Club ID"}),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Removed Duplicates",{{"short_name", "Team Abr"}}),
+		    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns1","Sheffield Utd","Sheff Utd",Replacer.ReplaceText,{"Team"}),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Replaced Value",{{"Club ID", type text}})
+		in
+		    #"Changed Type2"
+	lineageTag: 02f8721d-e4c3-48a7-a21d-d0464a5c3d30
+	queryGroup: Teams
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'fixtures Base' =
+		let
+		   Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/api/bootstrap-static/")),
+		    elements = Source[elements],
+		    #"Converted to Table" = Table.FromList(elements, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+		    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"first_name", "id", "photo", "second_name", "team", "team_code", "web_name"}, {"first_name", "id", "photo", "second_name", "team", "team_code", "web_name"}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Expanded Column1",{{"id", "ID"}}),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"ID", type text}}),
+		    #"Invoked Custom Function" = Table.AddColumn(#"Changed Type", "GetPlayer fixtures", each #"GetPlayer fixtures"([ID])),
+		    #"Renamed Columns5" = Table.RenameColumns(#"Invoked Custom Function",{{"GetPlayer fixtures", "GetPlayer"}}),
+		    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Renamed Columns5", {"GetPlayer"}),
+		    #"Expanded GetPlayer" = Table.ExpandTableColumn(#"Removed Errors", "GetPlayer", {"code", "team_h", "team_h_score", "team_a", "team_a_score", "event", "finished", "minutes", "provisional_start_time", "kickoff_time", "event_name", "is_home", "difficulty", "id", "was_home", "round", "opponent_team"}, {"code", "team_h", "team_h_score", "team_a", "team_a_score", "event", "finished", "minutes", "provisional_start_time", "kickoff_time", "event_name", "is_home", "difficulty", "id.1", "was_home", "round", "opponent_team"}),
+		    #"Split Column by Delimiter" = Table.SplitColumn(#"Expanded GetPlayer", "kickoff_time", Splitter.SplitTextByDelimiter("T", QuoteStyle.Csv), {"kickoff_time.1", "kickoff_time.2"}),
+		    #"Changed Type5" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"team_a_score", type text}, {"team_h_score", type text}}),
+		    #"Changed Type4" = Table.TransformColumnTypes(#"Changed Type5",{{"kickoff_time.1", type date}}),
+		    #"Changed Type3" = Table.TransformColumnTypes(#"Changed Type4",{{"opponent_team", Int64.Type}, {"round", Int64.Type}}),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type3",{{"opponent_team", type text}}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"id.1", "team_h_score", "team_a_score"}),
+		    #"Changed Type2" = Table.TransformColumnTypes(#"Removed Columns",{{"ID", Int64.Type}, {"opponent_team", Int64.Type}}),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type2",{{"kickoff_time.1", "Date"}}),
+		    #"Renamed Columns3" = Table.RenameColumns(#"Renamed Columns1",{{"round", "Round"}}),
+		    Custom1 = Table.TransformColumnNames(#"Renamed Columns3", Text.Proper),
+		    #"Renamed Columns4" = Table.RenameColumns(Custom1,{{"Was_Home", "WasHome"}}),
+		    #"Added Conditional Column" = Table.AddColumn(#"Renamed Columns4", "Opponent", each if [Team] = [Team_H] then [Team_A] else if [Team] = [Team_A] then [Team_H] else null),
+		    #"Changed Type6" = Table.TransformColumnTypes(#"Added Conditional Column",{{"Opponent", Int64.Type}, {"Kickoff_Time.2", type time}}),
+		    #"Removed Columns1" = Table.RemoveColumns(#"Changed Type6",{"Opponent_Team"}),
+		    #"Changed Type7" = Table.TransformColumnTypes(#"Removed Columns1",{{"Opponent", type text}})
+		in
+		    #"Changed Type7"
+	lineageTag: 25814b05-5ee0-4e1e-8d32-d4bb18502986
+	queryGroup: Fixtures
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'GetPlayer fixtures' =
+		let
+		    Source = (player as text) as table=>
+		let
+		    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/",
+		    /* api/element-summary/"&(player)&"/" */
+		    [RelativePath="api/element-summary/"&(player)&"/" ])),
+		    fixtures = Source[fixtures],
+		    #"Converted to Table" = Table.FromList(fixtures, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+		    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"code", "team_h", "team_h_score", "team_a", "team_a_score", "event", "finished", "minutes", "provisional_start_time", "kickoff_time", "event_name", "is_home", "difficulty"}, {"code", "team_h", "team_h_score", "team_a", "team_a_score", "event", "finished", "minutes", "provisional_start_time", "kickoff_time", "event_name", "is_home", "difficulty"})
+		in
+		    #"Expanded Column1"
+		in
+		    Source
+	lineageTag: d17aeab5-47c2-4e10-8c42-f0a7deab0aca
+	queryGroup: Fixtures
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression 'Tooties Toots Function' =
+		(acc as text) as table =>
+		
+		let
+		    Source = Xml.Tables(Web.Contents(acc&".rss"))
+		
+		in
+		    #"Source"
+	lineageTag: 8bcae2df-0ba6-42fd-bf44-87e7617d0e9e
+	queryGroup: Tooting
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+
+expression 'Name Count' =
+		let
+		    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/api/bootstrap-static/")),
+		    elements = Source[elements],
+		    #"Converted to Table" = Table.FromList(elements, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+		    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"web_name"}, {"web_name"}),
+		    #"Grouped Rows" = Table.Group(#"Expanded Column1", {"web_name"}, {{"Count", each Table.RowCount(_), Int64.Type}}),
+		    #"Sorted Rows" = Table.Sort(#"Grouped Rows",{{"Count", Order.Descending}})
+		in
+		    #"Sorted Rows"
+	lineageTag: 573ebb9e-99d2-4d40-b15b-4e12fd35ddb8
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

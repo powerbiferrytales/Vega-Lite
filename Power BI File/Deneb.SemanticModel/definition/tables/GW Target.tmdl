@@ -1,0 +1,38 @@
+table 'GW Target'
+	lineageTag: 23362c68-ba9c-4b8e-8d50-9989b6fcdedf
+
+	measure 'GW Target Value' =
+			
+			IF([Hide Filter]<>1,BLANK(),
+			IF([Minutes by GW]=BLANK(),BLANK(),
+			SELECTEDVALUE('GW Target'[GW Target])))
+		formatString: 0
+		lineageTag: 1c45115b-6d96-4641-9ac6-4c8dcdb328b6
+
+	measure 'Target Value' =
+			
+			IF([Minutes by GW]=0,BLANK(),
+			SELECTEDVALUE('GW Target'[GW Target]))
+		lineageTag: bdc7816a-ef18-4356-93de-09089f38977b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'GW Target'
+		formatString: 0
+		lineageTag: 373cef5e-64bb-4500-8b99-21e4c9793eb6
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition 'GW Target-d1af2f9d-57a6-42e2-a1bd-da74955bdaab' = calculated
+		mode: import
+		source = GENERATESERIES(3, 16, 1)
+
+	annotation PBI_Id = 04c24567a8cd4197873b9ff62f4ac9ba
+

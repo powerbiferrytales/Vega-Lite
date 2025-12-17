@@ -1,0 +1,34 @@
+table 'Total Players'
+	lineageTag: da809136-567f-4e9a-abb8-ab095277c5e5
+
+	column Name
+		dataType: string
+		lineageTag: f7fd8c89-56ff-4cb0-963a-36eb7a0ef9e6
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b1e0ebd-82ee-451d-8f65-370c355fad62
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Total Players-21de3e71-605c-4e1b-a1a8-edc2f5fb87be' = m
+		mode: import
+		queryGroup: Player
+		source =
+				let
+				    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/api/bootstrap-static/")),
+				    #"Converted to Table" = Record.ToTable(Source),
+				    #"Filtered Rows" = Table.SelectRows(#"Converted to Table", each ([Name] = "total_players")),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Filtered Rows",{{"Value", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

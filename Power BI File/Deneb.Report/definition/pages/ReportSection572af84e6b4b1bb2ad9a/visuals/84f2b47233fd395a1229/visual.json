@@ -1,0 +1,192 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "84f2b47233fd395a1229",
+  "position": {
+    "x": 2.0722843699819982,
+    "y": 76.205552143899268,
+    "z": 3000,
+    "height": 844.07015830762339,
+    "width": 287.4488763615679,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ThermoTest"
+                    }
+                  },
+                  "Property": "ThermoTest Value"
+                }
+              },
+              "queryRef": "ThermoTest.ThermoTest Value",
+              "displayName": "Sales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Target%"
+                }
+              },
+              "queryRef": "DAX.Target%"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Target"
+                }
+              },
+              "queryRef": "DAX.Target"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ThermoTest"
+                  }
+                },
+                "Property": "ThermoTest Value"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.8.2.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n  \"transform\": [\n    {\n      \"calculate\": \"datum[''Target''] - datum[''Target'']*1.08\",\n      \"as\": \"_YCircle\"\n    },\n    {\n      \"calculate\": \"datum[''Target'']*1.2\",\n      \"as\": \"_Top\"\n    }\n  ],\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"color\": \"#262626\",\n        \"filled\": false,\n        \"fill\": \"#e3e3e3\",\n        \"strokeWidth\": 4,\n        \"width\": 35,\n        \"cornerRadiusEnd\":20\n      },\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"_Top\",\n          \"type\": \"quantitative\",\n          \"title\": null\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"point\",\n        \"shape\": \"circle\",\n        \"size\": 11000,\n        \"color\": \"#262626\",\n        \"filled\": false,\n        \"fill\": {\n          \"expr\": \"datum[''Sales'']>= datum[''Target'']? ''green'': datum[''Sales''] < datum[''Target'']/1.5 ? ''red'' : ''orange''\"\n        },\n        \"strokeWidth\": 4,\n        \"opacity\": 1\n      },\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"_YCircle\",\n          \"type\": \"quantitative\",\n          \"title\": null\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"color\": {\n          \"expr\": \"datum[''Sales'']>= datum[''Target'']? ''green'': datum[''Sales''] < datum[''Target'']/1.5 ? ''red'' : ''orange''\"\n        },\n        \"width\": 31,\n        \"tooltip\": true\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"tick\",\n        \"color\": \"#262626\",\n        \"size\": 32,\n        \"thickness\": 2,\n        \"opacity\": 1\n      },\n      \"encoding\": {\n        \"y\": {\n          \"field\": \"Target\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"xOffset\": 75,\n        \"size\": 16,\n        \"color\": \"black\",\n        \"lineBreak\": \"-\"\n      },\n      \"transform\": [\n        {\n          \"calculate\": \"format(datum.Sales,'',.0f'') +''-'' + format(datum[''Target%''], ''.1%'')\",\n          \"as\": \"_counter\"\n        }\n      ],\n      \"encoding\": {\n        \"text\": {\"field\": \"_counter\"}\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"color\": \"#262626\",\n        \"xOffset\": -50,\n        \"size\": 16\n      },\n      \"encoding\": {\n        \"text\": {\"value\": \"Target\"},\n        \"y\": {\n          \"field\": \"Target\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n        {\n      \"mark\": {\n        \"type\": \"text\",\n        \"color\": \"#262626\",\n        \"xOffset\": -50,\n            \"yOffset\": 20,\n        \"size\": 16\n      },\n      \"encoding\": {\n        \"text\": {\"field\": \"Target\",\n        \"format\":\",.0f\"},\n        \"y\": {\n          \"field\": \"Target\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n     {\n      \"mark\": {\n        \"type\": \"text\",\n        \"size\": {\n          \"expr\": \"datum[''Sales'']> datum[''_Top'']? 70: 0\"\n        }\n      },\n      \"encoding\": {\n        \"text\": {\"value\": \"💥\"},\n        \"y\": {\n          \"field\": \"_Top\",\n          \"type\": \"quantitative\"\n        }\n      }\n    }\n    \n    \n    \n  ],\n  \"encoding\": {\n    \"y\": {\n      \"field\": \"Sales\",\n      \"type\": \"quantitative\",\n      \"title\": null,\n      \"axis\":null\n    }\n  }\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"view\": {\"stroke\": \"transparent\"},\n  \"font\": \"Segoe UI\",\n  \"arc\": {},\n     \"currency\": [\"\", \"\\u00a0€\"],\n  \"area\": {\n    \"line\": true,\n    \"opacity\": 0.6\n  },\n  \"bar\": {},\n  \"line\": {\n    \"strokeWidth\": 3,\n    \"strokeCap\": \"round\",\n    \"strokeJoin\": \"round\"\n  },\n  \"path\": {},\n  \"point\": {\"filled\": true, \"size\": 75},\n  \"rect\": {},\n  \"shape\": {},\n  \"symbol\": {\n    \"strokeWidth\": 1.5,\n    \"size\": 50\n  },\n  \"text\": {\n    \"font\": \"Segoe UI\",\n    \"fontSize\": 12,\n    \"fill\": \"#605E5C\"\n  },\n  \"axis\": {\n    \"ticks\": false,\n    \"grid\": false,\n    \"domain\": false,\n    \"labelColor\": \"#605E5C\",\n    \"labelFontSize\": 12,\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\n    \"titleColor\": \"#252423\",\n    \"titleFontSize\": 16,\n    \"titleFontWeight\": \"normal\"\n  },\n  \"axisQuantitative\": {\n    \"tickCount\": 3,\n    \"grid\": false,\n    \"gridColor\": \"#C8C6C4\",\n    \"gridDash\": [1, 5],\n    \"labelFlush\": false\n  },\n  \"axisX\": {\"labelPadding\": 5},\n  \"axisY\": {\"labelPadding\": 10},\n  \"header\": {\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\n    \"titleFontSize\": 16,\n    \"titleColor\": \"#252423\",\n    \"labelFont\": \"Segoe UI\",\n    \"labelFontSize\": 13.333333333333332,\n    \"labelColor\": \"#605E5C\"\n  },\n  \"legend\": {\n    \"titleFont\": \"Segoe UI\",\n    \"titleFontWeight\": \"bold\",\n    \"titleColor\": \"#605E5C\",\n    \"labelFont\": \"Segoe UI\",\n    \"labelFontSize\": 13.333333333333332,\n    \"labelColor\": \"#605E5C\",\n    \"symbolType\": \"circle\",\n    \"symbolSize\": 75\n  }\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "834.0701583076234D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "277.4488763615679D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "keepLayerOrder": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "4cdb405ee66b28ed9160"
+}

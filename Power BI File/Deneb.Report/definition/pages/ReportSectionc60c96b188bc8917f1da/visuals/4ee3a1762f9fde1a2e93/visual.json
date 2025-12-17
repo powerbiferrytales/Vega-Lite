@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "4ee3a1762f9fde1a2e93",
+  "position": {
+    "x": 87.47152619589977,
+    "y": 138.496583143508,
+    "z": 7000,
+    "height": 195.35307517084283,
+    "width": 1214.3963553530753,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Don't pretend you don't like pie charts!",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "16px"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Using the 'arc' mark, we can create pie charts with vega-lite. These examples below are designed (",
+                    "textStyle": {
+                      "fontSize": "16pt"
+                    }
+                  },
+                  {
+                    "value": "original design by Muhammad Azhar",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontStyle": "italic",
+                      "fontSize": "16pt"
+                    }
+                  },
+                  {
+                    "value": ") to be easy to read and display only two categories. The percentage occupied shows the total in percent, and the negative space the difference. To the right is a similar pie chart, but this time combined with a bar to show two different metrics on the Y axis.  ",
+                    "textStyle": {
+                      "fontSize": "16pt"
+                    }
+                  },
+                  {
+                    "value": "Video on how to make this visual.",
+                    "textStyle": {
+                      "fontSize": "16pt"
+                    },
+                    "url": "https://www.youtube.com/watch?v=ORg8InWqpsM&list=PL6oIJxyQvMGTxh4tREeKflcKVlOfGdyim&index=22"
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

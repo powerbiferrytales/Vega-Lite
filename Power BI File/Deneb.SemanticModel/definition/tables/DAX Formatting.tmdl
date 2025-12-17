@@ -1,0 +1,106 @@
+table 'DAX Formatting'
+	lineageTag: c176176a-31a0-4726-a390-216459cd0407
+
+	measure SPN = ```
+			
+			
+			    "Total point per Game Week for "&SELECTEDVALUE('Player Totals'[Name])
+			```
+		lineageTag: 4bb88429-d239-4f0f-b3eb-0d65576164e1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DateRange = ```
+			
+			
+			 VAR _dateRange = DISTINCTCOUNT('Act Plan'[Date])
+			
+			 return
+			
+			"Previous "&_dateRange&" days"
+			```
+		lineageTag: 1ca71361-c9f3-4b8e-8964-2fb32e08f090
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Name title' =
+			
+			SELECTEDVALUE('Player Totals'[web_name])
+		lineageTag: f8e73ad7-0946-4c92-bcac-9bba9cf8eed0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SizeTextFilter = ```
+			
+			
+			
+			VAR _rank = IF(
+			    NOT(
+			        ISBLANK(
+			            [Pts by GW TopN])),
+			            RANKX(CALCULATETABLE(
+			                ALLSELECTED('Player by GW'[round])),
+			                 [Pts by GW TopN],,,Dense
+			            )
+			)
+			VAR SelectedTop = 10
+			
+			VAR _save = SWITCH(TRUE(),
+			    SelectedTop = 0,  [Total pts by GW],
+			    RANKX ( 
+			            ALLSELECTED(  'Player Totals'[Name] ), 
+			         [Total pts by GW],,,Dense
+			                )
+			                  <= SelectedTop,
+			      [Total pts by GW]
+			)
+			
+			
+			RETURN
+			IF(
+			    NOT(
+			        ISBLANK(
+			            [Pts by GW TopN])),
+			            RANKX(CALCULATETABLE(
+			                ALLSELECTED( 'Player Totals'[Name] )),
+			                 [Pts by GW TopN],,,Dense
+			            )
+			)
+			```
+		lineageTag: 0cfe7a5f-62d7-4ac0-bc96-f3d2b1dcbdef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure SizeTextFilter2 = ```
+			
+			VAR SelPct     = [Sel% by GW TopN]
+			VAR PlayerSet  = ALLSELECTED ( 'Player Totals'[Name] )
+			RETURN
+			IF (
+			    NOT ISBLANK ( SelPct ),
+			    RANKX (
+			        PlayerSet,
+			        [Sel% by GW TopN],
+			        ,
+			        DESC,
+			        DENSE
+			    )
+			)
+			
+			```
+		lineageTag: bd11c66e-a857-4574-a2cf-c4a0b4984027
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'DAX Formatting-1933af3a-0b51-4ad1-804c-8e6a5e520957' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

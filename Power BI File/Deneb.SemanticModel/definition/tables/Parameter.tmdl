@@ -1,0 +1,24 @@
+table Parameter
+	lineageTag: 22101977-e306-42b9-9277-ac20e8d71bff
+
+	column Parameter
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f99c8cce-2a14-47ac-92dc-43323fab1813
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = User
+
+	partition Parameter-a4f1ef90-7a38-48e2-82a5-601857d8b1bc = calculated
+		mode: import
+		source = GENERATESERIES(0,6.5, 0.1)
+
+	annotation PBI_Id = 43d1216d89824b31ab9760181aff09ae
+

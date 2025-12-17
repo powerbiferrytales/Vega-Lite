@@ -1,0 +1,219 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "d49a048702e028b7d229",
+  "position": {
+    "x": 141.80455919460545,
+    "y": 237.04642731038521,
+    "z": 0,
+    "height": 749.23602917746757,
+    "width": 804.264664088807,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "NASATemp"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "NASATemp.Year",
+              "nativeQueryRef": "Year"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "NASATemp"
+                    }
+                  },
+                  "Property": "Average No Smoothing"
+                }
+              },
+              "queryRef": "NASATemp.Average No Smoothing",
+              "nativeQueryRef": "Average No Smoothing"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "NASATemp"
+                    }
+                  },
+                  "Property": "Average of Lowess"
+                }
+              },
+              "queryRef": "NASATemp.Average of Lowess",
+              "nativeQueryRef": "Average of Lowess"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "NASATemp"
+                  }
+                },
+                "Property": "Year"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.8.2.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n  \"vconcat\": [\n    {\n      \"title\": {\n        \"text\": \"Warming Stripes\",\n        \"anchor\": \"start\",\n        \"color\": \"white\",\n        \"subtitle\":\"Change in global surface temperature compared to the long-term average from 1951 to 1980\",\n           \"subtitleColor\":\"#ffffff\"\n      },\n      \n      \"height\": 350,\n      \"width\": 700,\n      \"layer\": [\n        {\n          \"mark\": {\n            \"type\": \"rect\",\n            \"width\": {\"band\": 1.1},\n            \"tooltip\":true\n          },\n          \"encoding\": {\n            \"color\": {\n              \"field\": \"Average No Smoothing__highlight\",\n              \"type\": \"quantitative\",\n              \"legend\": {\n                \"title\": \"°C\"\n              },\n              \"scale\": {\n                \"range\": [\n                  \"#67000D\",\n                  \"#A50F15\",\n                  \"#CB181D\",\n                  \"#EF3B2C\",\n                  \"#FB6A4A\",\n                  \"#FC9272\",\n                  \"#FCBBA1\",\n                  \"#FEE0D2\",\n                  \"#FFFFFF\",\n                  \"#DEEBF7\",\n                  \"#C6DBEF\",\n                  \"#9ECAE1\",\n                  \"#6BAED6\",\n                  \"#4292C6\",\n                  \"#2171B5\",\n                  \"#08519C\",\n                  \"#08306B\"\n                ],\n                \"reverse\": true\n              }\n            }\n          }\n        }\n      ],\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Year\",\n          \"axis\": null,\n          \"scale\": {\n            \"domain\": {\"param\": \"brush\"}\n          },\n          \"sort\": {\"field\": \"Year\"}\n        }\n      }\n    },\n    {   \"title\": {\n        \"text\": \"Warming\",\n        \"anchor\": \"start\",\n        \"color\": \"white\",\n        \"subtitle\":\"Average with Lowess Smoothing\",\n           \"subtitleColor\":\"#ffffff\"\n      },\n      \"height\": 250,\n      \"width\": 700,\n      \"layer\": [\n        {\n          \"params\": [\n            {\n              \"name\": \"brush\",\n              \"select\": {\n                \"type\": \"interval\",\n                \"encodings\": [\"x\"]\n              }\n            }\n          ],\n          \"mark\": {\n            \"type\": \"bar\",\n            \"width\": {\"band\": 0.95}\n          },\n          \"encoding\": {\n            \"color\": {\n              \"field\": \"Average No Smoothing\",\n              \"type\": \"quantitative\",\n              \"legend\": {\"title\": \"°C\"},\n              \"scale\": {\n                \"range\": [\n                  \"#67000D\",\n                  \"#A50F15\",\n                  \"#CB181D\",\n                  \"#EF3B2C\",\n                  \"#FB6A4A\",\n                  \"#FC9272\",\n                  \"#FCBBA1\",\n                  \"#FEE0D2\",\n                  \"#FFFFFF\",\n                  \"#DEEBF7\",\n                  \"#C6DBEF\",\n                  \"#9ECAE1\",\n                  \"#6BAED6\",\n                  \"#4292C6\",\n                  \"#2171B5\",\n                  \"#08519C\",\n                  \"#08306B\"\n                ],\n                \"reverse\": true\n              }\n            }\n          }\n        }\n      ],\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Year\",\n          \"scale\": {\"padding\": 0},\n          \"axis\": {\n            \"title\": null,\n            \"labelAngle\": 0,\n            \"values\": [1880, 1950, 2022]\n          }\n        },\n        \"y\": {\n          \"field\": \"Average of Lowess__highlight\",\n          \"type\": \"quantitative\",\n          \"axis\": null\n        }\n      }\n    }\n  ]\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"view\": {\"stroke\": \"transparent\"},\n  \"font\": \"Segoe UI\",\n  \"arc\": {},\n  \"area\": {\n    \"line\": true,\n    \"opacity\": 0.6\n  },\n  \"bar\": {},\n  \"line\": {\n    \"strokeWidth\": 3,\n    \"strokeCap\": \"round\",\n    \"strokeJoin\": \"round\"\n  },\n  \"path\": {},\n  \"point\": {\"filled\": true, \"size\": 75},\n  \"rect\": {},\n  \"shape\": {},\n  \"symbol\": {\n    \"strokeWidth\": 1.5,\n    \"size\": 50\n  },\n  \"text\": {\n    \"font\": \"Segoe UI\",\n    \"fontSize\": 12,\n    \"fill\": \"#605E5C\"\n  },\n  \"axis\": {\n    \"ticks\": false,\n    \"grid\": false,\n    \"domain\": false,\n    \"labelColor\": \"#ffffff\",\n    \"labelFontSize\": 12,\n    \"labelFontWeight\": 600,\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\n    \"titleColor\": \"#252423\",\n    \"titleFontSize\": 16,\n    \"titleFontWeight\": \"normal\"\n  },\n  \"axisQuantitative\": {\n    \"tickCount\": 3,\n    \"grid\": false,\n    \"gridColor\": \"#C8C6C4\",\n    \"gridDash\": [1, 5],\n    \"labelFlush\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 5,\n    \"tickMinStep\": 10\n  },\n  \"axisY\": {\"labelPadding\": 10},\n  \"header\": {\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\n    \"titleFontSize\": 16,\n    \"titleColor\": \"#252423\",\n    \"labelFont\": \"Segoe UI\",\n    \"labelFontSize\": 13.333333333333332,\n    \"labelColor\": \"#605E5C\"\n  },\n  \"legend\": {\n    \"titleFont\": \"Segoe UI\",\n    \"titleFontWeight\": \"bold\",\n    \"titleColor\": \"#ffffff\",\n    \"labelFont\": \"Segoe UI\",\n    \"labelFontSize\": 14,\n    \"labelColor\": \"#ffffff\",\n    \"symbolType\": \"circle\",\n    \"symbolSize\": 75\n  }\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "739.2360291774676D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "794.264664088807D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

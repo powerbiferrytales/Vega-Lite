@@ -1,0 +1,49 @@
+table 'Gender Select'
+	lineageTag: fa9c8e99-4077-4421-96ef-7beb8b5f7856
+
+	calculationGroup
+		precedence: 3
+
+		calculationItem Male =
+				IF(
+				    ISSELECTEDMEASURE([life expectancy]),
+				
+				sum('LE'[Male]),
+				
+				    SELECTEDMEASURE()
+				)
+
+		calculationItem Female =
+				IF(
+				    ISSELECTEDMEASURE([life expectancy]),
+				
+				sum('LE'[Female]),
+				
+				    SELECTEDMEASURE()
+				)
+
+	measure 'Life Expectancy' = ```
+			selectedmeasure()
+			
+			```
+		formatString: 0
+		lineageTag: ee219092-70a5-4d0d-9c7a-525a19b8b93f
+
+	column Name
+		dataType: string
+		lineageTag: d56039aa-3a10-4cd4-9706-bf38019f5b4e
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: 7e47ba41-4f31-4254-b9fa-bcc51a6ff79d
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+

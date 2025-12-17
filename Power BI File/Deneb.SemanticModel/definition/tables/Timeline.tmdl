@@ -1,0 +1,43 @@
+table Timeline
+	lineageTag: 718cf9cc-1298-4fc2-9276-298bfa0f75c4
+
+	column Event
+		dataType: string
+		lineageTag: 6fb3fc47-b8b5-4368-9095-9d88ff0bfda8
+		summarizeBy: none
+		sourceColumn: Event
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 58efc68d-9fdd-4352-84ee-60ff8ec6a5b5
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column YAxis
+		dataType: int64
+		formatString: 0
+		lineageTag: ad435a4d-d22c-4be8-83eb-e216a3fd4670
+		summarizeBy: sum
+		sourceColumn: YAxis
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Timeline = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("XY/BasMwEER/ZdE5ActJg3OsW9pLckopFJPDYm+wiKINK7nF/fqqVoqcngSaN0+jplE1i1MLpbdV+XsU6rho1KsQBnCDeJIRyLd4pQRV8VjeqD1KGOHQc5iybZUF++ECz4a6eFMWhZ6X+JM6CAw1iTUuAZvc/CAUMA4eBx8ErcGJiGFW1Nie/xm0zoYXG6P0qxis7gfL3yi9zo0dC7nveWszax0CjnGycR2zeDixAMJXbyxNbFnMnjbiQySXVxLPDp7YnSi6W4I3tOfE3y/qCEJvPLwbP6BNxMPNePwB", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Event = _t, Year = _t, YAxis = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Event", type text}, {"Year", Int64.Type}, {"YAxis", Int64.Type}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type",{{"Year", Order.Ascending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

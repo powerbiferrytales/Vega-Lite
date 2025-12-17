@@ -1,0 +1,31 @@
+table 'Selected %'
+	lineageTag: 08dbc5c0-175f-4de6-9047-b3bb0e578499
+
+	column Metric
+		dataType: string
+		lineageTag: a5389caa-dd1a-47df-9a7b-eec64198491c
+		summarizeBy: none
+		sourceColumn: Metric
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: 54757ccc-bc96-4e68-b6d0-cb709645b523
+		summarizeBy: sum
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Selected %-a529507f-5a80-4fed-84fc-f640d6974ba8' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45Wcg9XcMlMS0stSs0ryUzMUdJRMlKK1YlW8i9LLUrMAfENlWJjAQ==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Metric = _t, Order = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Metric", type text}, {"Order", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

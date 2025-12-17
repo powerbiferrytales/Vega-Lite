@@ -1,0 +1,304 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "1168f02c4e7618ce2e8f",
+  "position": {
+    "x": 1351.3300492610838,
+    "y": 138.32512315270935,
+    "z": 6000,
+    "height": 905.76354679802955,
+    "width": 446.89655172413791,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Player Totals"
+                    }
+                  },
+                  "Property": "Name"
+                }
+              },
+              "queryRef": "Player Totals.Name",
+              "nativeQueryRef": "Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Total pts by GW"
+                }
+              },
+              "queryRef": "DAX.Total pts by GW",
+              "nativeQueryRef": "Total pts by GW"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Player Totals"
+                    }
+                  },
+                  "Property": "sel%"
+                }
+              },
+              "queryRef": "Player Totals.sel%",
+              "nativeQueryRef": "sel%"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Player Totals"
+                  }
+                },
+                "Property": "Name"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.8.2.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n  \"spacing\": {\"row\": 12},\n  \"title\": {\n    \"text\": \"Players shown by % selected and Total Points\",\n    \"anchor\": \"middle\",\n    \"color\": \"#454545\",\n    \"baseline\": \"bottom\"\n  },\n\n  \"facet\": {\n    \"row\": {\n      \"field\": \"Name\",\n      \"type\": \"nominal\",\n      \"header\": {\n        \"title\": null,\n        \"labelAngle\": 0,\n        \"labelPadding\": 10,\n        \"titlePadding\": 0,\n        \"labelAlign\": \"left\",\n        \"labelLimit\": 80\n      },\n      \"sort\": {\n        \"field\": \"Total pts by GW\",\n        \"order\": \"descending\"\n      }\n    }\n  },\n  \"spec\": {\n    \"height\": 25,\n    \"view\": {\"stroke\": null},\n    \"layer\": [\n      {\n        \"mark\": {\n          \"type\": \"arc\",\n          \"radius\": 18,\n          \"color\": \"#f38732\",\n          \"xOffset\": -180\n        },\n        \"encoding\": {\n          \"theta\": {\n            \"field\": \"sel%\",\n            \"type\": \"quantitative\",\n            \"scale\": {\n              \"domain\": [0, 100]\n            },\n            \"aggregate\": \"sum\"\n          }\n        }\n      },\n      {\n        \"transform\": [\n          {\n            \"calculate\": \"100\",\n            \"as\": \"_smallC\"\n          }\n        ],\n        \"mark\": {\n          \"type\": \"arc\",\n          \"outerRadius\": 18,\n          \"innerRadius\": 17.3,\n          \"color\": \"#f38732\",\n          \"xOffset\": -180\n        },\n        \"encoding\": {\n          \"theta\": {\n            \"field\": \"_smallC\",\n            \"type\": \"quantitative\",\n            \"aggregate\": \"max\"\n          }\n        }\n      },\n      {\n        \"transform\": [\n          {\n            \"calculate\": \"datum[''sel%'']/100\",\n            \"as\": \"_label\"\n          },\n          {\n            \"calculate\": \"45\",\n            \"as\": \"_offset\"\n          }\n        ],\n        \"mark\": {\n          \"type\": \"text\",\n          \"radius\": 0,\n          \"size\": 12,\n          \"fontWeight\": 600,\n          \"color\": \"#000000\",\n          \"xOffset\": -180\n        },\n        \"encoding\": {\n          \"text\": {\n            \"field\": \"_label\",\n            \"format\": \",.0%\"\n          },\n          \"theta\": {\n            \"field\": \"_offset\",\n            \"type\": \"quantitative\"\n          }\n        }\n      },\n      {\n        \"mark\": {\n          \"type\": \"bar\",\n          \"tooltip\": true,\n          \"height\": {\"band\": 1.2},\n          \"color\": \"#f38732\"\n        },\n        \"encoding\": {\n          \"x\": {\n            \"field\": \"Total pts by GW\",\n            \"type\": \"quantitative\",\n            \"aggregate\": \"sum\",\n            \"axis\": {\n              \"title\": null,\n              \"labels\": false,\n              \"ticks\": false\n            }\n          }\n        }\n      },\n      {\n        \"mark\": {\n          \"type\": \"text\",\n          \"tooltip\": true,\n          \"color\": \"black\",\n          \"size\": 14,\n          \"xOffset\": -15\n        },\n        \"encoding\": {\n          \"text\": {\n            \"field\": \"Total pts by GW\"\n          },\n          \"x\": {\n            \"field\": \"Total pts by GW\",\n            \"type\": \"quantitative\",\n            \"aggregate\": \"sum\",\n            \"axis\": {\n              \"title\": null,\n              \"labels\": false,\n              \"ticks\": false\n            }\n          }\n        }\n      }\n    ],\n    \"encoding\": {\n      \"y\": {\n        \"field\": \"Name\",\n        \"axis\": {\n          \"title\": null,\n          \"labels\": false,\n          \"ticks\": false\n        }\n      },\n      \"opacity\": {\n        \"condition\": {\n          \"test\": {\n            \"field\": \"__selected__\",\n            \"equal\": \"off\"\n          },\n          \"value\": 0.1\n        },\n        \"value\": 1\n      }\n    }\n  },\n  \"resolve\": {\n    \"scale\": {\"y\": \"independent\"}\n  }\n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"locale\": {\n    \"number\": {\n      \"decimal\": \".\",\n      \"thousands\": \",\",\n      \"grouping\": [3],\n      \"currency\": [\"\", \" €\"]\n    }\n  },\n  \"padding\": 5,\n  \"view\": {\"stroke\": \"transparent\"},\n  \"axis\": {\n    \"domainColor\": \"#454545\",\n    \"ticks\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 0,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 10,\n    \"grid\": false,\n    \"labelOverlap\": true,\n    \"domain\": false,\n    \"title\": null\n  },\n  \"axisY\": {\n    \"labelPadding\": 30,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 8,\n    \"domain\": false,\n    \"grid\": false\n  },\n  \"scale\": {\"labelPadding\": 0},\n  \"legend\": {\n    \"title\": null,\n    \"labelFontSize\": 12,\n    \"labelColor\": \"#454545\",\n    \"symbolType\": \"square\",\n    \"symbolSize\": 200,\n    \"orient\": \"top\",\n    \"symbolStrokeWidth\": 2\n  },\n  \"header\": {\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\n    \"titleFontSize\": 16,\n    \"titleColor\": \"#252423\",\n    \"labelFont\": \"Segoe UI\",\n    \"labelFontSize\": 12,\n    \"labelColor\": \"#454545\"\n  }\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "895.7635467980296D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "436.8965517241379D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "00885588b2c888c4c5bc",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Player Totals"
+              }
+            },
+            "Property": "Name"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "p",
+                        "Entity": "Player Totals",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "d",
+                        "Entity": "DAX",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "p"
+                            }
+                          },
+                          "Property": "Name"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Measure": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Total pts by GW"
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 15
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "p",
+              "Entity": "Player Totals",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "p"
+                          }
+                        },
+                        "Property": "Name"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

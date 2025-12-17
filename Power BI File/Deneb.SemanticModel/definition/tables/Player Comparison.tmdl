@@ -1,0 +1,69 @@
+table 'Player Comparison'
+	lineageTag: c87ff88f-0f68-4c62-a154-d813a6e561d8
+
+	calculationGroup
+		precedence: 1
+
+		calculationItem 'Total Points' =
+				IF(
+				    ISSELECTEDMEASURE(
+				        [Selected M]
+				    ), [Total pts by GW],
+				    SELECTEDMEASURE()
+				)
+
+		calculationItem 'Pts Running' = ```
+				IF(
+				    [Total pts by GW] = BLANK(), BLANK(),
+				    
+				    IF(
+				        ISSELECTEDMEASURE(
+				            [Selected M]
+				        ),
+				        
+				        
+				        
+				        CALCULATE(
+				            [Total pts by GW],
+				            FILTER(
+				                ALL( 'Player by GW'[round] ),
+				            'Player by GW'[round] <= MAX( 'Player by GW'[round] ) ) ),
+				            SELECTEDMEASURE()
+				        )
+				    )
+				```
+
+		calculationItem Bonus =
+				IF(
+				    ISSELECTEDMEASURE(
+				        [Selected M]
+				    ),
+				    [Bonus],
+				    SELECTEDMEASURE()
+				)
+
+	measure 'Selected M' = ```
+			IF( SELECTEDMEASURE() = [Hide Filter], [Hide Filter], SELECTEDMEASURE() )
+			
+			```
+		formatString: 0
+		lineageTag: 5103fce8-67eb-41df-a693-b4da67281ab9
+
+	column Name
+		dataType: string
+		lineageTag: 63410096-ecfd-4fea-a343-da09acc4d625
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: c8b3f37a-3e34-4168-9ce2-dee02c543c77
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
