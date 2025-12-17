@@ -33,7 +33,7 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation __TEdtr = 1
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","TMDL-Extension"]
 
 ref table 'Player Totals'
 ref table DateTableTemplate_e618fce6-b34d-4504-a80e-89178f7fe12e
