@@ -45,4 +45,3 @@ relationship 19d479cf-5766-f15f-23a8-fdab53f91a49
 	fromCardinality: one
 	fromColumn: 'Italy Grid'.Region
 	toColumn: 'Ita Data'.'First Characters'
-
