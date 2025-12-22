@@ -44,8 +44,9 @@ table 'Player Comparison'
 
 	measure 'Selected M' = ```
 			IF( SELECTEDMEASURE() = [Hide Filter], [Hide Filter], SELECTEDMEASURE() )
-			
+
 			```
+		displayFolder: "Unused Measures"
 		formatString: 0
 		lineageTag: 5103fce8-67eb-41df-a693-b4da67281ab9
 

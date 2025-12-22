@@ -6,6 +6,7 @@ table 'Current Age'
 		lineageTag: 752e9f24-2f69-44bf-9080-6340a0ccb7a6
 
 	measure Current_Age = SUM('Current Age'[Current Age])
+		displayFolder: "Unused Measures"
 		formatString: 0
 		lineageTag: 032e7168-bb02-431a-a849-75e5eae76da6
 

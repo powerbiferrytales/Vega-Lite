@@ -10,27 +10,29 @@ table FakeVis
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure X_max = ```
-			
-			
+
+
 			    IF(
 			        [x_] < 0
 			        ,0
 			        ,[x_]
 			    )
 			```
+		displayFolder: "Unused Measures"
 		lineageTag: 2e0a8944-5214-4ec9-81a3-223924788b4a
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure X_min = ```
-			
-			
+
+
 			    IF(
 			        [x_] > 0
 			        ,0
 			        ,[x_]
 			    )
 			```
+		displayFolder: "Unused Measures"
 		lineageTag: 590e7db9-0004-4089-a986-186d32b0b2b5
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

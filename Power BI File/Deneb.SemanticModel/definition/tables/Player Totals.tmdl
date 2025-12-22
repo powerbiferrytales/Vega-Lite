@@ -2,6 +2,7 @@ table 'Player Totals'
 	lineageTag: fb75144b-046a-4ba8-97a2-83807bbb9eaa
 
 	measure sel% = SUM('Player Totals'[selected_by_percent])
+		displayFolder: "Unused Measures"
 		formatString: 0
 		lineageTag: 5398566e-7871-4757-8a7d-bf5aea9fdfda
 

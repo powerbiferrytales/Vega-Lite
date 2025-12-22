@@ -2,21 +2,23 @@ table Destinations
 	lineageTag: 232d74a7-199b-480a-9bea-479a90ca9aed
 
 	measure 24 = ```
-			
-			
+
+
 			    SUM(Destinations[Aug 24]
 			    )
 			```
+		displayFolder: "Unused Measures"
 		lineageTag: 44756536-a6e6-4db7-9ce2-b22dd80e6531
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 25 = ```
-			
-			
+
+
 			    SUM(Destinations[Aug 25]
 			    )
 			```
+		displayFolder: "Unused Measures"
 		lineageTag: 37340645-d377-437b-a502-5c5ea92102aa
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

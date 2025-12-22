@@ -2,10 +2,11 @@ table 'GW Target'
 	lineageTag: 23362c68-ba9c-4b8e-8d50-9989b6fcdedf
 
 	measure 'GW Target Value' =
-			
+
 			IF([Hide Filter]<>1,BLANK(),
 			IF([Minutes by GW]=BLANK(),BLANK(),
 			SELECTEDVALUE('GW Target'[GW Target])))
+		displayFolder: "Unused Measures"
 		formatString: 0
 		lineageTag: 1c45115b-6d96-4641-9ac6-4c8dcdb328b6
 

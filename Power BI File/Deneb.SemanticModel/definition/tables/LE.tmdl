@@ -2,9 +2,10 @@ table LE
 	lineageTag: 4bfe9222-24c4-40f2-8d2b-f2e7b6ae815c
 
 	measure 'LE Male' =
-			
-			
+
+
 			SUM('LE'[Male])
+		displayFolder: "Unused Measures"
 		lineageTag: 1ccf3b8f-42b3-43e4-a7f5-2cb59744f764
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -18,21 +19,23 @@ table LE
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'LE DIF' =
-			
-			
+
+
 			IF(SELECTEDVALUE('Gender Select'[Name])="Male",
-			
+
 			DIVIDE(
 			[Current_Age],[LE Male]),
 			DIVIDE(
 			[Current_Age],[LE Female]))
+		displayFolder: "Unused Measures"
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
 		lineageTag: 362f2ffb-89a9-4819-bd2b-ef5627eae7b6
 
 	measure 'LE General' =
-			
-			
+
+
 			SUM(LE[Life expectancy for population in general])
+		displayFolder: "Unused Measures"
 		lineageTag: 5f790518-9841-4297-bda0-1be9de049f0e
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
