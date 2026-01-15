@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "1fa687e2220900004bba",
   "position": {
-    "x": 668.99360576040363,
-    "y": 75.531536134239118,
+    "x": 920.065023317788,
+    "y": 90.256628914057288,
     "z": 2000,
-    "height": 167.7388659604531,
-    "width": 732.75399340618992,
+    "height": 153.80466355762823,
+    "width": 733.10486342438367,
     "tabOrder": 1000
   },
   "visual": {
@@ -19,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "This shows the flexibility of visual description in Deneb. The visual below displays text marks only for highest and lowest weeks. It also includes a short description of those two points. The values and text will change when you use the page slicers. A very quick way to add value and help report users understand the data.",
+                    "value": "This shows the flexibility of visual description in Deneb. The visual below displays text marks only for highest and/or lowest weeks. It also includes a short description of those two points. The values and text will change when you use the page slicers. A very quick way to add value and help report users understand the data.",
                     "textStyle": {
                       "fontSize": "12pt"
                     }

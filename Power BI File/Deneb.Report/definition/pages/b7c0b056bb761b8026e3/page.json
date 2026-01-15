@@ -12,7 +12,18 @@
           "transparency": {
             "expr": {
               "Literal": {
-                "Value": "70D"
+                "Value": "0D"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#e6e6e6'"
+                  }
+                }
               }
             }
           }

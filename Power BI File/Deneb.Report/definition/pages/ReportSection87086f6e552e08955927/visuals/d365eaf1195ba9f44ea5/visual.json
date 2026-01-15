@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "d365eaf1195ba9f44ea5",
   "position": {
-    "x": 15.694864651270466,
-    "y": 364.90560314203833,
+    "x": 267.08594270486338,
+    "y": 392.34003997335105,
     "z": 3000,
-    "height": 699.40240602224014,
-    "width": 1890.2502614373868,
+    "height": 406.15483011325779,
+    "width": 1386.0839440373084,
     "tabOrder": 2000
   },
   "visual": {
@@ -121,14 +121,14 @@
             "jsonSpec": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"strokeWidth\": 4,\n        \"line\": {\"color\": \"#f38732\"},\n        \"color\":\"#f38732\"\n      }\n    },\n    {\n      \"transform\": [\n        {\n          \"window\": [\n            {\"op\": \"rank\", \"as\": \"rank\"}\n          ],\n          \"sort\": [\n            {\n              \"field\": \"Total pts by GW\",\n              \"order\": \"descending\"\n            }\n          ]\n        },\n        {\"filter\": \"datum.rank <=1\"}\n      ],\n      \"mark\": {\n        \"type\": \"text\",\n        \"yOffset\": -90,\n        \"size\": 40,\n        \"fontWeight\": 800\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Total pts by GW\"\n        }\n      }\n    },\n    {\n      \"transform\": [\n        {\n          \"window\": [\n            {\"op\": \"rank\", \"as\": \"rank\"}\n          ],\n          \"sort\": [\n            {\n              \"field\": \"Total pts by GW\",\n              \"order\": \"descending\"\n            }\n          ]\n        },\n        {\"filter\": \"datum.rank <=1\"},\n        {\n          \"calculate\": \"'' points for  ''+ datum[''SelTeam''] +''- made week ''  + datum[''round''] + ''- their most - highscoring round.''\",\n          \"as\": \"NewText\"\n        }\n      ],\n      \"mark\": {\n        \"type\": \"text\",\n        \"yOffset\": -65,\n        \"size\": 15,\n        \"lineBreak\": \"-\"\n      },\n      \"encoding\": {\n        \"text\": {\"field\": \"NewText\"}\n      }\n    },\n\n    {    \"transform\": [\n        {\n          \"window\": [\n            {\"op\": \"rank\", \"as\": \"rank\"}\n          ],\n          \"sort\": [\n            {\n              \"field\": \"Total pts by GW\",\n              \"order\": \"descending\"\n            }\n          ]\n        },\n        {\"filter\": \"datum.rank >1\"}\n      ],\n      \"mark\": {\n        \"type\": \"text\",\n        \"yOffset\": -10,\n        \"size\": 12\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Total pts by GW\"\n        }\n      }\n    }\n  ],\n  \"encoding\": {\n    \"x\": {\n      \"field\": \"round\",\n      \"type\": \"ordinal\",\n      \"axis\": {\"labelPadding\": 0},\n      \"title\": null\n    },\n    \"y\": {\n      \"field\": \"Total pts by GW\",\n      \"type\": \"quantitative\",\n      \"axis\": null\n    }\n  }\n}'"
+                  "Value": "'{\n  \"data\": {\n    \"name\": \"dataset\"\n  },\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"strokeWidth\": 4,\n        \"cornerRadiusEnd\":10,\n        \"width\":{\"band\": 0.8},\n        \"line\": {\n          \"color\": \"#f38732\"\n        },\n        \"color\": \"#f38732\"\n      }\n    },\n    {\n      \"transform\": [\n        {\n          \"window\": [\n            {\n              \"op\": \"rank\",\n              \"as\": \"rank\"\n            }\n          ],\n          \"sort\": [\n            {\n              \"field\": \"Total pts by GW\",\n              \"order\": \"descending\"\n            }\n          ]\n        },\n        {\n          \"filter\": \"datum.rank <=1\"\n        }\n      ],\n      \"mark\": {\n        \"type\": \"text\",\n        \"yOffset\": -90,\n        \"size\": 40,\n        \"fontWeight\": 800\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Total pts by GW\"\n        }\n      }\n    },\n    {\n      \"transform\": [\n        {\n          \"window\": [\n            {\n              \"op\": \"rank\",\n              \"as\": \"rank\"\n            }\n          ],\n          \"sort\": [\n            {\n              \"field\": \"Total pts by GW\",\n              \"order\": \"descending\"\n            }\n          ]\n        },\n        {\n          \"filter\": \"datum.rank <=1\"\n        },\n        {\n          \"calculate\": \"'' points for  ''+ datum[''SelTeam''] +''- made week ''  + datum[''round''] + ''- their most - highscoring round.''\",\n          \"as\": \"NewText\"\n        }\n      ],\n      \"mark\": {\n        \"type\": \"text\",\n        \"yOffset\": -65,\n        \"size\": 15,\n        \"lineBreak\": \"-\"\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"NewText\"\n        }\n      }\n    },\n    {\n      \"transform\": [\n        {\n          \"window\": [\n            {\n              \"op\": \"rank\",\n              \"as\": \"rank\"\n            }\n          ],\n          \"sort\": [\n            {\n              \"field\": \"Total pts by GW\",\n              \"order\": \"descending\"\n            }\n          ]\n        },\n        {\n          \"filter\": \"datum.rank >1\"\n        }\n      ],\n      \"mark\": {\n        \"type\": \"text\",\n        \"yOffset\": -10,\n        \"size\": 14\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Total pts by GW\"\n        }\n      }\n    }\n  ],\n  \"encoding\": {\n    \"x\": {\n      \"field\": \"round\",\n      \"type\": \"ordinal\",\n      \"title\": null\n    },\n    \"y\": {\n      \"field\": \"Total pts by GW\",\n      \"type\": \"quantitative\",\n      \"axis\": null\n    }\n  }\n}'"
                 }
               }
             },
             "jsonConfig": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\n  \"view\": {\"stroke\": \"transparent\"},\n \n  \"arc\": {},\n  \"area\": {},\n  \"bar\": {},\n  \"line\": {\n    \"strokeCap\": \"round\",\n    \"strokeJoin\": \"round\"\n  },\n  \"path\": {},\n  \"point\": {\"filled\": true, \"size\": 75},\n  \"rect\": {},\n  \"shape\": {},\n  \"symbol\": {\n    \"strokeWidth\": 1.5,\n    \"size\": 50\n  },\n  \"text\": {\n  \n    \"fontSize\": 11\n  },\n  \"axis\": {\n    \"ticks\": false,\n    \"grid\": false,\n    \"domain\": false,\n    \"labelFontSize\": 11,\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\n    \"titleFontSize\": 12,\n    \"titleFontWeight\": \"normal\"\n  },\n  \"axisQuantitative\": {\n    \"tickCount\": 3,\n    \"grid\": true,\n    \"gridDash\": [1, 5],\n    \"labelFlush\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 10,\n    \"labelAngle\": 0,\n    \"zero\": false\n  },\n  \"axisY\": {\"labelPadding\": 15},\n  \"header\": {\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\n    \"titleFontSize\": 12,\n    \"labelFont\": \"Lato\",\n    \"labelFontSize\": 10\n  },\n  \"legend\": {\n    \"titleFont\": \"Lato\",\n    \"titleFontWeight\": \"bold\",\n    \"labelFont\": \"Lato\",\n    \"labelFontSize\": 13.333333333333332,\n    \"symbolType\": \"circle\",\n    \"symbolSize\": 75\n  }\n}'"
+                  "Value": "'{\n  \"view\": {\n    \"stroke\": \"transparent\"\n  },\n  \"padding\": {\n    \"top\": 15,\n    \"bottom\": 0,\n    \"right\": 8,\n    \"left\": 8\n  },\n  \"arc\": {},\n  \"area\": {},\n  \"bar\": {},\n  \"line\": {\n    \"strokeCap\": \"round\",\n    \"strokeJoin\": \"round\"\n  },\n  \"path\": {},\n  \"point\": {\n    \"filled\": true,\n    \"size\": 75\n  },\n  \"rect\": {},\n  \"shape\": {},\n  \"symbol\": {\n    \"strokeWidth\": 1.5,\n    \"size\": 50\n  },\n  \"text\": {\n    \"fontSize\": 11\n  },\n  \"axis\": {\n    \"ticks\": false,\n    \"grid\": false,\n    \"domain\": false,\n    \"labelFontSize\": 12,\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\n    \"titleFontSize\": 12,\n    \"titleFontWeight\": \"normal\"\n  },\n  \"axisQuantitative\": {\n    \"tickCount\": 3,\n    \"grid\": true,\n    \"gridDash\": [\n      1,\n      5\n    ],\n    \"labelFlush\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 5,\n    \"labelAngle\": 0,\n    \"zero\": false\n  },\n  \"axisY\": {\n    \"labelPadding\": 15\n  },\n  \"header\": {\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\n    \"titleFontSize\": 12,\n    \"labelFont\": \"Lato\",\n    \"labelFontSize\": 10\n  },\n  \"legend\": {\n    \"titleFont\": \"Lato\",\n    \"titleFontWeight\": \"bold\",\n    \"labelFont\": \"Lato\",\n    \"labelFontSize\": 13.333333333333332,\n    \"symbolType\": \"circle\",\n    \"symbolSize\": 75\n  }\n}'"
                 }
               }
             },
@@ -176,14 +176,14 @@
             "viewportHeight": {
               "expr": {
                 "Literal": {
-                  "Value": "689.4024060222401D"
+                  "Value": "396.1548301132578D"
                 }
               }
             },
             "viewportWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "1880.2502614373868D"
+                  "Value": "1376.0839440373084D"
                 }
               }
             }
@@ -218,7 +218,18 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFF9F0'"
+                    }
+                  }
                 }
               }
             }
@@ -286,5 +297,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a0600a94096802072832",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Player by GW"
+              }
+            },
+            "Property": "round"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "be5253c1e0e4275836c9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Player by GW"
+              }
+            },
+            "Property": "RoundCounts"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5fb7c9f41d42d3c02007",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DAX"
+              }
+            },
+            "Property": "Total pts by GW"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ecc60668012c49000d00",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DAX"
+              }
+            },
+            "Property": "SelTeam"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

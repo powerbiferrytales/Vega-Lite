@@ -40,7 +40,7 @@
             "numericStart": {
               "expr": {
                 "Literal": {
-                  "Value": "1600D"
+                  "Value": "8300D"
                 }
               }
             }
@@ -77,7 +77,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "1600D"
+                            "Value": "8300D"
                           }
                         }
                       }
@@ -139,6 +139,17 @@
               "expr": {
                 "Literal": {
                   "Value": "0D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFF9F0'"
+                    }
+                  }
                 }
               }
             }

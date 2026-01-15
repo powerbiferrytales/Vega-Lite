@@ -111,7 +111,7 @@
             "jsonSpec": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"opacity\": 0\n      },\n      \"encoding\": {\n        \"fill\": {\n          \"field\": \"blank\",\n          \"scale\": {\n            \"domain\": [\n              \"Bonus Pts by GW TopN\",\n              \"Pts by GW TopN\"\n            ],\n            \"range\": [\n              \"#fff9ee\",\n              \"#454545\"\n            ]\n          }\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"tooltip\": true,\n        \"width\": {\"band\": 0.75},\n        \"opacity\": 0.1\n      },\n      \"encoding\": {\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": \"#b3b3b3\"\n          },\n          \"value\": \"#454545\"\n        },\n        \"x\": {\n          \"field\": \"Pts by GW TopN\",\n          \"type\": \"quantitative\",\n          \"axis\": null,\n          \"sort\": {\n            \"field\": \"Pts by GW TopN\"\n          }\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"tooltip\": true,\n        \"width\": {\"band\": 0.75}\n      },\n      \"encoding\": {\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": \"#b3b3b3\"\n          },\n          \"value\": \"#454545\"\n        },\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": 0.2\n          },\n          \"value\": 1\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"line\",\n        \"tooltip\": true,\n        \"strokeWidth\": 3\n      },\n      \"encoding\": {\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": \"#b3b3b3\"\n          },\n          \"value\": \"#fff9ee\"\n        },\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": 0.2\n          },\n          \"value\": 1\n        },\n        \"x\": {\n          \"field\": \"Bonus Pts by GW TopN__highlight\",\n          \"type\": \"quantitative\",\n          \"axis\": null,\n          \"sort\": {\n            \"field\": \"Pts by GW TopN\"\n          }\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"xOffset\": 20,\n        \"fontWeight\": 600,\n        \"fontSize\": 14\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Pts by GW TopN__highlight\"\n        },\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": \"#e3e3e3\"\n          },\n          \"value\": \"#303030\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"xOffset\": 20,\n        \"fontWeight\": 600,\n        \"fontSize\": 12\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Bonus Pts by GW TopN__highlight\"\n        },\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": \"#e3e3e3\"\n          },\n          \"value\": \"#fff9ee\"\n        },\n        \"x\": {\n          \"field\": \"Bonus Pts by GW TopN\",\n          \"type\": \"quantitative\",\n          \"axis\": null,\n          \"sort\": {\n            \"field\": \"Pts by GW TopN\"\n          }\n        }\n      }\n    }\n  ],\n  \"encoding\": {\n    \"y\": {\n      \"field\": \"Name\",\n      \"axis\": {\n        \"labelColor\": \"#454545\",\n        \"title\": null,\n        \"labelFontSize\":12\n      }\n    },\n    \"x\": {\n      \"field\": \"Pts by GW TopN__highlight\",\n      \"type\": \"quantitative\",\n      \"axis\": null,\n      \"sort\": {\n        \"field\": \"Pts by GW TopN\"\n      }\n    }\n  }\n}'"
+                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"opacity\": 0\n      },\n      \"encoding\": {\n        \"fill\": {\n          \"field\": \"blank\",\n          \"scale\": {\n            \"domain\": [\n              \"Bonus Pts by GW TopN\",\n              \"Pts by GW TopN\"\n            ],\n            \"range\": [\n              \"#fff9ee\",\n              \"#454545\"\n            ]\n          }\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"tooltip\": true,\n        \"height\": {\"band\": 0.75},\n        \"opacity\": 0.1\n      },\n      \"encoding\": {\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": \"#b3b3b3\"\n          },\n          \"value\": \"#454545\"\n        },\n        \"x\": {\n          \"field\": \"Pts by GW TopN\",\n          \"type\": \"quantitative\",\n          \"axis\": null,\n          \"sort\": {\n            \"field\": \"Pts by GW TopN\"\n          }\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"tooltip\": true,\n        \"height\": {\"band\": 0.75}\n      },\n      \"encoding\": {\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": \"#b3b3b3\"\n          },\n          \"value\": \"#454545\"\n        },\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": 0.2\n          },\n          \"value\": 1\n        }\n      }\n    },    {\n      \"mark\": {\n        \"type\": \"line\",\n        \"tooltip\": true,\n        \"strokeWidth\": 4,\n        \"stroke\":\"#454545\"\n      },\n      \"encoding\": {\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": \"#b3b3b3\"\n          },\n          \"value\": \"#fff9ee\"\n        },\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": 0.2\n          },\n          \"value\": 1\n        },\n        \"x\": {\n          \"field\": \"Bonus Pts by GW TopN__highlight\",\n          \"type\": \"quantitative\",\n          \"axis\": null,\n          \"sort\": {\n            \"field\": \"Pts by GW TopN\"\n          }\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"line\",\n        \"tooltip\": true,\n        \"strokeWidth\": 2,\n        \"stroke\":\"#ffffff\"\n      },\n      \"encoding\": {\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": \"#b3b3b3\"\n          },\n          \"value\": \"#fff9ee\"\n        },\n        \"opacity\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": 0.2\n          },\n          \"value\": 1\n        },\n        \"x\": {\n          \"field\": \"Bonus Pts by GW TopN__highlight\",\n          \"type\": \"quantitative\",\n          \"axis\": null,\n          \"sort\": {\n            \"field\": \"Pts by GW TopN\"\n          }\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"xOffset\": 20,\n        \"fontWeight\": 600,\n        \"fontSize\": 14\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Pts by GW TopN__highlight\"\n        },\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": \"#e3e3e3\"\n          },\n          \"value\": \"#303030\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"xOffset\": 20,\n        \"fontWeight\": 600,\n        \"fontSize\": 12\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"Bonus Pts by GW TopN__highlight\"\n        },\n        \"color\": {\n          \"condition\": {\n            \"test\": {\n              \"field\": \"__selected__\",\n              \"equal\": \"off\"\n            },\n            \"value\": \"#e3e3e3\"\n          },\n          \"value\": \"#fff9ee\"\n        },\n        \"x\": {\n          \"field\": \"Bonus Pts by GW TopN\",\n          \"type\": \"quantitative\",\n          \"axis\": null,\n          \"sort\": {\n            \"field\": \"Pts by GW TopN\"\n          }\n        }\n      }\n    }\n  ],\n  \"encoding\": {\n    \"y\": {\n      \"field\": \"Name\",\n      \"axis\": {\n        \"labelColor\": \"#454545\",\n        \"title\": null,\n        \"labelFontSize\":12\n      }\n    },\n    \"x\": {\n      \"field\": \"Pts by GW TopN__highlight\",\n      \"type\": \"quantitative\",\n      \"axis\": null,\n      \"sort\": {\n        \"field\": \"Pts by GW TopN\"\n      }\n    }\n  }\n}'"
                 }
               }
             },
@@ -304,5 +304,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "42f4d9f976d2939bdb20",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Player Totals"
+              }
+            },
+            "Property": "Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8cb3b7b6018430a5b443",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DAX"
+              }
+            },
+            "Property": "Pts by GW TopN"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0c5393c62433c6d3a547",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DAX"
+              }
+            },
+            "Property": "Bonus Pts by GW TopN"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

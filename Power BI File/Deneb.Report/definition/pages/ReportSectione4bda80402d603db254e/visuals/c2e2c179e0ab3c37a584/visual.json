@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "c2e2c179e0ab3c37a584",
   "position": {
-    "x": 603.66976984107487,
-    "y": 85.519884060818939,
+    "x": 572.01329039862651,
+    "y": 86.064384977408025,
     "z": 0,
-    "height": 80.489302645476656,
-    "width": 589.5841418781165,
+    "height": 72.42003126147749,
+    "width": 644.43332166010407,
     "tabOrder": 0
   },
   "visual": {
@@ -41,7 +41,7 @@
             "numericStart": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "5D"
                 }
               }
             }
@@ -78,7 +78,7 @@
                         },
                         "Right": {
                           "Literal": {
-                            "Value": "10D"
+                            "Value": "5D"
                           }
                         }
                       }
@@ -156,6 +156,26 @@
                       "Value": "'#FFF9F0'"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Select the top N selected players. It will change the visual below and to the right'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
                 }
               }
             }

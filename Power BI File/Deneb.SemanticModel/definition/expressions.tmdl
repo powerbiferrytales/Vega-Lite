@@ -130,21 +130,6 @@ expression 'GetPlayer fixtures' =
 
 	annotation PBI_ResultType = Function
 
-expression 'Tooties Toots Function' =
-		(acc as text) as table =>
-		
-		let
-		    Source = Xml.Tables(Web.Contents(acc&".rss"))
-		
-		in
-		    #"Source"
-	lineageTag: 8bcae2df-0ba6-42fd-bf44-87e7617d0e9e
-	queryGroup: Tooting
-
-	annotation PBI_NavigationStepName = Navigation
-
-	annotation PBI_ResultType = Function
-
 expression 'Name Count' =
 		let
 		    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/api/bootstrap-static/")),

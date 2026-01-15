@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "6c3a9d6ee7be0f05e1c0",
   "position": {
-    "x": 487.52173323008884,
-    "y": 629.75644413222744,
+    "x": 488.128078817734,
+    "y": 629.11330049261085,
     "z": 5000,
-    "height": 413.95205517725856,
-    "width": 815.15203282535981,
+    "height": 414.97536945812806,
+    "width": 813.99014778325125,
     "tabOrder": 4000
   },
   "visual": {
@@ -140,7 +140,7 @@
             "jsonSpec": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n     \"transform\": [\n        {\n          \"window\": [\n            {\"op\": \"rank\", \"as\": \"jeff\"}\n          ],\n          \"sort\": [\n            {\n              \"field\": \"sel%\",\n              \"order\": \"descending\"\n            }\n          ]\n        },\n        {\"filter\": \"datum.jeff <= 25\"}\n      ],\n  \"vconcat\": [\n    {\n      \"facet\": {\n        \"field\": \"web_name\",\n        \"type\": \"ordinal\",\n        \"title\": \"Percentage selected\",\n        \"sort\": {\n          \"field\": \"sel%\",\n          \"order\": \"descending\"\n        },\n        \"header\": {\n          \"titleFontSize\": 16,\n          \"labelColor\": \"#000000\",\n          \"labelFontSize\": 14,\n          \"labelPadding\": -20\n        }\n      },\n      \"columns\": 0,\n      \"spec\": {\n      \"width\":220,\n        \"height\": 200,\n        \"transform\": [],\n        \"layer\": [\n          {\n            \"mark\": {\n              \"type\": \"arc\",\n              \"radius\": 60,\n              \"color\": \"#e13b42\"\n            },\n            \"encoding\": {\n              \"theta\": {\n                \"field\": \"sel%\",\n                \"type\": \"quantitative\",\n                \"scale\": {\n                  \"domain\": [0, 100]\n                },\n                \"aggregate\": \"max\"\n              }\n            }\n          },\n          {\n            \"transform\": [\n              {\n                \"calculate\": \"100\",\n                \"as\": \"_smallC\"\n              }\n            ],\n            \"mark\": {\n              \"type\": \"arc\",\n              \"outerRadius\": 55,\n              \"innerRadius\": 54,\n              \"color\": \"#000000\"\n            },\n            \"encoding\": {\n              \"theta\": {\n                \"field\": \"_smallC\",\n                \"type\": \"quantitative\",\n                \"aggregate\": \"max\"\n              }\n            }\n          },\n          {\n            \"transform\": [\n              {\n                \"calculate\": \"datum[''sel%'']/100\",\n                \"as\": \"_label\"\n              },\n              {\n                \"calculate\": \"datum[''sel%'']/1.1\",\n                \"as\": \"_offset\"\n              }\n            ],\n            \"mark\": {\n              \"type\": \"text\",\n              \"radius\": 85,\n              \"size\": 14,\n              \"fontWeight\": 600,\n              \"color\": \"#000000\"\n            },\n            \"encoding\": {\n              \"text\": {\n                \"field\": \"_label\",\n                \"format\": \",.1%\",\n                \"aggregate\": \"max\"\n              },\n              \"theta\": {\n                \"field\": \"_offset\",\n                \"type\": \"quantitative\"\n              }\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"transform\": [\n        {\n          \"window\": [\n            {\"op\": \"rank\", \"as\": \"jeff\"}\n          ],\n          \"sort\": [\n            {\n              \"field\": \"sel%\",\n              \"order\": \"descending\"\n            }\n          ]\n        },\n        {\"filter\": \"datum.jeff <= 40\"}\n      ],\n      \"facet\": {\n        \"field\": \"web_name\",\n        \"type\": \"ordinal\",\n        \"title\": \"Points by GW\",\n        \"sort\": {\n          \"field\": \"sel%\",\n          \"order\": \"descending\"\n        },\n        \"header\": {\n          \"titleFontSize\": 16,\n          \"labelColor\": \"#000000\",\n          \"labelFontSize\": 0,\n          \"labelPadding\": 0\n        }\n      },\n      \"columns\": 0,\n      \"spec\": {\n         \"width\":220,\n        \"height\": 75,\n        \"layer\": [\n          {\n            \"mark\": {\n              \"type\": \"bar\",\n              \"line\": true,\n              \"color\": \"#454545\",\n              \"tooltip\": true,\n              \"width\": 15,\n              \"cornerRadius\": 3\n            },\n            \"encoding\": {\n              \"x\": {\n                \"field\": \"round\",\n                \"scale\": {\n                  \"paddingInner\": 0.01,\n                  \"paddingOuter\": 0.99\n                }\n              },\n              \"y\": {\n                \"field\": \"Total pts by GW\",\n                \"type\": \"quantitative\",\n                \"axis\": null\n              }\n            }\n          },\n          {\n            \"transform\": [],\n            \"mark\": {\n              \"type\": \"text\",\n              \"size\": 12,\n              \"yOffset\": -10,\n              \"fontWeight\": 600,\n              \"color\": \"#000000\"\n            },\n            \"encoding\": {\n              \"text\": {\n                \"field\": \"Total pts by GW\",\n                \"format\": \",.0f\"\n              },\n              \"x\": {\"field\": \"round\"},\n              \"y\": {\n                \"field\": \"Total pts by GW\",\n                \"type\": \"quantitative\",\n                \"axis\": null\n              }\n            }\n          }\n        ]\n      }\n    }\n  ]\n}'"
+                  "Value": "'{\n  \"data\": {\n    \"name\": \"dataset\"\n  },\n  \"transform\": [\n    {\n      \"window\": [\n        {\n          \"op\": \"rank\",\n          \"as\": \"jeff\"\n        }\n      ],\n      \"sort\": [\n        {\n          \"field\": \"sel%\",\n          \"order\": \"descending\"\n        }\n      ]\n    },\n    {\n      \"filter\": \"datum.jeff <= 25\"\n    }\n  ],\n  \"vconcat\": [\n    {\n      \"facet\": {\n        \"field\": \"web_name\",\n        \"type\": \"ordinal\",\n        \"title\": \"Percentage selected\",\n        \"sort\": {\n          \"field\": \"sel%\",\n          \"order\": \"descending\"\n        },\n        \"header\": {\n          \"titleFontSize\": 16,\n          \"labelColor\": \"#000000\",\n          \"labelFontSize\": 14,\n          \"labelPadding\": -20\n        }\n      },\n      \"columns\": 0,\n      \"spec\": {\n        \"width\": 220,\n        \"height\": 200,\n        \"transform\": [],\n        \"layer\": [\n          {\n            \"transform\": [\n              {\n                \"calculate\": \"100\",\n                \"as\": \"_smallC\"\n              }\n            ],\n            \"mark\": {\n              \"type\": \"arc\",\n              \"outerRadius\": 55,\n              \"innerRadius\": 54,\n              \"color\": \"#000000\"\n            },\n            \"encoding\": {\n              \"theta\": {\n                \"field\": \"_smallC\",\n                \"type\": \"quantitative\",\n                \"aggregate\": \"max\"\n              }\n            }\n          },\n          {\n            \"mark\": {\n              \"type\": \"arc\",\n              \"radius\": 60,\n              \"color\": \"#e13b42\"\n            },\n            \"encoding\": {\n              \"theta\": {\n                \"field\": \"sel%\",\n                \"type\": \"quantitative\",\n                \"scale\": {\n                  \"domain\": [\n                    0,\n                    100\n                  ]\n                },\n                \"aggregate\": \"max\"\n              }\n            }\n          },\n          {\n            \"transform\": [\n              {\n                \"calculate\": \"datum[''sel%'']/100\",\n                \"as\": \"_label\"\n              },\n              {\n                \"calculate\": \"datum[''sel%'']/1.1\",\n                \"as\": \"_offset\"\n              }\n            ],\n            \"mark\": {\n              \"type\": \"text\",\n              \"radius\": 85,\n              \"size\": 14,\n              \"fontWeight\": 600,\n              \"color\": \"#000000\"\n            },\n            \"encoding\": {\n              \"text\": {\n                \"field\": \"_label\",\n                \"format\": \",.1%\",\n                \"aggregate\": \"max\"\n              },\n              \"theta\": {\n                \"field\": \"_offset\",\n                \"type\": \"quantitative\"\n              }\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"transform\": [\n        {\n          \"window\": [\n            {\n              \"op\": \"rank\",\n              \"as\": \"jeff\"\n            }\n          ],\n          \"sort\": [\n            {\n              \"field\": \"sel%\",\n              \"order\": \"descending\"\n            }\n          ]\n        },\n        {\n          \"filter\": \"datum.jeff <= 40\"\n        }\n      ],\n      \"facet\": {\n        \"field\": \"web_name\",\n        \"type\": \"ordinal\",\n        \"title\": \"Points by GW\",\n        \"sort\": {\n          \"field\": \"sel%\",\n          \"order\": \"descending\"\n        },\n        \"header\": {\n          \"titleFontSize\": 16,\n          \"labelColor\": \"#000000\",\n          \"labelFontSize\": 0,\n          \"labelPadding\": 0\n        }\n      },\n      \"columns\": 0,\n      \"spec\": {\n        \"width\": 220,\n        \"height\": 75,\n        \"layer\": [\n          {\n            \"mark\": {\n              \"type\": \"bar\",\n              \"line\": true,\n              \"color\": \"#454545\",\n              \"tooltip\": true,\n              \"width\": 15,\n              \"cornerRadius\": 3\n            },\n            \"encoding\": {\n              \"x\": {\n                \"field\": \"round\",\n                \"scale\": {\n                  \"paddingInner\": 0.01,\n                  \"paddingOuter\": 0.99\n                }\n              },\n              \"y\": {\n                \"field\": \"Total pts by GW\",\n                \"type\": \"quantitative\",\n                \"axis\": null\n              }\n            }\n          },\n          {\n            \"transform\": [],\n            \"mark\": {\n              \"type\": \"text\",\n              \"size\": 12,\n              \"yOffset\": -10,\n              \"fontWeight\": 600,\n              \"color\": \"#000000\"\n            },\n            \"encoding\": {\n              \"text\": {\n                \"field\": \"Total pts by GW\",\n                \"format\": \",.0f\"\n              },\n              \"x\": {\n                \"field\": \"round\"\n              },\n              \"y\": {\n                \"field\": \"Total pts by GW\",\n                \"type\": \"quantitative\",\n                \"axis\": null\n              }\n            }\n          }\n        ]\n      }\n    }\n  ]\n}'"
                 }
               }
             },
@@ -222,14 +222,33 @@
             "viewportHeight": {
               "expr": {
                 "Literal": {
-                  "Value": "403.95205517725856D"
+                  "Value": "404.97536945812806D"
                 }
               }
             },
             "viewportWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "805.1520328253598D"
+                  "Value": "803.9901477832512D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFF9F0'"
+                    }
+                  }
                 }
               }
             }

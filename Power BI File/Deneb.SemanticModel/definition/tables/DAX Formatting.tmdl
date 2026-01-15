@@ -2,41 +2,41 @@ table 'DAX Formatting'
 	lineageTag: c176176a-31a0-4726-a390-216459cd0407
 
 	measure SPN = ```
-
-
+			
+			
 			    "Total point per Game Week for "&SELECTEDVALUE('Player Totals'[Name])
 			```
-		displayFolder: "Unused Measures"
+		displayFolder: Unused Measures
 		lineageTag: 4bb88429-d239-4f0f-b3eb-0d65576164e1
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure DateRange = ```
-
-
+			
+			
 			 VAR _dateRange = DISTINCTCOUNT('Act Plan'[Date])
-
+			
 			 return
-
+			
 			"Previous "&_dateRange&" days"
 			```
-		displayFolder: "Unused Measures"
+		displayFolder: Unused Measures
 		lineageTag: 1ca71361-c9f3-4b8e-8964-2fb32e08f090
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Name title' =
-
+			
 			SELECTEDVALUE('Player Totals'[web_name])
-		displayFolder: "Unused Measures"
+		displayFolder: Unused Measures
 		lineageTag: f8e73ad7-0946-4c92-bcac-9bba9cf8eed0
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure SizeTextFilter = ```
-
-
-
+	measure SizeTextFilter =
+			
+			
+			
 			VAR _rank = IF(
 			    NOT(
 			        ISBLANK(
@@ -47,7 +47,7 @@ table 'DAX Formatting'
 			            )
 			)
 			VAR SelectedTop = 10
-
+			
 			VAR _save = SWITCH(TRUE(),
 			    SelectedTop = 0,  [Total pts by GW],
 			    RANKX (
@@ -57,8 +57,8 @@ table 'DAX Formatting'
 			                  <= SelectedTop,
 			      [Total pts by GW]
 			)
-
-
+			
+			
 			RETURN
 			IF(
 			    NOT(
@@ -69,8 +69,7 @@ table 'DAX Formatting'
 			                 [Pts by GW TopN],,,Dense
 			            )
 			)
-			```
-		displayFolder: "Unused Measures"
+		displayFolder: Unused Measures
 		lineageTag: 0cfe7a5f-62d7-4ac0-bc96-f3d2b1dcbdef
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

@@ -24,10 +24,10 @@ table 'Gender Select'
 
 	measure 'Life Expectancy' = ```
 			selectedmeasure()
-
+			
 			```
-		displayFolder: "Unused Measures"
 		formatString: 0
+		displayFolder: Unused Measures
 		lineageTag: ee219092-70a5-4d0d-9c7a-525a19b8b93f
 
 	column Name

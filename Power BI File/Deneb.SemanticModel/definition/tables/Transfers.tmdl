@@ -29,8 +29,8 @@ table Transfers
 				)
 
 	measure 'Transfers Selected'
-		displayFolder: "Unused Measures"
 		formatString: 0,0
+		displayFolder: Unused Measures
 		lineageTag: 97238faf-b53f-4b9d-a16e-47d6483f6076
 
 	column Name

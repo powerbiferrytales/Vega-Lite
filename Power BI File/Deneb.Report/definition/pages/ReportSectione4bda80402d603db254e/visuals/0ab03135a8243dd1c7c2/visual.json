@@ -2,15 +2,15 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "0ab03135a8243dd1c7c2",
   "position": {
-    "x": 603.66976984107487,
-    "y": 171.03976812163788,
+    "x": 572.01329039862651,
+    "y": 171.07920428435986,
     "z": 2000,
-    "height": 508.08872294957138,
-    "width": 589.5841418781165,
+    "height": 507.98978450079863,
+    "width": 644.43332166010407,
     "tabOrder": 2000
   },
   "visual": {
-    "visualType": "ALPHAdeneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
     "query": {
       "queryState": {
         "dataset": {
@@ -169,7 +169,7 @@
             "version": {
               "expr": {
                 "Literal": {
-                  "Value": "'6.1.0'"
+                  "Value": "'6.4.1'"
                 }
               }
             }
@@ -182,7 +182,7 @@
             "version": {
               "expr": {
                 "Literal": {
-                  "Value": "'1.7.3.20250402#8a8c732'"
+                  "Value": "'1.8.2.0'"
                 }
               }
             }
@@ -195,14 +195,14 @@
             "viewportHeight": {
               "expr": {
                 "Literal": {
-                  "Value": "498.0887229495714D"
+                  "Value": "497.98978450079863D"
                 }
               }
             },
             "viewportWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "579.5841418781165D"
+                  "Value": "634.4333216601041D"
                 }
               }
             }
@@ -362,6 +362,48 @@
             }
           ]
         }
+      },
+      {
+        "name": "f20f9911edbe3cd4e0e9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Player Totals"
+              }
+            },
+            "Property": "Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ac60614618073d210cb8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DAX Formatting"
+              }
+            },
+            "Property": "SizeTextFilter2"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "55590e56b74a57abada9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DAX"
+              }
+            },
+            "Property": "Total Points"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

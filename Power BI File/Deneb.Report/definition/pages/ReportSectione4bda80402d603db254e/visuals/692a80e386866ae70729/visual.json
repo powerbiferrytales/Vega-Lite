@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "692a80e386866ae70729",
+  "position": {
+    "x": 17.842616397755325,
+    "y": 586.70720978501333,
+    "z": 5001,
+    "height": 92.3617790001452,
+    "width": 505.89065315988626,
+    "tabOrder": 5001
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "The visualisation below shows the basic cumulative growth in points over the season. It is designed to reveal more info when you click on any of the bars. ",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

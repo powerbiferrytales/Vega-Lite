@@ -184,7 +184,7 @@
           "expanded": {
             "expr": {
               "Literal": {
-                "Value": "false"
+                "Value": "true"
               }
             }
           }
@@ -194,8 +194,7 @@
   },
   "publicCustomVisuals": [
     "ChicletSlicer1448559807354",
-    "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
-    "htmlContent443BE3AD55E043BF878BED274D3A6855"
+    "deneb7E15AEF80B9E4D4F8E12924291ECE89A"
   ],
   "resourcePackages": [
     {
@@ -231,23 +230,12 @@
       ]
     },
     {
-      "name": "deneb7E15AEF80B9E4D4F8E12924291ECE89A_STANDALONE",
+      "name": "BETAdeneb7E15AEF80B9E4D4F8E12924291ECE89A",
       "type": "CustomVisual",
       "items": [
         {
-          "name": "deneb7E15AEF80B9E4D4F8E12924291ECE89A_STANDALONE.pbiviz.json",
-          "path": "deneb7E15AEF80B9E4D4F8E12924291ECE89A_STANDALONE.pbiviz.json",
-          "type": "CustomVisualMetadata"
-        }
-      ]
-    },
-    {
-      "name": "ALPHAdeneb7E15AEF80B9E4D4F8E12924291ECE89A",
-      "type": "CustomVisual",
-      "items": [
-        {
-          "name": "ALPHAdeneb7E15AEF80B9E4D4F8E12924291ECE89A.pbiviz.json",
-          "path": "ALPHAdeneb7E15AEF80B9E4D4F8E12924291ECE89A.pbiviz.json",
+          "name": "BETAdeneb7E15AEF80B9E4D4F8E12924291ECE89A.pbiviz.json",
+          "path": "BETAdeneb7E15AEF80B9E4D4F8E12924291ECE89A.pbiviz.json",
           "type": "CustomVisualMetadata"
         }
       ]

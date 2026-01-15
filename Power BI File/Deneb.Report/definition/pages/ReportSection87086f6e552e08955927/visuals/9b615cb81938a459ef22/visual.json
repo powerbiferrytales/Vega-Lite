@@ -2,12 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "9b615cb81938a459ef22",
   "position": {
-    "x": 157.92957555340905,
-    "y": 0,
+    "x": 0,
+    "y": 67.001032121920744,
     "z": 2000,
-    "height": 72.050820183352528,
-    "width": 471.82686857881839,
-    "tabOrder": 1000
+    "height": 87.72461744503461,
+    "width": 472.46582278481003
   },
   "visual": {
     "visualType": "ChicletSlicer1448559807354",
@@ -80,7 +79,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'BRE'"
+                                "Value": "'WOL'"
                               }
                             }
                           ]
@@ -108,7 +107,7 @@
                                 "0": [
                                   {
                                     "Literal": {
-                                      "Value": "'BRE'"
+                                      "Value": "'WOL'"
                                     }
                                   }
                                 ]
@@ -132,7 +131,7 @@
                         },
                         "valueMap": [
                           {
-                            "0": "BRE"
+                            "0": "WOL"
                           }
                         ]
                       }

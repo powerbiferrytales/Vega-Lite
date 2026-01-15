@@ -10,7 +10,7 @@
     "tabOrder": 1000
   },
   "visual": {
-    "visualType": "ALPHAdeneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
     "query": {
       "queryState": {
         "dataset": {
@@ -76,7 +76,7 @@
             "version": {
               "expr": {
                 "Literal": {
-                  "Value": "'1.7.3.20250402#8a8c732'"
+                  "Value": "'1.8.2.0'"
                 }
               }
             }
@@ -117,7 +117,7 @@
             "version": {
               "expr": {
                 "Literal": {
-                  "Value": "'6.1.0'"
+                  "Value": "'6.4.1'"
                 }
               }
             },
@@ -302,36 +302,6 @@
         },
         "type": "Advanced",
         "howCreated": "User"
-      },
-      {
-        "name": "1df44bc53aa58f5f7676",
-        "ordinal": 3,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Cats"
-              }
-            },
-            "Property": "Category"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "75f5d6867b926d2cf02d",
-        "ordinal": 4,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DAX"
-              }
-            },
-            "Property": "Actual % Measure"
-          }
-        },
-        "type": "Advanced"
       },
       {
         "name": "a5b3b89e1fc0ffa45320",

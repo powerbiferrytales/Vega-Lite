@@ -97,7 +97,7 @@
             "jsonSpec": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"arc\",\n        \"radius\": 95,\n        \"color\": \"#e13b42\"\n      },\n      \"encoding\": {\n        \"theta\": {\n          \"field\": \"sel%\",\n          \"type\": \"quantitative\",\n          \"scale\": {\"domain\": [0, 100]}\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"arc\",\n        \"outerRadius\": 90,\n        \"innerRadius\": 88.5,\n        \"color\": \"#000000\"\n      }\n    },\n    {\n      \"transform\": [\n        {\n          \"calculate\": \"datum[''sel%'']/100\",\n          \"as\": \"_label\"\n        },\n        {\n          \"calculate\": \"datum[''sel%'']/1.05\",\n          \"as\": \"_offset\"\n        }\n      ],\n      \"mark\": {\n        \"type\": \"text\",\n        \"radius\": 120,\n        \"size\": 18,\n        \"fontWeight\": 600,\n        \"color\": \"#000000\"\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"_label\",\n          \"format\": \",.1%\"\n        },\n        \"theta\": {\n          \"field\": \"_offset\",\n          \"type\": \"quantitative\"\n        }\n      }\n    }\n  ]\n}'"
+                  "Value": "'{\n  \"data\": {\n    \"name\": \"dataset\"\n  },\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"arc\",\n        \"outerRadius\": 90,\n        \"innerRadius\": 88.5,\n        \"color\": \"#000000\"\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"arc\",\n        \"radius\": 95,\n        \"color\": \"#e13b42\"\n      },\n      \"encoding\": {\n        \"theta\": {\n          \"field\": \"sel%\",\n          \"type\": \"quantitative\",\n          \"scale\": {\n            \"domain\": [\n              0,\n              100\n            ]\n          }\n        }\n      }\n    },\n    {\n      \"transform\": [\n        {\n          \"calculate\": \"datum[''sel%'']/100\",\n          \"as\": \"_label\"\n        },\n        {\n          \"calculate\": \"datum[''sel%'']/1.05\",\n          \"as\": \"_offset\"\n        }\n      ],\n      \"mark\": {\n        \"type\": \"text\",\n        \"radius\": 120,\n        \"size\": 18,\n        \"fontWeight\": 600,\n        \"color\": \"#000000\"\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"_label\",\n          \"format\": \",.1%\"\n        },\n        \"theta\": {\n          \"field\": \"_offset\",\n          \"type\": \"quantitative\"\n        }\n      }\n    }\n  ]\n}'"
                 }
               }
             },
@@ -194,6 +194,23 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFF9F0'"
+                    }
+                  }
                 }
               }
             }

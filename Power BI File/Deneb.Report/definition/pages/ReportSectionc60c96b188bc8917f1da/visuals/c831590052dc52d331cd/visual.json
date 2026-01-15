@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "c831590052dc52d331cd",
   "position": {
-    "x": 87.468030690537091,
-    "y": 349.87212276214836,
+    "x": 87.476863622495685,
+    "y": 344.13974919619181,
     "z": 4000,
-    "height": 263.32480818414325,
-    "width": 1215.3452685421996,
+    "height": 269.15958037690979,
+    "width": 1215.0632485586214,
     "tabOrder": 1000
   },
   "visual": {
@@ -97,14 +97,14 @@
             "jsonSpec": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n     \n  \"facet\": {\n\n   \n      \"field\": \"web_name\",\n      \"type\": \"ordinal\",\n      \"sort\": {\n        \"field\": \"sel%\",\n        \"order\": \"descending\"\n      },\n      \"title\": \"Percentage selected\",\n      \"header\": {\n        \"titleFontSize\": 12,\n        \"titleAnchor\": \"middle\",\n        \"labelColor\": \"#000000\",\n        \"labelFontSize\": 14,\n        \"labelAnchor\": \"middle\",\n        \"labelPadding\": -20\n      }\n    },\n    \"columns\":0,\n  \"spec\": {   \"width\":220,\n    \"layer\": [\n      {\n        \"mark\": {\n          \"type\": \"arc\",\n          \"radius\": 60,\n          \"color\": \"#e13b42\"\n        },\n        \"encoding\": {\n          \"theta\": {\n            \"field\": \"sel%\",\n            \"type\": \"quantitative\",\n            \"scale\": {\n              \"domain\": [0, 100]\n            }\n          }\n        }\n      },\n      {\n        \"mark\": {\n          \"type\": \"arc\",\n          \"outerRadius\": 55,\n          \"innerRadius\": 54,\n          \"color\": \"#000000\"\n        }\n      },\n      {\n        \"transform\": [\n          {\n            \"calculate\": \"datum[''sel%'']/100\",\n            \"as\": \"_label\"\n          },\n          {\n            \"calculate\": \"datum[''sel%'']/1.1\",\n            \"as\": \"_offset\"\n          }\n        ],\n        \"mark\": {\n          \"type\": \"text\",\n          \"radius\": 80,\n          \"size\": 14,\n          \"fontWeight\": 600,\n          \"color\": \"#000000\"\n        },\n        \"encoding\": {\n          \"text\": {\n            \"field\": \"_label\",\n            \"aggregate\": \"sum\",\n            \"format\": \",.1%\"\n          },\n          \"theta\": {\n            \"field\": \"_offset\",\n            \"type\": \"quantitative\"\n          }\n        }\n      }\n    ]\n  }\n}'"
+                  "Value": "'{\n  \"data\": {\n    \"name\": \"dataset\"\n  },\n  \"facet\": {\n    \"field\": \"web_name\",\n    \"type\": \"ordinal\",\n    \"sort\": {\n      \"field\": \"sel%\",\n      \"order\": \"descending\"\n    },\n    \"title\": \"Percentage selected\",\n    \"header\": {\n      \"titleFontSize\": 16,\n      \"titleAnchor\": \"middle\",\n      \"labelColor\": \"#000000\",\n      \"labelFontSize\": 14,\n      \"labelAnchor\": \"middle\",\n      \"labelPadding\": -70,\n      \"titlePadding\": -10\n    }\n  },\n  \"columns\": 0,\n  \"spec\": {\n    \"width\": 220,\n    \"layer\": [\n\n      {\n        \"mark\": {\n          \"type\": \"arc\",\n          \"outerRadius\": 55,\n          \"innerRadius\": 54,\n          \"color\": \"#000000\"\n        }\n      },      {\n        \"mark\": {\n          \"type\": \"arc\",\n          \"radius\": 60,\n          \"color\": \"#e13b42\"\n        },\n        \"encoding\": {\n          \"theta\": {\n            \"field\": \"sel%\",\n            \"type\": \"quantitative\",\n            \"scale\": {\n              \"domain\": [\n                0,\n                100\n              ]\n            }\n          }\n        }\n      },\n      {\n        \"transform\": [\n          {\n            \"calculate\": \"datum[''sel%'']/100\",\n            \"as\": \"_label\"\n          },\n          {\n            \"calculate\": \"datum[''sel%'']/1.1\",\n            \"as\": \"_offset\"\n          }\n        ],\n        \"mark\": {\n          \"type\": \"text\",\n          \"radius\": 85,\n          \"size\": 14,\n          \"fontWeight\": 600,\n          \"color\": \"#000000\"\n        },\n        \"encoding\": {\n          \"text\": {\n            \"field\": \"_label\",\n            \"aggregate\": \"sum\",\n            \"format\": \",.1%\"\n          },\n          \"theta\": {\n            \"field\": \"_offset\",\n            \"type\": \"quantitative\"\n          }\n        }\n      }\n    ]\n  }\n}'"
                 }
               }
             },
             "jsonConfig": {
               "expr": {
                 "Literal": {
-                  "Value": "'{\n  \"locale\": {\n    \"number\": {\n      \"decimal\": \".\",\n      \"thousands\": \",\",\n      \"grouping\": [3],\n      \"currency\": [\"\", \" €\"]\n    }\n  },\n  \"padding\": 5,\n  \"view\": {\"stroke\": \"transparent\"},\n  \"axis\": {\n    \"domainColor\": \"#454545\",\n    \"ticks\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 0,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 0,\n    \"grid\": false,\n    \"labelOverlap\": true,\n    \"domain\": false,\n    \"title\": null\n  },\n  \"axisY\": {\n    \"labelPadding\": 30,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 8,\n    \"domain\": false,\n    \"grid\": false\n  },\n  \"scale\": {\"labelPadding\": 0},\n  \"legend\": {\n    \"title\": null,\n    \"labelFontSize\": 12,\n    \"labelColor\": \"#454545\",\n    \"symbolType\": \"square\",\n    \"symbolSize\": 200,\n    \"orient\": \"top\",\n    \"symbolStrokeWidth\": 2\n  }\n}'"
+                  "Value": "'{\n  \"locale\": {\n    \"number\": {\n      \"decimal\": \".\",\n      \"thousands\": \",\",\n      \"grouping\": [3],\n      \"currency\": [\"\", \" €\"]\n    }\n  },\n\n   \"padding\": {\n    \"top\": 5,\n    \"bottom\": -60,\n    \"right\": 8,\n    \"left\": 8\n  \n  },\n  \"view\": {\"stroke\": \"transparent\"},\n  \"axis\": {\n    \"domainColor\": \"#454545\",\n    \"ticks\": false\n  },\n  \"axisX\": {\n    \"labelPadding\": 0,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 0,\n    \"grid\": false,\n    \"labelOverlap\": true,\n    \"domain\": false,\n    \"title\": null\n  },\n  \"axisY\": {\n    \"labelPadding\": 0,\n    \"labelAngle\": 0,\n    \"labelFontSize\": 8,\n    \"domain\": false,\n    \"grid\": false\n  },\n  \"scale\": {\"labelPadding\": 0},\n  \"legend\": {\n    \"title\": null,\n    \"labelFontSize\": 12,\n    \"labelColor\": \"#454545\",\n    \"symbolType\": \"square\",\n    \"symbolSize\": 200,\n    \"orient\": \"top\",\n    \"symbolStrokeWidth\": 2\n  }\n}'"
                 }
               }
             },
@@ -166,14 +166,14 @@
             "viewportHeight": {
               "expr": {
                 "Literal": {
-                  "Value": "253.32480818414325D"
+                  "Value": "259.1595803769098D"
                 }
               }
             },
             "viewportWidth": {
               "expr": {
                 "Literal": {
-                  "Value": "1205.3452685421996D"
+                  "Value": "1205.0632485586214D"
                 }
               }
             }
@@ -189,6 +189,23 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFF9F0'"
+                    }
+                  }
                 }
               }
             }
@@ -295,6 +312,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "a64836191256050b17c9",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Player Totals"
+              }
+            },
+            "Property": "sel%"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
