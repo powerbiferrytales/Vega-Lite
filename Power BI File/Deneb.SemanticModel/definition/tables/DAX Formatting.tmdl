@@ -1,16 +1,6 @@
 table 'DAX Formatting'
 	lineageTag: c176176a-31a0-4726-a390-216459cd0407
 
-	measure SPN = ```
-			
-			
-			    "Total point per Game Week for "&SELECTEDVALUE('Player Totals'[Name])
-			```
-		displayFolder: Unused Measures
-		lineageTag: 4bb88429-d239-4f0f-b3eb-0d65576164e1
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure DateRange = ```
 			
 			

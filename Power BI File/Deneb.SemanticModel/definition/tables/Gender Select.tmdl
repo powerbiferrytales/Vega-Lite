@@ -22,14 +22,6 @@ table 'Gender Select'
 				    SELECTEDMEASURE()
 				)
 
-	measure 'Life Expectancy' = ```
-			selectedmeasure()
-			
-			```
-		formatString: 0
-		displayFolder: Unused Measures
-		lineageTag: ee219092-70a5-4d0d-9c7a-525a19b8b93f
-
 	column Name
 		dataType: string
 		lineageTag: d56039aa-3a10-4cd4-9706-bf38019f5b4e

@@ -36,12 +36,6 @@ table DAX
 
 		changedProperty = IsHidden
 
-	measure 'Price per Point' = DIVIDE([Cost],[Total Points without 0])
-		displayFolder: Unused Measures
-		lineageTag: 361dfefa-4f3d-4d62-b4ae-3c8a183b1108
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure Cost = SUM('Player Totals'[Cost])
 		displayFolder: Unused Measures
 		lineageTag: 1173cd24-3926-45d0-b61f-c4d5d6010279
@@ -55,11 +49,6 @@ table DAX
 		lineageTag: a4034f9b-98c4-4662-9dd2-ae81749ba3ff
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Form Base' = SUM('Player Totals'[form])
-		formatString: 0
-		displayFolder: Unused Measures
-		lineageTag: 58c93d45-da83-47b0-990e-705e85c21aef
 
 	measure 'Pts by GW TopN' = ```
 			
@@ -93,21 +82,6 @@ table DAX
 			)
 		displayFolder: Unused Measures
 		lineageTag: 3e3d7b10-6af2-460b-a8bd-445ea560d57e
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Appearances last 10 GW' =
-			
-			VAR Last_GW = MAX('Player by GW'[round])
-			
-			RETURN
-			
-			CALCULATE(
-			    DIVIDE(SUM('Player by GW'[minutes]),COUNT('Player by GW'[round])),
-			    FILTER(ALL('Player by GW'[round]),
-			    'Player by GW'[round] > Last_GW -11))
-		displayFolder: Unused Measures
-		lineageTag: 5f192ca5-a81a-4c04-adbb-0e2f3dc1a1fa
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -199,31 +173,6 @@ table DAX
 		displayFolder: Unused Measures
 		lineageTag: 83b3d469-4b20-42be-b435-18c7fcadce4d
 
-	measure 'average mins' = AVERAGE('Player Totals'[minutes])
-		displayFolder: Unused Measures
-		lineageTag: 85c0650b-e3e2-406f-afd1-145f7eeec77f
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Played in Prev 10 GW TopN' =
-			
-			VAR SelectedTop = SELECTEDVALUE('TopN'[TopN])
-			RETURN
-			SWITCH(TRUE(),
-			    SelectedTop = 0, [Appearances# last 10 GW],
-			    RANKX (
-			            ALLSELECTED(  'Player Totals'[Name] ),
-			            [Return % last 10 GW]
-			                )
-			                  <= SelectedTop,
-			        [Appearances# last 10 GW]
-			)
-		formatString: 0
-		displayFolder: Unused Measures
-		lineageTag: 91640f21-52dd-4e91-b0e5-0582fc75e1ec
-
-		changedProperty = FormatString
-
 	measure 'Points last 10 GW' = ```
 			
 			VAR Last_GW = MAX('Player by GW'[round])
@@ -252,28 +201,6 @@ table DAX
 
 		annotation PBI_FormatHint = {"isDecimal":true}
 
-	measure 'PPG last 10 GW' = ```
-			
-			VAR Last_GW = MAX('Player by GW'[round])
-			VAR TimePts = [pts 2 months]
-			RETURN
-			
-			CALCULATE(DIVIDE([Total pts by GW],COUNT('Player by GW'[id])),'Player by GW'[minutes]>0,
-			    'Player by GW'[round] > Last_GW -11
-			
-			    )
-			
-			
-			
-			
-			
-			
-			```
-		displayFolder: Unused Measures
-		lineageTag: e2f6b534-5ed7-4db5-b3dc-e0cf40f1142d
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'mins over 0' =
 			CALCULATE(SUM(
 			    'Player by GW'[Mins over 0]))
@@ -300,14 +227,6 @@ table DAX
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	/// This measure is the sum of column 'Player by GW'[assists]
-	measure Assists = SUM('Player by GW'[assists])
-		formatString: #,0
-		displayFolder: Unused Measures
-		lineageTag: 8fc84a7b-a1d2-41c8-baf3-ecef72d9ed1a
-
-		changedProperty = IsHidden
-
 	/// This measure is the sum of column 'Player by GW'[minutes]
 	measure 'Minutes by GW' = SUM('Player by GW'[minutes])
 		formatString: 0
@@ -315,18 +234,6 @@ table DAX
 		lineageTag: bbdb1bff-53b0-4f92-92dc-3a07b25f2965
 
 		changedProperty = IsHidden
-
-	measure 'Count of Pos' =
-			
-			calculate(
-			    COUNT('Player Totals'[Pos]),
-			'Player Totals'[total_points]>0)
-		displayFolder: Unused Measures
-		lineageTag: a9b7f51e-7a60-4d47-a8d5-bae98700c5a0
-
-		changedProperty = FormatString
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Selected % GW' = DIVIDE([Selected MAX GW],[Total Players])
 		formatString: 0.00%;-0.00%;0.00%
@@ -345,16 +252,6 @@ table DAX
 		lineageTag: a7acd6ad-4729-41ee-8559-8183db715582
 
 		changedProperty = IsHidden
-
-	measure 'Pts vs Target' =
-			
-			IF([Minutes by GW]=0,BLANK(),
-			[Total pts by GW]-[Target Value])
-		formatString: 0
-		displayFolder: Unused Measures
-		lineageTag: e70de32b-f6dd-4757-9add-840ca1b959a3
-
-		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure Points = ```
 			
@@ -777,35 +674,6 @@ table DAX
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Total Pts_MaxRound' = ```
-			
-			VAR MaxRound =
-			    CALCULATE(
-			        MAX('Player by GW'[round]),
-			        ALL('Player by GW')       -- ignore filters on round
-			    )
-			RETURN
-			    CALCULATE(
-			       [Total pts by GW],
-			        'Player by GW'[round] = MaxRound,
-			        ALL('Player by GW')       -- for safety, ensures we always get the true max
-			    )
-			
-			```
-		displayFolder: Unused Measures
-		lineageTag: efee2238-1798-4ad8-a38a-160dbcff20d6
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'total pts diff' =
-			
-			
-			[Total pts by GW ALL round]-[Total pts by GW]
-		displayFolder: Unused Measures
-		lineageTag: 2c972c95-dcaa-4986-b7d5-1cd49fee92bc
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'Total pts cum' =
 			
 			CALCULATE(
@@ -827,26 +695,6 @@ table DAX
 		changedProperty = FormatString
 
 		annotation PBI_FormatHint = {"isDecimal":true}
-
-	measure 'Total Pts_MaxRoundcum' = ```
-			
-			VAR MaxRound =
-			    CALCULATE(
-			        MAX('Player by GW'[round]),
-			        ALL('Player by GW')       -- ignore filters on round
-			    )
-			RETURN
-			    CALCULATE(
-			       [Total pts cum],
-			        'Player by GW'[round] = MaxRound,
-			        ALL('Player by GW')       -- for safety, ensures we always get the true max
-			    )
-			
-			```
-		displayFolder: Unused Measures
-		lineageTag: 1a45ce35-185d-485a-b168-024474fe44de
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Total pts by GW ALL round2' = ```
 			

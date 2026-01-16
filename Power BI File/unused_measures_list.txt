@@ -1,0 +1,74 @@
+UNUSED MEASURES EXTRACTED FROM FILES:
+
+From DAX.tmdl:
+1. Price per Point
+2. Cost
+3. Form Base
+4. Appearances# last 10 GW
+5. Appearances last 10 GW
+6. Return % last 10 GW
+7. Return #
+8. Blank No
+9. Blank
+10. Appearances
+11. pts 2 months
+12. average mins
+13. Played in Prev 10 GW TopN
+14. Points last 10 GW
+15. PPG last 10 GW
+16. Assists
+17. Minutes by GW
+18. Count of Pos
+19. Selected % GW
+20. Pts vs Target
+21. Target
+22. Target2
+23. Target%
+24. Labels Top1
+25. Total Pts_MaxRound
+26. total pts diff
+27. Total Pts_MaxRoundcum
+28. Pts Pos %
+29. sel%_
+
+From Player by GW.tmdl:
+30. goals_conceded  1
+31. round
+32. Selected MAX GW
+33. Pts by GW
+34. Hide Filter
+35. RoundCounts
+36. Goals Threshold
+37. Pts all rounds
+
+From Player Totals.tmdl:
+38. sel%
+
+From Transfers.tmdl:
+39. Transfers Selected
+
+From Player Comparison.tmdl:
+40. Selected M
+
+From DAX Formatting.tmdl:
+41. SPN
+42. DateRange
+43. Name title
+44. SizeTextFilter
+
+From GW Target.tmdl:
+45. GW Target Value
+
+From Gender Select.tmdl:
+46. Life Expectancy
+
+From Current Age.tmdl:
+47. Current_Age
+
+From Destinations.tmdl:
+48. 24
+49. 25
+
+From FakeVis.tmdl:
+50. X_max
+51. X_min
