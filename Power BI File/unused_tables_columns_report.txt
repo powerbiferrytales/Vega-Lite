@@ -1,0 +1,348 @@
+﻿POWER BI DENEB REPORT - UNUSED TABLES AND COLUMNS ANALYSIS
+Generated: 2026-01-17 14:43:41
+==============================================================
+
+==================== UNUSED TABLES ====================
+  - Card Param
+  - Current Age
+  - GW Target
+  - Player Comparison
+  - UK County map
+
+==================== UNUSED COLUMNS BY TABLE ====================
+
+Act Plan (8 unused columns):
+    - Age
+    - Customers
+    - Day
+    - Month
+    - Month Name
+    - Orders
+    - Reviews
+    - Year
+
+Destinations (4 unused columns):
+    - Aug 24
+    - Aug 25
+    - Country
+    - Index
+
+FakeVis (2 unused columns):
+    - X
+    - Y
+
+Gameweeks (4 unused columns):
+    - average_entry_score
+    - Deadline time
+    - finished
+    - Month Name
+
+Ita Data (6 unused columns):
+    - cod_reg
+    - den_reg
+    - First Characters
+    - gdp_procap
+    - gdp_tot
+    - pop_resid
+
+NASATemp (3 unused columns):
+    - Lowess
+    - No Smoothing
+    - Year
+
+Parameter (1 unused columns):
+    - Parameter
+
+Player by GW (2 unused columns):
+    - goals_conceded
+    - selected
+
+Player Totals (65 unused columns):
+    - bps
+    - chance_of_playing_next_round
+    - chance_of_playing_this_round
+    - code
+    - corners_and_indirect_freekicks_order
+    - corners_and_indirect_freekicks_text
+    - Cost M
+    - Cost Short
+    - cost_change_event
+    - cost_change_event_fall
+    - cost_change_start
+    - cost_change_start_fall
+    - creativity
+    - creativity_rank
+    - creativity_rank_type
+    - Custom
+    - direct_freekicks_order
+    - direct_freekicks_text
+    - dreamteam_count
+    - ep_next
+    - ep_this
+    - event_points
+    - expected_assists
+    - expected_assists_per_90
+    - expected_goal_involvements
+    - expected_goals
+    - expected_goals_conceded
+    - expected_goals_conceded_per_90
+    - expected_goals_per_90
+    - first_name
+    - FitFlag
+    - Fitness
+    - form
+    - form_rank
+    - goals_conceded
+    - ict_index
+    - ict_index_rank
+    - ict_index_rank_type
+    - Image Url
+    - in_dreamteam
+    - influence
+    - influence_rank
+    - influence_rank_type
+    - Name Count
+    - own_goals
+    - penalties_missed
+    - penalties_order
+    - penalties_text
+    - photo
+    - points_per_game
+    - points_per_game_rank
+    - red_cards
+    - saves
+    - second_name
+    - special
+    - squad_number
+    - status
+    - team_code
+    - threat
+    - threat_rank
+    - threat_rank_type
+    - transfers_in
+    - transfers_out
+    - value_form
+    - value_season
+
+Positions (3 unused columns):
+    - element_count
+    - squad_max_play
+    - squad_min_play
+
+Selected % (1 unused columns):
+    - Order
+
+Team ID (4 unused columns):
+    - Club ID
+    - Index
+    - strength
+    - Team
+
+ThermoTest (1 unused columns):
+    - ThermoTest
+
+Timeline (3 unused columns):
+    - Event
+    - YAxis
+    - Year
+
+Transfers (1 unused columns):
+    - Ordinal
+
+us_pop_by_state (3 unused columns):
+    - 2020_census
+    - percent_of_total
+    - rank
+
+Views (1 unused columns):
+    - Ordinal
+
+World Map (10 unused columns):
+    - alpha.3
+    - Code1
+    - country.code
+    - iso_3166.2
+    - region
+    - region.code
+    - sub.region
+    - sub.region.code
+    - X Pos
+    - Y Pos
+
+==================== SUMMARY ====================
+Total tables analyzed: 31
+Completely unused tables: 5
+Total unused columns: 122
+
+==================== RECOMMENDATIONS ====================
+
+UNUSED TABLES:
+These tables can be safely deleted as they are not referenced anywhere in the report:
+  - Card Param.tmdl
+  - Current Age.tmdl
+  - GW Target.tmdl
+  - Player Comparison.tmdl
+  - UK County map.tmdl
+
+UNUSED COLUMNS:
+These columns can be removed from their respective tables to optimize the data model:
+(Note: Review carefully before deletion, especially for columns that might be needed for future use)
+
+Table: Act Plan
+    - Age
+    - Customers
+    - Day
+    - Month
+    - Month Name
+    - Orders
+    - Reviews
+    - Year
+
+Table: Destinations
+    - Aug 24
+    - Aug 25
+    - Country
+    - Index
+
+Table: FakeVis
+    - X
+    - Y
+
+Table: Gameweeks
+    - average_entry_score
+    - Deadline time
+    - finished
+    - Month Name
+
+Table: Ita Data
+    - cod_reg
+    - den_reg
+    - First Characters
+    - gdp_procap
+    - gdp_tot
+    - pop_resid
+
+Table: NASATemp
+    - Lowess
+    - No Smoothing
+    - Year
+
+Table: Parameter
+    - Parameter
+
+Table: Player by GW
+    - goals_conceded
+    - selected
+
+Table: Player Totals
+    - bps
+    - chance_of_playing_next_round
+    - chance_of_playing_this_round
+    - code
+    - corners_and_indirect_freekicks_order
+    - corners_and_indirect_freekicks_text
+    - Cost M
+    - Cost Short
+    - cost_change_event
+    - cost_change_event_fall
+    - cost_change_start
+    - cost_change_start_fall
+    - creativity
+    - creativity_rank
+    - creativity_rank_type
+    - Custom
+    - direct_freekicks_order
+    - direct_freekicks_text
+    - dreamteam_count
+    - ep_next
+    - ep_this
+    - event_points
+    - expected_assists
+    - expected_assists_per_90
+    - expected_goal_involvements
+    - expected_goals
+    - expected_goals_conceded
+    - expected_goals_conceded_per_90
+    - expected_goals_per_90
+    - first_name
+    - FitFlag
+    - Fitness
+    - form
+    - form_rank
+    - goals_conceded
+    - ict_index
+    - ict_index_rank
+    - ict_index_rank_type
+    - Image Url
+    - in_dreamteam
+    - influence
+    - influence_rank
+    - influence_rank_type
+    - Name Count
+    - own_goals
+    - penalties_missed
+    - penalties_order
+    - penalties_text
+    - photo
+    - points_per_game
+    - points_per_game_rank
+    - red_cards
+    - saves
+    - second_name
+    - special
+    - squad_number
+    - status
+    - team_code
+    - threat
+    - threat_rank
+    - threat_rank_type
+    - transfers_in
+    - transfers_out
+    - value_form
+    - value_season
+
+Table: Positions
+    - element_count
+    - squad_max_play
+    - squad_min_play
+
+Table: Selected %
+    - Order
+
+Table: Team ID
+    - Club ID
+    - Index
+    - strength
+    - Team
+
+Table: ThermoTest
+    - ThermoTest
+
+Table: Timeline
+    - Event
+    - YAxis
+    - Year
+
+Table: Transfers
+    - Ordinal
+
+Table: us_pop_by_state
+    - 2020_census
+    - percent_of_total
+    - rank
+
+Table: Views
+    - Ordinal
+
+Table: World Map
+    - alpha.3
+    - Code1
+    - country.code
+    - iso_3166.2
+    - region
+    - region.code
+    - sub.region
+    - sub.region.code
+    - X Pos
+    - Y Pos
+

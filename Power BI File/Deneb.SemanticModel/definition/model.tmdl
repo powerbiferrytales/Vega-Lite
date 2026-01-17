@@ -60,7 +60,6 @@ ref table Cats
 ref table NASATemp
 ref table 'Card Param'
 ref table 'Current Age'
-ref table 'Gender Select'
 ref table LocalDateTable_0c51dcf6-cca6-4668-a477-e1ba055eea23
 ref table 'US State Map'
 ref table 'UK County map'
