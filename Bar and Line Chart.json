@@ -1,0 +1,259 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.5.1.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.6.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": true,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Bar and Line Chart",
+      "description": "Simple Bar Chart with vertical line",
+      "author": "Ben Ferry",
+      "uuid": "230f7c5f-7ae7-4a70-b966-493b9818fa34",
+      "generated": "2023-06-21T21:47:48.400Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Y_Axis_Dimension",
+        "description": "",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "Bar_Value",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__2__",
+        "name": "Line_Value",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "domainColor": "#454545",
+      "domainWidth": 1,
+      "titleColor": "#333",
+      "tickColor": "#454545",
+      "ticks": false
+    },
+    "axisX": {
+      "labelPadding": 40,
+      "labelAngle": 0,
+      "labelFontSize": 12
+    },
+    "axisY": {"labelPadding": 30},
+    "scale": {"labelPadding": 0},
+    "legend": {
+      "titleFont": "Segoe UI",
+      "title": null,
+      "titleFontWeight": 800,
+      "titleColor": "#605E5C",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 14,
+      "labelColor": "#605E5C",
+      "symbolSize": 100,
+      "orient": "top",
+      "symbolStrokeWidth": 2,
+      "symbolStrokeColor": "#454545"
+    }
+  },
+  "data": {"name": "dataset"},
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "opacity": 0
+      },
+      "encoding": {
+        "fill": {
+          "field": "blank",
+          "scale": {
+            "domain": [
+              "__2__",
+              "__1__"
+            ],
+            "range": [
+              "#fff9ee",
+              "#454545"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "width": {"band": 0.75},
+        "opacity": 0.1
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": "#b3b3b3"
+          },
+          "value": "#454545"
+        },
+        "x": {
+          "field": "__1__",
+          "type": "quantitative",
+          "axis": null,
+          "sort": {"field": "__1__"}
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "width": {"band": 0.75}
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": "#b3b3b3"
+          },
+          "value": "#454545"
+        },
+        "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0.2
+          },
+          "value": 1
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "tooltip": true,
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": "#b3b3b3"
+          },
+          "value": "#fff9ee"
+        },
+        "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0.2
+          },
+          "value": 1
+        },
+        "x": {
+          "field": "__2____highlight",
+          "type": "quantitative",
+          "axis": null,
+          "sort": {"field": "__1__"}
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "xOffset": 20,
+        "fontWeight": 600,
+        "fontSize": 16
+      },
+      "encoding": {
+        "text": {
+          "field": "__1____highlight"
+        },
+        "color": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": "#e3e3e3"
+          },
+          "value": "#303030"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "xOffset": 20,
+        "fontWeight": 600,
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "__2____highlight"
+        },
+        "color": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": "#e3e3e3"
+          },
+          "value": "#fff9ee"
+        },
+        "x": {
+          "field": "__2__",
+          "type": "quantitative",
+          "axis": null,
+          "sort": {"field": "__1__"}
+        }
+      }
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "__0__",
+      "axis": {
+        "labelColor": "#454545",
+        "title": null
+      }
+    },
+    "x": {
+      "field": "__1____highlight",
+      "type": "quantitative",
+      "axis": null,
+      "sort": {"field": "__1__"}
+    }
+  }
+}

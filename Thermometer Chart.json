@@ -1,0 +1,248 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.5.1.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.6.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Thermometer Chart",
+      "description": "Chart to track value against a target.\nColour bar changes as value increases and icon appears when you go 20% beyond your target",
+      "author": "Ben Ferry",
+      "uuid": "7a6d6168-82b9-4eeb-aabe-d77a31840a0a",
+      "generated": "2023-06-21T22:13:50.330Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Value",
+        "description": "The Value you are measuring",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__1__",
+        "name": "Target%",
+        "description": "Percentage difference of Value to Target",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__2__",
+        "name": "Target",
+        "description": "Target Value",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "font": "Segoe UI",
+    "arc": {},
+    "area": {
+      "line": true,
+      "opacity": 0.6
+    },
+    "bar": {},
+    "line": {
+      "strokeWidth": 3,
+      "strokeCap": "round",
+      "strokeJoin": "round"
+    },
+    "path": {},
+    "point": {
+      "filled": true,
+      "size": 75
+    },
+    "rect": {},
+    "shape": {},
+    "symbol": {
+      "strokeWidth": 1.5,
+      "size": 50
+    },
+    "text": {
+      "font": "Segoe UI",
+      "fontSize": 12,
+      "fill": "#605E5C"
+    },
+    "axis": {
+      "ticks": false,
+      "grid": false,
+      "domain": false,
+      "labelColor": "#605E5C",
+      "labelFontSize": 12,
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleColor": "#252423",
+      "titleFontSize": 16,
+      "titleFontWeight": "normal"
+    },
+    "axisQuantitative": {
+      "tickCount": 3,
+      "grid": false,
+      "gridColor": "#C8C6C4",
+      "gridDash": [1, 5],
+      "labelFlush": false
+    },
+    "axisX": {"labelPadding": 5},
+    "axisY": {"labelPadding": 10},
+    "header": {
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleFontSize": 16,
+      "titleColor": "#252423",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C"
+    },
+    "legend": {
+      "titleFont": "Segoe UI",
+      "titleFontWeight": "bold",
+      "titleColor": "#605E5C",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C",
+      "symbolType": "circle",
+      "symbolSize": 75
+    }
+  },
+  "data": {"name": "dataset"},
+  "transform": [
+    {
+      "calculate": "datum['__2__'] - datum['__2__']*1.08",
+      "as": "_YCircle"
+    },
+    {
+      "calculate": "datum['__2__']*1.2",
+      "as": "_Top"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "color": "#262626",
+        "filled": false,
+        "fill": "#e3e3e3",
+        "strokeWidth": 8,
+        "width": 35
+      },
+      "encoding": {
+        "y": {
+          "field": "_Top",
+          "type": "quantitative",
+          "title": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "shape": "circle",
+        "size": 8000,
+        "color": "#262626",
+        "filled": false,
+        "fill": {
+          "expr": "datum['__0__']>= datum['__2__']? 'green': datum['__0__'] < datum['__2__']/1.5 ? 'red' : 'orange'"
+        },
+        "strokeWidth": 8,
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "_YCircle",
+          "type": "quantitative",
+          "title": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "color": {
+          "expr": "datum['__0__']>= datum['__2__']? 'green': datum['__0__'] < datum['__2__']/1.5 ? 'red' : 'orange'"
+        },
+        "width": 27,
+        "tooltip": true
+      }
+    },
+    {
+      "mark": {
+        "type": "tick",
+        "color": "#262626",
+        "size": 30,
+        "thickness": 4,
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "__2__",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "xOffset": 75,
+        "size": 16,
+        "color": "black",
+        "lineBreak": "-"
+      },
+      "transform": [
+        {
+          "calculate": "format(datum['__0__'],',.0f') +'-' + format(datum['__1__'], '.1%')",
+          "as": "_counter"
+        }
+      ],
+      "encoding": {
+        "text": {"field": "_counter"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "color": "#262626",
+        "xOffset": -50,
+        "size": 16
+      },
+      "encoding": {
+        "text": {"value": "__2__"},
+        "y": {
+          "field": "__2__",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "size": {
+          "expr": "datum['__0__']> datum['_Top']? 70: 0"
+        }
+      },
+      "encoding": {
+        "text": {"value": "💥"},
+        "y": {
+          "field": "_Top",
+          "type": "quantitative"
+        }
+      }
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "__0__",
+      "type": "quantitative",
+      "title": null
+    }
+  }
+}

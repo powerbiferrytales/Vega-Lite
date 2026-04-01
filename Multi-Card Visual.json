@@ -1,0 +1,768 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.5.1.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.6.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": true,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "[No Name Provided]",
+      "description": "[No Description Provided]",
+      "author": "[No Author Details Provided]",
+      "uuid": "09e6ac0b-0cdb-43b6-a307-da8a2cbe45a4",
+      "generated": "2023-07-06T14:20:38.158Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Date",
+        "description": "Date field for the non-text mark",
+        "type": "dateTime",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "Actual YoY% All",
+        "description": "Measure used to calculate YoY% change",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__2__",
+        "name": "Net Sales",
+        "description": "Metric of Current Year Value",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__3__",
+        "name": "Actual PY",
+        "description": "Metric of Previous Year Value",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "locale": {
+      "number": {
+        "decimal": ".",
+        "thousands": ",",
+        "grouping": [3],
+        "currency": ["", " €"]
+      }
+    },
+    "padding": 10,
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "domainColor": "#454545",
+      "ticks": false
+    },
+    "axisX": {
+      "labelPadding": 3,
+      "labelAngle": 0,
+      "labelFontSize": 8,
+      "grid": false,
+      "labelOverlap": true
+    },
+    "axisY": {
+      "labelPadding": 5,
+      "labelAngle": 0,
+      "labelFontSize": 8,
+      "domain": false,
+      "grid": false
+    },
+    "scale": {"labelPadding": 0},
+    "legend": {
+      "title": null,
+      "labelFontSize": 12,
+      "labelColor": "#454545",
+      "symbolType": "square",
+      "symbolSize": 200,
+      "orient": "top",
+      "symbolStrokeWidth": 2
+    }
+  },
+  "data": {"name": "dataset"},
+  "spacing": 50,
+  "columns": 2,
+  "concat": [
+    {
+      "spacing": 6,
+      "vconcat": [
+        {
+          "title": {
+            "text": "__2__",
+            "fontSize": 20,
+            "color": "#454545",
+            "align": "left"
+          },
+          "height": 40,
+          "mark": {
+            "type": "text",
+            "fontWeight": 600,
+            "size": 30,
+            "color": "#454545",
+            "align": "left"
+          },
+          "encoding": {
+            "text": {
+              "field": "__2____highlight",
+              "aggregate": "sum",
+              "type": "quantitative",
+              "format": "$,.0f"
+            }
+          }
+        },
+        {
+          "spacing": 8,
+          "hconcat": [
+            {
+              "height": 30,
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "size": 20,
+                "fontWeight": {
+                  "expr": "datum['__1__']>= 0 ? 600:400"
+                },
+                "color": {
+                  "expr": "datum['__1__']>= 0 ?  'green':'red'"
+                }
+              },
+              "encoding": {
+                "text": {
+                  "field": "__1__",
+                  "format": ",.2%"
+                }
+              }
+            },
+            {
+              "height": 30,
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "size": 10,
+                "color": "#454545",
+                "fontWeight": 400
+              },
+              "encoding": {
+                "text": {
+                  "value": "Last Year"
+                }
+              }
+            },
+            {
+              "height": 30,
+              "mark": {
+                "align": "left",
+                "type": "text",
+                "size": 14,
+                "fontWeight": 400,
+                "color": "#454545"
+              },
+              "encoding": {
+                "text": {
+                  "field": "__3__",
+                  "format": "$,.0f",
+                  "aggregate": "sum"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "height": 80,
+          "transform": [
+            {
+              "window": [
+                {
+                  "op": "rank",
+                  "as": "rank"
+                }
+              ],
+              "sort": [
+                {
+                  "field": "__2__",
+                  "order": "descending"
+                }
+              ]
+            }
+          ],
+          "layer": [
+            {
+              "mark": {
+                "type": "area",
+                "width": {"band": 0.95},
+                "tooltip": true,
+                "color": {
+                  "expr": "datum['rank'] == 1 ? '#ec7629': '#454545'"
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "point",
+                "width": {"band": 0.95},
+                "tooltip": true,
+                "filled": true,
+                "color": {
+                  "expr": "datum['rank'] == 1 ? '#ec7629': '#454545'"
+                },
+                "size": {
+                  "expr": "datum['rank'] == 1 ? '100': '0'"
+                }
+              }
+            }
+          ],
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.2
+              },
+              "value": 1
+            },
+            "x": {
+              "field": "__0__",
+              "type": "ordinal",
+              "timeUnit": "yearmonthdate",
+              "title": null,
+              "axis": {
+                "format": "%d.%m"
+              }
+            },
+            "y": {
+              "field": "__2____highlight",
+              "type": "quantitative",
+              "title": null,
+              "axis": {
+                "title": null,
+                "gridColor": {
+                  "condition": {
+                    "test": "datum.value === 0",
+                    "value": "#ea7838"
+                  },
+                  "value": "#fff9ee"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "spacing": 6,
+      "vconcat": [
+        {
+          "title": {
+            "text": "__2__",
+            "fontSize": 20,
+            "color": "#454545",
+            "align": "left"
+          },
+          "height": 40,
+          "mark": {
+            "type": "text",
+            "fontWeight": 600,
+            "size": 30,
+            "color": "#454545",
+            "align": "left"
+          },
+          "encoding": {
+            "text": {
+              "field": "__2____highlight",
+              "aggregate": "sum",
+              "type": "quantitative",
+              "format": "$,.0f"
+            }
+          }
+        },
+        {
+          "spacing": 8,
+          "hconcat": [
+            {
+              "height": 30,
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "size": 20,
+                "fontWeight": {
+                  "expr": "datum['__1__']>= 0 ? 600:400"
+                },
+                "color": {
+                  "expr": "datum['__1__']>= 0 ?  'green':'red'"
+                }
+              },
+              "encoding": {
+                "text": {
+                  "field": "__1__",
+                  "format": ",.2%"
+                }
+              }
+            },
+            {
+              "height": 30,
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "size": 10,
+                "color": "#454545",
+                "fontWeight": 400
+              },
+              "encoding": {
+                "text": {
+                  "value": "Last Year"
+                }
+              }
+            },
+            {
+              "height": 30,
+              "mark": {
+                "align": "left",
+                "type": "text",
+                "size": 14,
+                "fontWeight": 400,
+                "color": "#454545"
+              },
+              "encoding": {
+                "text": {
+                  "field": "__3__",
+                  "format": "$,.0f",
+                  "aggregate": "sum"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "height": 80,
+          "transform": [
+            {
+              "window": [
+                {
+                  "op": "rank",
+                  "as": "rank"
+                }
+              ],
+              "sort": [
+                {
+                  "field": "__2__",
+                  "order": "descending"
+                }
+              ]
+            }
+          ],
+          "layer": [
+            {
+              "mark": {
+                "type": "area",
+                "width": {"band": 0.95},
+                "tooltip": true,
+                "color": {
+                  "expr": "datum['rank'] == 1 ? '#ec7629': '#454545'"
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "point",
+                "width": {"band": 0.95},
+                "tooltip": true,
+                "filled": true,
+                "color": {
+                  "expr": "datum['rank'] == 1 ? '#ec7629': '#454545'"
+                },
+                "size": {
+                  "expr": "datum['rank'] == 1 ? '100': '0'"
+                }
+              }
+            }
+          ],
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.2
+              },
+              "value": 1
+            },
+            "x": {
+              "field": "__0__",
+              "type": "ordinal",
+              "timeUnit": "yearmonthdate",
+              "title": null,
+              "axis": {
+                "format": "%d.%m"
+              }
+            },
+            "y": {
+              "field": "__2____highlight",
+              "type": "quantitative",
+              "title": null,
+              "axis": {
+                "title": null,
+                "gridColor": {
+                  "condition": {
+                    "test": "datum.value === 0",
+                    "value": "#ea7838"
+                  },
+                  "value": "#fff9ee"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "spacing": 6,
+      "vconcat": [
+        {
+          "title": {
+            "text": "__2__",
+            "fontSize": 20,
+            "color": "#454545",
+            "align": "left"
+          },
+          "height": 40,
+          "mark": {
+            "type": "text",
+            "fontWeight": 600,
+            "size": 30,
+            "color": "#454545",
+            "align": "left"
+          },
+          "encoding": {
+            "text": {
+              "field": "__2____highlight",
+              "aggregate": "sum",
+              "type": "quantitative",
+              "format": "$,.0f"
+            }
+          }
+        },
+        {
+          "spacing": 8,
+          "hconcat": [
+            {
+              "height": 30,
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "size": 20,
+                "fontWeight": {
+                  "expr": "datum['__1__']>= 0 ? 600:400"
+                },
+                "color": {
+                  "expr": "datum['__1__']>= 0 ?  'green':'red'"
+                }
+              },
+              "encoding": {
+                "text": {
+                  "field": "__1__",
+                  "format": ",.2%"
+                }
+              }
+            },
+            {
+              "height": 30,
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "size": 10,
+                "color": "#454545",
+                "fontWeight": 400
+              },
+              "encoding": {
+                "text": {
+                  "value": "Last Year"
+                }
+              }
+            },
+            {
+              "height": 30,
+              "mark": {
+                "align": "left",
+                "type": "text",
+                "size": 14,
+                "fontWeight": 400,
+                "color": "#454545"
+              },
+              "encoding": {
+                "text": {
+                  "field": "__3__",
+                  "format": "$,.0f",
+                  "aggregate": "sum"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "height": 80,
+          "transform": [
+            {
+              "window": [
+                {
+                  "op": "rank",
+                  "as": "rank"
+                }
+              ],
+              "sort": [
+                {
+                  "field": "__2__",
+                  "order": "descending"
+                }
+              ]
+            }
+          ],
+          "layer": [
+            {
+              "mark": {
+                "type": "area",
+                "width": {"band": 0.95},
+                "tooltip": true,
+                "color": {
+                  "expr": "datum['rank'] == 1 ? '#ec7629': '#454545'"
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "point",
+                "width": {"band": 0.95},
+                "tooltip": true,
+                "filled": true,
+                "color": {
+                  "expr": "datum['rank'] == 1 ? '#ec7629': '#454545'"
+                },
+                "size": {
+                  "expr": "datum['rank'] == 1 ? '100': '0'"
+                }
+              }
+            }
+          ],
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.2
+              },
+              "value": 1
+            },
+            "x": {
+              "field": "__0__",
+              "type": "ordinal",
+              "timeUnit": "yearmonthdate",
+              "title": null,
+              "axis": {
+                "format": "%d.%m"
+              }
+            },
+            "y": {
+              "field": "__2____highlight",
+              "type": "quantitative",
+              "title": null,
+              "axis": {
+                "title": null,
+                "gridColor": {
+                  "condition": {
+                    "test": "datum.value === 0",
+                    "value": "#ea7838"
+                  },
+                  "value": "#fff9ee"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "spacing": 6,
+      "vconcat": [
+        {
+          "title": {
+            "text": "__2__",
+            "fontSize": 20,
+            "color": "#454545",
+            "align": "left"
+          },
+          "height": 40,
+          "mark": {
+            "type": "text",
+            "fontWeight": 600,
+            "size": 30,
+            "color": "#454545",
+            "align": "left"
+          },
+          "encoding": {
+            "text": {
+              "field": "__2____highlight",
+              "aggregate": "sum",
+              "type": "quantitative",
+              "format": "$,.0f"
+            }
+          }
+        },
+        {
+          "spacing": 8,
+          "hconcat": [
+            {
+              "height": 30,
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "size": 20,
+                "fontWeight": {
+                  "expr": "datum['__1__']>= 0 ? 600:400"
+                },
+                "color": {
+                  "expr": "datum['__1__']>= 0 ?  'green':'red'"
+                }
+              },
+              "encoding": {
+                "text": {
+                  "field": "__1__",
+                  "format": ",.2%"
+                }
+              }
+            },
+            {
+              "height": 30,
+              "mark": {
+                "type": "text",
+                "align": "left",
+                "size": 10,
+                "color": "#454545",
+                "fontWeight": 400
+              },
+              "encoding": {
+                "text": {
+                  "value": "Last Year"
+                }
+              }
+            },
+            {
+              "height": 30,
+              "mark": {
+                "align": "left",
+                "type": "text",
+                "size": 14,
+                "fontWeight": 400,
+                "color": "#454545"
+              },
+              "encoding": {
+                "text": {
+                  "field": "__3__",
+                  "format": "$,.0f",
+                  "aggregate": "sum"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "height": 80,
+          "transform": [
+            {
+              "window": [
+                {
+                  "op": "rank",
+                  "as": "rank"
+                }
+              ],
+              "sort": [
+                {
+                  "field": "__2__",
+                  "order": "descending"
+                }
+              ]
+            }
+          ],
+          "layer": [
+            {
+              "mark": {
+                "type": "area",
+                "width": {"band": 0.95},
+                "tooltip": true,
+                "color": {
+                  "expr": "datum['rank'] == 1 ? '#ec7629': '#454545'"
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "point",
+                "width": {"band": 0.95},
+                "tooltip": true,
+                "filled": true,
+                "color": {
+                  "expr": "datum['rank'] == 1 ? '#ec7629': '#454545'"
+                },
+                "size": {
+                  "expr": "datum['rank'] == 1 ? '100': '0'"
+                }
+              }
+            }
+          ],
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.2
+              },
+              "value": 1
+            },
+            "x": {
+              "field": "__0__",
+              "type": "ordinal",
+              "timeUnit": "yearmonthdate",
+              "title": null,
+              "axis": {
+                "format": "%d.%m"
+              }
+            },
+            "y": {
+              "field": "__2____highlight",
+              "type": "quantitative",
+              "title": null,
+              "axis": {
+                "title": null,
+                "gridColor": {
+                  "condition": {
+                    "test": "datum.value === 0",
+                    "value": "#ea7838"
+                  },
+                  "value": "#fff9ee"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

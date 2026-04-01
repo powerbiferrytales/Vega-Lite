@@ -1,0 +1,244 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.5.1.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.6.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": true,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Column Chart Actual vs PY concatenated",
+      "description": "vertically concatenated bar chart showing Current Year and vs PY in vertical concatenation",
+      "author": "Ben Ferry",
+      "uuid": "f46853d8-4c4f-49a6-940d-0f35b9458327",
+      "generated": "2023-06-23T18:31:54.395Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Date",
+        "description": "",
+        "type": "dateTime",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "YoY% Difference",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__2__",
+        "name": "Base metric",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__3__",
+        "name": "Previous Year Measure",
+        "description": "",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "domainColor": "#ec7629",
+      "domainWidth": 1,
+      "titleColor": "#333",
+      "tickColor": "#454545",
+      "ticks": false,
+      "domain": false
+    },
+    "axisX": {
+      "labelPadding": 5,
+      "labelAngle": 0,
+      "labelFontSize": 10
+    },
+    "axisY": {
+      "labelPadding": 0,
+      "labelAngle": 0,
+      "labelFontSize": 0
+    },
+    "scale": {"labelPadding": 0},
+    "legend": {
+      "title": null,
+      "labelFontSize": 12,
+      "labelColor": "#454545",
+      "symbolType": "square",
+      "symbolSize": 200,
+      "orient": "top",
+      "symbolStrokeWidth": 2
+    }
+  },
+  "data": {"name": "dataset"},
+  "spacing": 30,
+  "vconcat": [
+    {
+      "title": "Sales YoY % Change",
+      "width": 1500,
+      "height": 200,
+      "layer": [
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#ec7629",
+            "point": {
+              "color": "#454545"
+            }
+          },
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.2
+              },
+              "value": 1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontWeight": {
+              "expr": "datum['__2__']>= datum['__2__ PY']? 400:600"
+            },
+            "size": 12,
+            "color": {
+              "expr": "datum['__2__']>= datum['__2__ PY']? '#454545':'red'"
+            },
+            "yOffset": {
+              "expr": "datum['__2__']>= datum['__2__ PY']? -10:10"
+            }
+          },
+          "encoding": {
+            "text": {
+              "field": "__1____highlight",
+              "format": ".1%"
+            },
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.2
+              },
+              "value": 1
+            }
+          }
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "__0__",
+          "type": "ordinal",
+          "timeUnit": "yearmonthdate",
+          "title": null,
+          "axis": null
+        },
+        "y": {
+          "field": "__1____highlight",
+          "type": "quantitative",
+          "title": null,
+          "axis": {
+            "title": null,
+            "gridColor": {
+              "condition": {
+                "test": "datum.value === 0",
+                "value": "#ea7838"
+              },
+              "value": "#fff9ee"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Current Year Sales",
+      "width": 1500,
+      "height": 200,
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "color": "#ec7629"
+          },
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.2
+              },
+              "value": 1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontWeight": 600,
+            "size": 14,
+            "yOffset": -10,
+            "color": "#454545"
+          },
+          "encoding": {
+            "text": {"field": "__2__"},
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.2
+              },
+              "value": 1
+            }
+          }
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "__0__",
+          "type": "ordinal",
+          "timeUnit": "yearmonthdate",
+          "title": null,
+          "axis": {"format": "%d.%m"}
+        },
+        "y": {
+          "field": "__2____highlight",
+          "type": "quantitative",
+          "title": null,
+          "axis": {
+            "title": null,
+            "gridColor": {
+              "condition": {
+                "test": "datum.value === 0",
+                "value": "#ea7838"
+              },
+              "value": "#fff9ee"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.5.1.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.6.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": true,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Area chart with Dynamic Details",
+      "description": "Area chart with gradient, showing dynamic details for the highest and lowest value",
+      "author": "Ben Ferry",
+      "uuid": "809e3b43-3cda-4e8a-91d4-137756ff891e",
+      "generated": "2023-06-22T16:24:14.678Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "X_axis_dimension",
+        "description": "",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "Value",
+        "description": "Metric you are measuring",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "arc": {},
+    "area": {},
+    "bar": {},
+    "line": {
+      "strokeCap": "round",
+      "strokeJoin": "round"
+    },
+    "path": {},
+    "point": {
+      "filled": true,
+      "size": 75
+    },
+    "rect": {},
+    "shape": {},
+    "symbol": {
+      "strokeWidth": 1.5,
+      "size": 50
+    },
+    "text": {"fontSize": 11},
+    "axis": {
+      "ticks": false,
+      "grid": false,
+      "domain": false,
+      "labelFontSize": 11,
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleFontSize": 12,
+      "titleFontWeight": "normal"
+    },
+    "axisQuantitative": {
+      "tickCount": 3,
+      "grid": true,
+      "gridDash": [1, 5],
+      "labelFlush": false
+    },
+    "axisX": {
+      "labelPadding": 10,
+      "labelAngle": 0,
+      "zero": false
+    },
+    "axisY": {"labelPadding": 15},
+    "header": {
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleFontSize": 12,
+      "labelFont": "Lato",
+      "labelFontSize": 10
+    },
+    "legend": {
+      "titleFont": "Lato",
+      "titleFontWeight": "bold",
+      "labelFont": "Lato",
+      "labelFontSize": 13.333333333333332,
+      "symbolType": "circle",
+      "symbolSize": 75
+    }
+  },
+  "data": {"name": "dataset"},
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "strokeWidth": 4,
+        "line": {"color": "#7b516f"},
+        "color": {
+          "x1": 1,
+          "y1": 1,
+          "gradient": "linear",
+          "stops": [
+            {
+              "offset": 0,
+              "color": "white"
+            },
+            {
+              "offset": 1,
+              "color": "#7b516f"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "window": [
+            {"op": "rank", "as": "rank"}
+          ],
+          "sort": [
+            {
+              "field": "__1__",
+              "order": "descending"
+            }
+          ]
+        },
+        {"filter": "datum.rank <=1"}
+      ],
+      "mark": {
+        "type": "text",
+        "yOffset": -100,
+        "size": 40,
+        "fontWeight": 800
+      },
+      "encoding": {
+        "text": {"field": "__1__"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "window": [
+            {"op": "rank", "as": "rank"}
+          ],
+          "sort": [
+            {
+              "field": "__1__",
+              "order": "descending"
+            }
+          ]
+        },
+        {"filter": "datum.rank <=1"},
+        {
+          "calculate": "'points scored by- '+ datum['SelTeam'] +' made round '  + datum['__0__'] + '- the most highscoring round.'",
+          "as": "NewText"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "yOffset": -75,
+        "size": 15,
+        "lineBreak": "-"
+      },
+      "encoding": {
+        "text": {"field": "NewText"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "window": [
+            {"op": "rank", "as": "rank"}
+          ],
+          "sort": [
+            {
+              "field": "__1__",
+              "order": "ascending"
+            }
+          ]
+        },
+        {"filter": "datum.rank <=1"}
+      ],
+      "mark": {
+        "type": "text",
+        "yOffset": -125,
+        "size": 20,
+        "fontWeight": 800
+      },
+      "encoding": {
+        "text": {"field": "__1__"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "window": [
+            {"op": "rank", "as": "rank"}
+          ],
+          "sort": [
+            {
+              "field": "__1__",
+              "order": "ascending"
+            }
+          ]
+        },
+        {"filter": "datum.rank <=1"},
+        {
+          "calculate": "'points scored - by '+ datum['SelTeam'] +' - made round -'  + datum['__0__'] + ' the lowest - scoring round.'",
+          "as": "NewText"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "yOffset": -110,
+        "size": 10,
+        "lineBreak": "-"
+      },
+      "encoding": {
+        "text": {"field": "NewText"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "yOffset": -10,
+        "size": 12
+      },
+      "encoding": {
+        "text": {"field": "__1__"}
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "__0__",
+      "type": "ordinal",
+      "axis": {"labelPadding": 0},
+      "title": null
+    },
+    "y": {
+      "field": "__1__",
+      "type": "quantitative",
+      "axis": null
+    }
+  }
+}
