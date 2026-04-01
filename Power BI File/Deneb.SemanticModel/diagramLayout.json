@@ -1,0 +1,475 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 217.36364191228691
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1052.5406941031938,
+            "y": 732.2243550368554
+          },
+          "nodeIndex": "Player Totals",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 20,
+          "expandedHeight": 300
+        },
+        {
+          "location": {
+            "x": 616.30681818181847,
+            "y": 729.09090909090889
+          },
+          "nodeIndex": "Player by GW",
+          "nodeLineageTag": "93a73700-8c98-448f-b76a-81d70fe0ead8",
+          "size": {
+            "height": 1000,
+            "width": 297.63636363636363
+          },
+          "zIndex": 19
+        },
+        {
+          "location": {
+            "x": 1536.6879914004915,
+            "y": 125.45454545454544
+          },
+          "nodeIndex": "Gameweeks",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 18
+        },
+        {
+          "location": {
+            "x": 1152.7272727272727,
+            "y": 152.85267199017204
+          },
+          "nodeIndex": "Positions",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 26,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 544.91609336609361,
+            "y": 207.27272727272725
+          },
+          "nodeIndex": "Team ID",
+          "size": {
+            "height": 310.375,
+            "width": 234
+          },
+          "zIndex": 25
+        },
+        {
+          "location": {
+            "x": 2282,
+            "y": 0
+          },
+          "nodeIndex": "DAX",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 2094.1522727272732,
+            "y": 270.90909090909088
+          },
+          "nodeIndex": "Views",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 2076.0204545454553,
+            "y": 1352.244318181818
+          },
+          "nodeIndex": "Total Players",
+          "size": {
+            "height": 238.90909090909076,
+            "width": 234
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 2645.8,
+            "y": 0
+          },
+          "nodeIndex": "Selected %",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 3051.5,
+            "y": 0
+          },
+          "nodeIndex": "TopN",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 3402.5,
+            "y": 0
+          },
+          "nodeIndex": "DAX Formatting",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 2777.9,
+            "y": 267.27272727272725
+          },
+          "nodeIndex": "Player Comparison",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 2813.3000000000006,
+            "y": 643.63636363636351
+          },
+          "nodeIndex": "Transfers",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 3808.2,
+            "y": 0
+          },
+          "nodeIndex": "GW Target",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 1622.3847745028411,
+            "y": 992.72727272727263
+          },
+          "nodeIndex": "Parameter",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 2367.4515891335232,
+            "y": 705.45454545454538
+          },
+          "nodeIndex": "ThermoTest",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 128.30591264204622,
+            "y": 490.90909090909088
+          },
+          "nodeIndex": "Act Plan",
+          "size": {
+            "height": 352,
+            "width": 234
+          },
+          "zIndex": 23
+        },
+        {
+          "location": {
+            "x": 71.321193625709924,
+            "y": 1014.5454545454545
+          },
+          "nodeIndex": "Cats",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 4593.4,
+            "y": 0
+          },
+          "nodeIndex": "category",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 6165.9,
+            "y": 0
+          },
+          "nodeIndex": "NASATemp",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 6541.3,
+            "y": 0
+          },
+          "nodeIndex": "Card Param",
+          "nodeLineageTag": "0f1ffb8f-57cb-4125-98e4-50cd0a52f037",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 6753.97880637429,
+            "y": 707.57670454545439
+          },
+          "nodeIndex": "LE",
+          "nodeLineageTag": "4bfe9222-24c4-40f2-8d2b-f2e7b6ae815c",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 7392.015225497159,
+            "y": 731.57670454545439
+          },
+          "nodeIndex": "Gender Select",
+          "nodeLineageTag": "fa9c8e99-4077-4421-96ef-7beb8b5f7856",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 6966.65761274858,
+            "y": 683.57670454545439
+          },
+          "nodeIndex": "Current Age",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 7604.6940318714487,
+            "y": 788.5454545454545
+          },
+          "nodeIndex": "US State Map",
+          "nodeLineageTag": "e5dcc49a-dbaa-4e11-bb0c-add2c314e34d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 7817.3728382457384,
+            "y": 788.5454545454545
+          },
+          "nodeIndex": "UK County map",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 8030.0516446200281,
+            "y": 764.5454545454545
+          },
+          "nodeIndex": "us_pop_by_state",
+          "nodeLineageTag": "b1a3d558-b898-4329-b83d-80499e41f2df",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "MapTest",
+          "nodeLineageTag": "7052e475-d209-4e5c-a81c-4a78e6d9de13",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Italy Grid",
+          "nodeLineageTag": "d34f8aa7-dfae-4495-b74f-43e3cc351d2d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "Ita Data",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {},
+          "nodeIndex": "World Map",
+          "nodeLineageTag": "3be2578d-5f13-4376-997c-2e32cd458168",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 55.000000000000007,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 1,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 793.33333206176758,
+            "y": 283
+          },
+          "nodeIndex": "US State Map",
+          "nodeLineageTag": "e5dcc49a-dbaa-4e11-bb0c-add2c314e34d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 993.33333206176758,
+            "y": 509
+          },
+          "nodeIndex": "us_pop_by_state",
+          "nodeLineageTag": "b1a3d558-b898-4329-b83d-80499e41f2df",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 2
+        }
+      ],
+      "name": "Layout 1",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    },
+    {
+      "ordinal": 2,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 490.33333206176758,
+            "y": 370
+          },
+          "nodeIndex": "Italy Grid",
+          "nodeLineageTag": "d34f8aa7-dfae-4495-b74f-43e3cc351d2d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 959.33333206176758,
+            "y": 374
+          },
+          "nodeIndex": "Ita Data",
+          "nodeLineageTag": "3c95568a-86b9-479d-96ae-7e88c7c7d0cd",
+          "size": {
+            "height": 435,
+            "width": 234
+          },
+          "zIndex": 1
+        }
+      ],
+      "name": "Layout 2",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Layout 2",
+  "defaultDiagram": "All tables"
+}

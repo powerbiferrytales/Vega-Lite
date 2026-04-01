@@ -1,0 +1,36 @@
+table ThermoTest
+	lineageTag: 47f32094-bcac-470c-a20a-4d29862741de
+
+	measure 'ThermoTest Value' = SELECTEDVALUE('ThermoTest'[ThermoTest])
+		formatString: 0
+		lineageTag: d5491e8e-936f-4733-b471-6fa4ef1852bf
+
+	measure TValue =
+			
+			
+			IF(ThermoTest[ThermoTest Value]>[Target2],
+			[Target2],
+			ThermoTest[ThermoTest Value])
+		lineageTag: 139d4a43-58b0-459a-8c96-564661fd0cbe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ThermoTest
+		formatString: #,0
+		lineageTag: 0c423af9-14bf-4729-aaaf-d91b2775a7ec
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition ThermoTest-fd72795d-ca9f-4eb6-80fe-26279566286c = calculated
+		mode: import
+		source = GENERATESERIES(0, 21000, 100)
+
+	annotation PBI_Id = c0b390cfa491487e81a8ca645497b5b1
+

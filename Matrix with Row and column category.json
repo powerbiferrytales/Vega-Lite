@@ -1,0 +1,260 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.5.1.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.6.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": true,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Matrix with Date and Category",
+      "description": "[No Description Provided]",
+      "author": "Power-BI-guy",
+      "uuid": "095d61a5-b6f6-455f-9bbb-cb4df980d9dc",
+      "generated": "2023-08-22T11:41:55.864Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Category",
+        "description": "Row category",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "Date",
+        "description": "Column category (eg date)",
+        "type": "dateTime",
+        "kind": "column"
+      },
+      {
+        "key": "__2__",
+        "name": "Actual",
+        "description": "Value 1",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__3__",
+        "name": "Plan",
+        "description": "Value 2",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "font": "Segoe UI",
+    "arc": {},
+    "area": {
+      "line": true,
+      "opacity": 0.6
+    },
+    "bar": {},
+    "line": {
+      "strokeWidth": 3,
+      "strokeCap": "round",
+      "strokeJoin": "round"
+    },
+    "path": {},
+    "point": {
+      "filled": true,
+      "size": 75
+    },
+    "rect": {},
+    "shape": {},
+    "symbol": {
+      "strokeWidth": 1.5,
+      "size": 50
+    },
+    "text": {
+      "font": "Segoe UI",
+      "fontSize": 12,
+      "fill": "#605E5C"
+    },
+    "axis": {
+      "ticks": false,
+      "grid": false,
+      "domain": false,
+      "labelColor": "#605E5C",
+      "labelFontSize": 12,
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleColor": "#252423",
+      "titleFontSize": 16,
+      "titleFontWeight": "normal"
+    },
+    "axisQuantitative": {
+      "tickCount": 3,
+      "grid": true,
+      "gridColor": "#C8C6C4",
+      "gridDash": [1, 5],
+      "labelFlush": false
+    },
+    "axisBand": {"tickExtra": true},
+    "axisX": {
+      "labelPadding": 20,
+      "orient": "top",
+      "labelAngle": 0
+    },
+    "axisY": {"labelPadding": 10},
+    "header": {
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleFontSize": 16,
+      "titleColor": "#252423",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C"
+    },
+    "legend": {
+      "titleFont": "Segoe UI",
+      "titleFontWeight": "bold",
+      "titleColor": "#605E5C",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C",
+      "symbolType": "circle",
+      "symbolSize": 75
+    }
+  },
+  "width": {"step": 105},
+  "height": {"step": 35},
+  "data": {"name": "dataset"},
+  "transform": [
+    {
+      "fold": ["__2__", "__3__"],
+      "as": ["metrics", "Number"]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "tooltip": true
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "off"
+            },
+            "value": 0.5
+          },
+          "value": 1
+        },
+        "color": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "on"
+            },
+            "value": "#7b516f"
+          },
+          "value": "#e3e3e3"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "xOffset": -20,
+        "fontSize": 11
+      },
+      "transform": [
+        {
+          "filter": "datum.metrics == '__2__'"
+        }
+      ],
+      "encoding": {
+        "text": {
+          "field": "Number",
+          "format": ",.0f"
+        },
+        "color": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "on"
+            },
+            "value": "white"
+          },
+          "value": "black"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "xOffset": 20
+      },
+      "transform": [
+        {
+          "filter": "datum.metrics == '__3__'"
+        }
+      ],
+      "encoding": {
+        "text": {
+          "field": "Number",
+          "format": ",.0f"
+        },
+        "color": {
+          "condition": {
+            "test": {
+              "field": "__selected__",
+              "equal": "on"
+            },
+            "value": "white"
+          },
+          "value": "black"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "xOffset": {
+          "expr": "datum.metrics == '__2__' ? -20 : 20"
+        },
+        "yOffset": -25
+      },
+      "encoding": {
+        "text": {"field": "metrics"},
+        "y": {
+          "field": "__0__",
+          "aggregate": "max"
+        }
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "__1__",
+      "scale": {"padding": 0.05},
+      "type": "ordinal",
+      "timeUnit": "yearmonthdate",
+      "title": null,
+      "axis": {"format": "%d.%m.%Y"}
+    },
+    "y": {
+      "field": "__0__",
+      "type": "ordinal",
+      "title": null,
+      "sort": {
+        "field": "__0__",
+        "order": "descending"
+      }
+    }
+  }
+}

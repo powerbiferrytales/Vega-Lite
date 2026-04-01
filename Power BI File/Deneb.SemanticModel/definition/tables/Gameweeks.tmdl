@@ -1,0 +1,93 @@
+table Gameweeks
+	lineageTag: 653dd57c-068b-49b5-a139-bd891e5c567f
+
+	column id
+		dataType: string
+		lineageTag: a7ed43e5-2be8-4363-98a3-f1f8cf5dd1a0
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 6afb3951-b467-4ff2-9c36-cf8bb3393073
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Deadline date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0d4036f7-ea41-4dbc-8d73-176f32ee63a7
+		summarizeBy: none
+		sourceColumn: Deadline date
+
+		variation Variation
+			isDefault
+			relationship: 740d4070-bb06-4436-945e-576c7e956629
+			defaultHierarchy: LocalDateTable_442d2f56-c31d-42d5-9d98-41621299ae09.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Deadline time'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: e578a28b-bba3-4e11-90d6-a20524f7ff7d
+		summarizeBy: none
+		sourceColumn: Deadline time
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column average_entry_score
+		dataType: string
+		lineageTag: a4072366-d306-4a17-8562-9bdfefa4f2ef
+		summarizeBy: none
+		sourceColumn: average_entry_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column finished
+		dataType: string
+		lineageTag: 736bbd30-9106-49ce-8504-891be101d405
+		summarizeBy: none
+		sourceColumn: finished
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: b05dd940-f937-42a3-ae2b-9e4f63ad274e
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Gameweeks-c532fad7-9c1e-4525-ad12-abb666663dc3 = m
+		mode: import
+		queryGroup: 'Game Info'
+		source =
+				let
+				    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/api/bootstrap-static/")),
+				    events = Source[events],
+				    #"Converted to Table" = Table.FromList(events, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"id", "name", "deadline_time", "average_entry_score", "finished", "data_checked", "highest_scoring_entry", "deadline_time_epoch", "deadline_time_game_offset", "deadline_time_formatted", "highest_score", "is_previous", "is_current", "is_next"}, {"id", "name", "deadline_time", "average_entry_score", "finished", "data_checked", "highest_scoring_entry", "deadline_time_epoch", "deadline_time_game_offset", "deadline_time_formatted", "highest_score", "is_previous", "is_current", "is_next"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Expanded Column1",{"is_previous", "is_current", "is_next", "data_checked", "highest_scoring_entry", "highest_score"}),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Removed Columns", "deadline_time", Splitter.SplitTextByEachDelimiter({"T"}, QuoteStyle.Csv, false), {"deadline_time.1", "deadline_time.2"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"deadline_time.1", type date}, {"deadline_time.2", type time}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"deadline_time.1", "Deadline date"}, {"deadline_time.2", "Deadline time"}}),
+				    #"Split Column by Position" = Table.SplitColumn(#"Renamed Columns", "deadline_time_formatted", Splitter.SplitTextByPositions({0, 5}, true), {"deadline_time_formatted.1", "deadline_time_formatted.2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Position",{{"deadline_time_formatted.1", type date}, {"deadline_time_formatted.2", type time}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type1",{{"deadline_time_formatted.2", "Deadline Time"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns1",{"deadline_time_epoch", "deadline_time_game_offset", "deadline_time_formatted.1", "Deadline Time"}),
+				    #"Inserted Month Name" = Table.AddColumn(#"Removed Columns1", "Month Name", each Date.MonthName([Deadline date]), type text)
+				in
+				    #"Inserted Month Name"
+
+	annotation PBI_ResultType = Table
+

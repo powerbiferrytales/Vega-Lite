@@ -1,0 +1,49 @@
+table 'Card Param'
+	lineageTag: 0f1ffb8f-57cb-4125-98e4-50cd0a52f037
+
+	column 'Card Param'
+		lineageTag: a68dec40-2025-4068-a5c7-75c5cbd77c29
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Card Param Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Card Param Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Card Param Fields'
+		isHidden
+		lineageTag: 13d43021-e4a6-435d-a378-a65c2b7adc5c
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Card Param Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Card Param Order'
+		isHidden
+		formatString: 0
+		lineageTag: 5565ff1f-0e1e-40cd-bd84-34ec07ff8b6b
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Card Param-96b5e37e-81c7-43e6-b3d2-0a3255aa8c3f' = calculated
+		mode: import
+		source =
+				{
+				    ("Total pts by GW", NAMEOF('DAX'[Total pts by GW]), 0),
+				    ("Total Pts by GW No Bonus", NAMEOF('DAX'[Total Pts by GW No Bonus]), 1),
+				    ("Bonus", NAMEOF('DAX'[Bonus]), 2)
+				}
+
+	annotation PBI_Id = efb1702a626946c48d7fe504f752e3d5
+

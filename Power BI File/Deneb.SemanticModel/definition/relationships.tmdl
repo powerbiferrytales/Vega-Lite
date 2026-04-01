@@ -1,0 +1,48 @@
+relationship 740d4070-bb06-4436-945e-576c7e956629
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Gameweeks.'Deadline date'
+	toColumn: LocalDateTable_442d2f56-c31d-42d5-9d98-41621299ae09.Date
+
+relationship 71146fa9-745b-4af5-801e-1c023bb98bce
+	fromColumn: 'Player by GW'.id
+	toColumn: 'Player Totals'.id
+
+relationship ebd49ba4-78a5-4133-939a-e44dd3c0b06c
+	fromColumn: 'Player Totals'.team
+	toColumn: 'Team ID'.'Club ID'
+
+relationship 62e30b41-cb0d-4f53-ba76-06ee72030ead
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Player by GW'.Date
+	toColumn: LocalDateTable_d368747e-742e-440b-9a10-1318601afae7.Date
+
+relationship 9f006e85-2726-47e8-a270-46ed93c58100
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Act Plan'.Date
+	toColumn: LocalDateTable_a5a5e1c0-5235-4274-92c4-cc31d77f1ddc.Date
+
+relationship 3ee6e9eb-5abc-4a09-83bf-8f63ac192009
+	fromColumn: 'Act Plan'.Category
+	toColumn: Cats.Category
+
+relationship 38ea9aa6-076d-3080-3915-508ef0584440
+	fromColumn: 'Player Totals'.element_type
+	toColumn: Positions.id
+
+relationship 651c74bd-14ad-4292-863b-4b0e41642c4c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Player Totals'.news_added
+	toColumn: LocalDateTable_0c51dcf6-cca6-4668-a477-e1ba055eea23.Date
+
+relationship a8b3f5b6-b908-7ac9-2940-9dd480cf1210
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: us_pop_by_state.state_code
+	toColumn: 'US State Map'.State
+
+relationship 19d479cf-5766-f15f-23a8-fdab53f91a49
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Italy Grid'.Region
+	toColumn: 'Ita Data'.'First Characters'
+

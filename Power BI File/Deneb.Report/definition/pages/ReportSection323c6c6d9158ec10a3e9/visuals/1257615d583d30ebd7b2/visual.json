@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "1257615d583d30ebd7b2",
+  "position": {
+    "x": 72.625853600095837,
+    "y": 63.7929795135977,
+    "z": 3000,
+    "height": 736.07284054151194,
+    "width": 283.63340122199594,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "These visuals show very standard visuals but done differently in Deneb. To the right, the bar chart has two bars, one of which is slightly offset and narrow than the other. This could be a great way to compare two values, such as sales and planned sales. Clicking on the bars also shows a different way to highlight selected values.",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Below, the two matrix visuals are examples of overcoming a few formatting issues we have with standard Power BI tables and matrixes. Clearly defined column width makes the visual look easily readable. Clicking also shows the same formatting of selected values as the bar chart. ",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Video on how to create a Deneb matrix.",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    },
+                    "url": "https://www.youtube.com/watch?v=kXS8haj1PDs&list=PL6oIJxyQvMGTxh4tREeKflcKVlOfGdyim&index=6"
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

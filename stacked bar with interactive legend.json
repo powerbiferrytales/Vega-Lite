@@ -1,0 +1,238 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.6.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.16.3"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": true,
+      "dataPointLimit": 200
+    },
+    "information": {
+      "name": "Stacked bar with fully interactive legend",
+      "description": "Using vconcat of circle and stacked bar, this creates a stacked bar chart with a fully interactive legend. The circles work as the legend and fully interactive, filtering both inside the visual and other visuals on the report page",
+      "author": "Ben Ferry",
+      "uuid": "6700b1fc-75a0-47a5-88f1-fde466e77f75",
+      "generated": "2024-03-21T21:46:27.045Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Category",
+        "description": "Category used to stack bars",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "Category_Sort",
+        "description": "This field was used to help sort the categories, it may not be required",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__2__",
+        "name": "x_axis",
+        "description": "Value on the X axis",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__3__",
+        "name": "Metric",
+        "description": "The value you are measuring on the Y Axis",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "domainColor": "#ec7629",
+      "domainWidth": 1,
+      "titleColor": "#333",
+      "tickColor": "#454545",
+      "ticks": false,
+      "domain": false
+    },
+    "axisX": {
+      "labelPadding": 5,
+      "labelAngle": 0,
+      "labelFontSize": 10
+    },
+    "axisY": {
+      "labelPadding": 0,
+      "labelAngle": 0,
+      "labelFontSize": 0,
+      "grid": false
+    },
+    "scale": {"labelPadding": 0},
+    "legend": {
+      "title": null,
+      "labelFontSize": 12,
+      "labelColor": "#454545",
+      "symbolType": "square",
+      "symbolSize": 200,
+      "orient": "top",
+      "symbolStrokeWidth": 2
+    }
+  },
+  "data": {"name": "dataset"},
+  "vconcat": [
+    {
+      "width": 150,
+      "height": 10,
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 200
+          },
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0.1
+              },
+              "value": 1
+            },
+            "color": {"field": "__0__"}
+          }
+        }
+      ],
+      "encoding": {
+        "y": {
+          "field": "__0__",
+          "aggregate": "min",
+          "axis": null,
+          "sort": {"field": "__1__"},
+          "type": "nominal"
+        },
+        "x": {
+          "field": "__0__",
+          "title": null,
+          "sort": {"field": "__1__"},
+          "axis": {
+            "orient": "top",
+            "labelPadding": 10
+          }
+        }
+      }
+    },
+    {
+      "width": 1520,
+      "height": 200,
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "opacity": 0.05,
+            "width": {"band": 0.9},
+            "cornerRadiusEnd": 3
+          },
+          "encoding": {
+            "color": {
+              "field": "__0__",
+              "legend": null
+            },
+            "order": {"field": "__1__"},
+            "y": {
+              "field": "__3__",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum['__selected__'] != 'off'"
+            }
+          ],
+          "mark": {
+            "type": "bar",
+            "width": {"band": 0.9},
+            "cornerRadiusEnd": 3
+          },
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "test": {
+                  "field": "__selected__",
+                  "equal": "off"
+                },
+                "value": 0
+              },
+              "value": 1
+            },
+            "color": {
+              "field": "__0__",
+              "legend": null,
+              "scale": {
+                "domain": [
+                  "GKP",
+                  "DEF",
+                  "MID",
+                  "FWD"
+                ],
+                "range": [
+                  "#6eaef4",
+                  "#4c78a8",
+                  "#b3b3b3",
+                  "#454545"
+                ]
+              }
+            },
+            "order": {"field": "__1__"},
+            "y": {
+              "field": "__3____highlight",
+              "type": "quantitative",
+              "title": null
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum['__selected__'] != 'off'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontWeight": 600,
+            "yOffset": -10
+          },
+          "encoding": {
+            "text": {
+              "field": "__3____highlight",
+              "format": ",.0f",
+              "type": "quantitative",
+              "aggregate": "sum"
+            },
+            "y": {
+              "field": "__3____highlight",
+              "type": "quantitative",
+              "aggregate": "sum",
+              "axis": null
+            }
+          }
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "__2__",
+          "title": null
+        }
+      }
+    }
+  ]
+}

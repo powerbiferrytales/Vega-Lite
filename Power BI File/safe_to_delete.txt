@@ -1,0 +1,20 @@
+﻿Price per Point
+Form Base
+Appearances last 10 GW
+average mins
+Played in Prev 10 GW TopN
+PPG last 10 GW
+Assists
+Count of Pos
+Pts vs Target
+Total Pts_MaxRound
+total pts diff
+Total Pts_MaxRoundcum
+goals_conceded  1
+Goals Threshold
+SPN
+GW Target Value
+Life Expectancy
+Current_Age
+X_max
+X_min

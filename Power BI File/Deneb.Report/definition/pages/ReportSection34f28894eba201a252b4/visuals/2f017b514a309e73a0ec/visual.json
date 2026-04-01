@@ -1,0 +1,62 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "2f017b514a309e73a0ec",
+  "position": {
+    "x": 551.0822382991289,
+    "y": 115.17327202547932,
+    "z": 2000,
+    "height": 118.08905106409905,
+    "width": 816.41813081352427,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "This is a more complex form of concatenation, which uses horizontal concat, inside a vertical concat, which is then inside another concat.",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Video on how to make this visual",
+                    "textStyle": {
+                      "fontSize": "12pt"
+                    },
+                    "url": "https://www.youtube.com/watch?v=3N62FFbisog&list=PL6oIJxyQvMGTxh4tREeKflcKVlOfGdyim&index=21"
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

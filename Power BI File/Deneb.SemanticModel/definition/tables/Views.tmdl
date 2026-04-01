@@ -1,0 +1,83 @@
+table Views
+	lineageTag: f95d8a45-5cd3-47b2-9f74-9ebab4d3eb6c
+
+	calculationGroup
+
+		calculationItem Total = IF( SELECTEDMEASURE() > 0, SELECTEDMEASURE(), BLANK() )
+
+		calculationItem 'Total WO Best GW' = ```
+				
+				IF(
+				    SELECTEDMEASURE() - MAXX(
+				        VALUES( 'Player by GW'[round] ),
+				        SELECTEDMEASURE()
+				    ) > 0,
+				    
+				    SELECTEDMEASURE() - MAXX(
+				        VALUES( 'Player by GW'[round] ),
+				        SELECTEDMEASURE()
+				    ), BLANK()
+				)
+				
+				```
+
+		calculationItem 'Previous GW' = ```
+				
+				
+				VAR _MostRecent = MAX('Player by GW'[round])
+				RETURN
+				
+				    IF(
+				        CALCULATE( SELECTEDMEASURE(),
+				        'Player by GW'[round] = _MostRecent ) > 0,
+				        
+				        
+				        
+				        CALCULATE( SELECTEDMEASURE(),
+				            'Player by GW'[round] = _MostRecent ), BLANK()
+				        )
+				    
+				```
+
+		calculationItem 'Highest GW Return' = ```
+				
+				
+				IF(
+				MAXX(
+				    VALUES( 'Player by GW'[round] ),
+				    SELECTEDMEASURE()
+				) > 0,
+				
+				MAXX(
+				    VALUES( 'Player by GW'[round] ),
+				    SELECTEDMEASURE()
+				),
+				
+				BLANK()
+				
+				
+				)
+				
+				```
+
+	column Name
+		dataType: string
+		lineageTag: 2c3edc05-0148-44dc-8f70-400741a158ae
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		lineageTag: 9265d870-db04-46ba-9be7-4cf48b0f2853
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+

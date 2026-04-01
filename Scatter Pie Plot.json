@@ -1,0 +1,184 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.6.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.16.3"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": true,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Scatter Pie Plot",
+      "description": "Scatter Plot with Pies for points on selected range. You need to use a TopN DAX measure to ensure this works with the correct functionality",
+      "author": "Ben Ferry",
+      "uuid": "3462c835-51e9-419e-9e7e-379727a86f28",
+      "generated": "2024-05-18T21:02:21.132Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "X _axis",
+        "description": "The X axis dimension",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "Value",
+        "description": "The value on the Y axis you are measuring",
+        "type": "numeric",
+        "kind": "measure"
+      },
+      {
+        "key": "__2__",
+        "name": "TopN",
+        "description": "This must be a TopN DAX measure, which, combined with a topN slicer will control how many pie charts are visible at a time",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "point": {
+      "filled": true,
+      "size": 75
+    },
+    "axis": {
+      "ticks": false,
+      "grid": false,
+      "domain": false,
+      "labelAngle": 0,
+      "labelColor": "#605E5C",
+      "labelFontSize": 16,
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleColor": "#252423",
+      "titleFontSize": 14,
+      "titleFontWeight": "normal"
+    },
+    "axisX": {
+      "labelPadding": 5,
+      "labelAngle": 0,
+      "labelFontSize": 12,
+      "orient": "top"
+    },
+    "axisY": {
+      "labelPadding": 5,
+      "labelFontSize": 12
+    },
+    "scale": {"labelPadding": 0}
+  },
+  "data": {"name": "dataset"},
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "outerRadius": 18,
+        "fill": {
+          "expr": "datum['__2____highlight']  > 0 ? '#f38732' : '#ffffff'"
+        },
+        "tooltip": true
+      },
+      "encoding": {
+        "theta": {
+          "field": "__1__",
+          "type": "quantitative",
+          "scale": {"domain": [0, 100]}
+        },
+        "y": {
+          "field": "__1__",
+          "type": "quantitative",
+          "axis": null
+        },
+        "x": {
+          "field": "__0__",
+          "type": "nominal",
+          "axis": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "100",
+          "as": "_smallC"
+        }
+      ],
+      "mark": {
+        "type": "arc",
+        "outerRadius": {
+          "expr": "datum['__2____highlight']  > 0 ? 18 : 5"
+        },
+        "innerRadius": {
+          "expr": "datum['__2____highlight']  > 0 ? 17.3 : 0"
+        },
+        "color": "#454545",
+        "tooltip": true
+      },
+      "encoding": {
+        "theta": {
+          "field": "_smallC",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "__1__",
+          "type": "quantitative",
+          "axis": null
+        },
+        "x": {
+          "field": "__0__",
+          "type": "nominal",
+          "axis": null
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "datum['__1__']/100",
+          "as": "_label"
+        },
+        {
+          "calculate": "45",
+          "as": "_offset"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "radius": 0,
+        "fontSize": {
+          "expr": "datum['__2____highlight']  > 0 ? 12 : 0"
+        },
+        "fontWeight": 600,
+        "color": "#000000"
+      },
+      "encoding": {
+        "text": {
+          "field": "_label",
+          "format": ",.0%"
+        },
+        "theta": {
+          "field": "_offset",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "__1__",
+          "type": "quantitative",
+          "axis": null
+        },
+        "x": {
+          "field": "__0__",
+          "type": "nominal",
+          "axis": null
+        }
+      }
+    }
+  ]
+}

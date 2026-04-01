@@ -1,0 +1,315 @@
+table 'Player Totals'
+	lineageTag: fb75144b-046a-4ba8-97a2-83807bbb9eaa
+
+	measure sel% = SUM('Player Totals'[selected_by_percent])
+		formatString: 0
+		displayFolder: Unused Measures
+		lineageTag: 5398566e-7871-4757-8a7d-bf5aea9fdfda
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	column element_type
+		dataType: int64
+		formatString: 0
+		lineageTag: 715e959d-80a5-40b6-b8d8-fa82a53aa960
+		summarizeBy: none
+		sourceColumn: element_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column form
+		dataType: int64
+		formatString: 0
+		lineageTag: b161a02e-b974-46c2-8826-353ff2d07e37
+		summarizeBy: sum
+		sourceColumn: form
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e9c242b-2593-42e9-acac-c6b36b21f5a7
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column selected_by_percent
+		dataType: double
+		formatString: 0.00
+		lineageTag: d3f60a6d-1b89-4c93-bba5-a8906bd60986
+		summarizeBy: sum
+		sourceColumn: selected_by_percent
+
+		annotation SummarizationSetBy = Automatic
+
+	column team
+		dataType: int64
+		formatString: 0
+		lineageTag: e25c74a8-b4d8-4b1c-a231-040a7e2bd115
+		summarizeBy: none
+		sourceColumn: team
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_points
+		dataType: int64
+		formatString: 0
+		lineageTag: dc9b81e0-33db-4963-8391-94320c59c270
+		summarizeBy: sum
+		sourceColumn: total_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfers_in_event
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e23bc90-3ab6-43cc-89ba-c733fdd18f38
+		summarizeBy: sum
+		sourceColumn: transfers_in_event
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfers_out_event
+		dataType: int64
+		formatString: 0
+		lineageTag: bc8964f0-e5ab-4f26-bb40-c8495f8b4c47
+		summarizeBy: sum
+		sourceColumn: transfers_out_event
+
+		annotation SummarizationSetBy = Automatic
+
+	column web_name
+		dataType: string
+		lineageTag: c8262f5f-d2f2-4794-ad2b-9347436e165f
+		summarizeBy: none
+		sourceColumn: web_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column minutes
+		dataType: int64
+		formatString: 0
+		lineageTag: 679f8bb3-4be2-411b-b11f-afdb9eceedeb
+		summarizeBy: sum
+		sourceColumn: minutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost
+		dataType: double
+		lineageTag: 0ba5b1b1-451e-4805-be94-013cd2f01b90
+		summarizeBy: sum
+		sourceColumn: Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Pos
+		dataType: string
+		lineageTag: 6f14e752-5689-4646-98d6-9e50d2ef7858
+		summarizeBy: none
+		sourceColumn: Pos
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 66c310e0-7c8c-4a8e-bd60-1bd15830588b
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column news
+		dataType: string
+		lineageTag: e4754b06-bf42-4192-af75-1ccf8458d366
+		summarizeBy: none
+		sourceColumn: news
+
+		annotation SummarizationSetBy = Automatic
+
+	column news_added
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 74bda963-9295-4cd8-b85c-b77cda4bcf2a
+		summarizeBy: none
+		sourceColumn: news_added
+
+		variation Variation
+			isDefault
+			relationship: 651c74bd-14ad-4292-863b-4b0e41642c4c
+			defaultHierarchy: LocalDateTable_0c51dcf6-cca6-4668-a477-e1ba055eea23.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Short'
+		dataType: double
+		lineageTag: b32b4ad0-d0ac-4a58-aeee-51365c7b97e6
+		summarizeBy: sum
+		sourceColumn: Cost Short
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column photo
+		dataType: string
+		lineageTag: d7da49dc-a484-40c6-a769-a1a8cd499d0b
+		summarizeBy: none
+		sourceColumn: photo
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_scored
+		dataType: int64
+		formatString: 0
+		lineageTag: 93422b22-3ef6-43de-87e6-fb8c6d98406c
+		summarizeBy: sum
+		sourceColumn: goals_scored
+
+		annotation SummarizationSetBy = Automatic
+
+	column assists
+		dataType: int64
+		formatString: 0
+		lineageTag: 868ef7b6-5b0d-4a9c-8015-2ecf0a2be1a8
+		summarizeBy: sum
+		sourceColumn: assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column clean_sheets
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e742690-6a4b-4a9e-b179-f2adb4ad9a86
+		summarizeBy: sum
+		sourceColumn: clean_sheets
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalties_saved
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a9bc88d-0c0e-4a77-bcf5-5b749db20a9c
+		summarizeBy: sum
+		sourceColumn: penalties_saved
+
+		annotation SummarizationSetBy = Automatic
+
+	column yellow_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: bacc8fae-e8ec-411f-b134-8ac5e9d04093
+		summarizeBy: sum
+		sourceColumn: yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column bonus
+		dataType: int64
+		formatString: 0
+		lineageTag: af2fc9b1-2fb3-4523-8604-4ebb1fbe9cdf
+		summarizeBy: sum
+		sourceColumn: bonus
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Name Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3826495c-5be4-41c1-a1e0-e116184e7def
+		summarizeBy: sum
+		sourceColumn: Name Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: eda967e4-880b-4fa5-bcd4-02ec30886fd8
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column second_name
+		dataType: string
+		lineageTag: c8d4019b-3be0-4f9b-85e0-059297e4b287
+		summarizeBy: none
+		sourceColumn: second_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custom
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a2cf3f1-a632-4e58-8994-6a322d9593b2
+		summarizeBy: sum
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fitness
+		dataType: double
+		lineageTag: 1987be83-2822-496d-b82e-eee41b925522
+		summarizeBy: sum
+		sourceColumn: Fitness
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Player Totals-50def86e-6f35-4576-b762-9288b113da02' = m
+		mode: import
+		queryGroup: Player
+		source = ```
+				let
+				    Source = Json.Document(Web.Contents("https://fantasy.premierleague.com/api/bootstrap-static/")),
+				    elements = Source[elements],
+				    #"Converted to Table" = Table.FromList(elements, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"chance_of_playing_next_round", "chance_of_playing_this_round", "code", "cost_change_event", "cost_change_event_fall", "cost_change_start", "cost_change_start_fall", "dreamteam_count", "element_type", "ep_next", "ep_this", "event_points", "first_name", "form", "id", "in_dreamteam", "news", "news_added", "now_cost", "photo", "points_per_game", "second_name", "selected_by_percent", "special", "squad_number", "status", "team", "team_code", "total_points", "transfers_in", "transfers_in_event", "transfers_out", "transfers_out_event", "value_form", "value_season", "web_name", "minutes", "goals_scored", "assists", "clean_sheets", "goals_conceded", "own_goals", "penalties_saved", "penalties_missed", "yellow_cards", "red_cards", "saves", "bonus", "bps", "influence", "creativity", "threat", "ict_index", "expected_goals", "expected_assists", "expected_goal_involvements", "expected_goals_conceded", "influence_rank", "influence_rank_type", "creativity_rank", "creativity_rank_type", "threat_rank", "threat_rank_type", "ict_index_rank", "ict_index_rank_type", "corners_and_indirect_freekicks_order", "corners_and_indirect_freekicks_text", "direct_freekicks_order", "direct_freekicks_text", "penalties_order", "penalties_text", "expected_goals_per_90", "expected_assists_per_90", "expected_goals_conceded_per_90", "form_rank", "points_per_game_rank"}, {"chance_of_playing_next_round", "chance_of_playing_this_round", "code", "cost_change_event", "cost_change_event_fall", "cost_change_start", "cost_change_start_fall", "dreamteam_count", "element_type", "ep_next", "ep_this", "event_points", "first_name", "form", "id", "in_dreamteam", "news", "news_added", "now_cost", "photo", "points_per_game", "second_name", "selected_by_percent", "special", "squad_number", "status", "team", "team_code", "total_points", "transfers_in", "transfers_in_event", "transfers_out", "transfers_out_event", "value_form", "value_season", "web_name", "minutes", "goals_scored", "assists", "clean_sheets", "goals_conceded", "own_goals", "penalties_saved", "penalties_missed", "yellow_cards", "red_cards", "saves", "bonus", "bps", "influence", "creativity", "threat", "ict_index", "expected_goals", "expected_assists", "expected_goal_involvements", "expected_goals_conceded", "influence_rank", "influence_rank_type", "creativity_rank", "creativity_rank_type", "threat_rank", "threat_rank_type", "ict_index_rank", "ict_index_rank_type", "corners_and_indirect_freekicks_order", "corners_and_indirect_freekicks_text", "direct_freekicks_order", "direct_freekicks_text", "penalties_order", "penalties_text", "expected_goals_per_90", "expected_assists_per_90", "expected_goals_conceded_per_90", "form_rank", "points_per_game_rank"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Column1",{{"chance_of_playing_next_round", Int64.Type}, {"chance_of_playing_this_round", Int64.Type}, {"code", Int64.Type}, {"cost_change_event", Int64.Type}, {"cost_change_event_fall", Int64.Type}, {"cost_change_start", Int64.Type}, {"cost_change_start_fall", Int64.Type}, {"dreamteam_count", Int64.Type}, {"element_type", Int64.Type}, {"ep_next", type number}, {"ep_this", type number}, {"event_points", Int64.Type}, {"first_name", type text}, {"form", type number}, {"id", Int64.Type}, {"in_dreamteam", type logical}, {"news", type text}, {"news_added", type datetime}, {"now_cost", Int64.Type}, {"photo", type text}, {"points_per_game", type number}, {"second_name", type text}, {"selected_by_percent", type number}, {"special", type logical}, {"squad_number", type any}, {"status", type text}, {"team", Int64.Type}, {"team_code", Int64.Type}, {"total_points", Int64.Type}, {"transfers_in", Int64.Type}, {"transfers_in_event", Int64.Type}, {"transfers_out", Int64.Type}, {"transfers_out_event", Int64.Type}, {"value_form", type number}, {"value_season", type number}, {"web_name", type text}, {"minutes", Int64.Type}, {"goals_scored", Int64.Type}, {"assists", Int64.Type}, {"clean_sheets", Int64.Type}, {"goals_conceded", Int64.Type}, {"own_goals", Int64.Type}, {"penalties_saved", Int64.Type}, {"penalties_missed", Int64.Type}, {"yellow_cards", Int64.Type}, {"red_cards", Int64.Type}, {"saves", Int64.Type}, {"bonus", Int64.Type}, {"bps", Int64.Type}, {"influence", type number}, {"creativity", type number}, {"threat", Int64.Type}, {"ict_index", type number}, {"expected_goals", type number}, {"expected_assists", type number}, {"expected_goal_involvements", type number}, {"expected_goals_conceded", type number}, {"influence_rank", Int64.Type}, {"influence_rank_type", Int64.Type}, {"creativity_rank", Int64.Type}, {"creativity_rank_type", Int64.Type}, {"threat_rank", Int64.Type}, {"threat_rank_type", Int64.Type}, {"ict_index_rank", Int64.Type}, {"ict_index_rank_type", Int64.Type}, {"corners_and_indirect_freekicks_order", Int64.Type}, {"corners_and_indirect_freekicks_text", type any}, {"direct_freekicks_order", Int64.Type}, {"direct_freekicks_text", type any}, {"penalties_order", Int64.Type}, {"penalties_text", type any}, {"expected_goals_per_90", type number}, {"expected_assists_per_90", type number}, {"expected_goals_conceded_per_90", type number}, {"form_rank", Int64.Type}, {"points_per_game_rank", Int64.Type}}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Changed Type",".jpg",".png",Replacer.ReplaceText,{"photo"}),
+				    #"Added Custom" = Table.AddColumn(#"Replaced Value1", "Image Url", each "https://platform-static-files.s3.amazonaws.com/premierleague/photos/players/110x140/p"&[photo]),
+				    #"Divided Column" = Table.TransformColumns(#"Added Custom", {{"now_cost", each _ / 10, type number}}),
+				    #"cost calc" = Table.AddColumn(#"Divided Column", "Multiplication", each [now_cost] * 1000000, type number),
+				    #"Renamed Columns1" = Table.RenameColumns(#"cost calc",{{"Multiplication", "Cost"}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Renamed Columns1",{{"now_cost", "Cost Short"}}),
+				    #"Add position name" = Table.AddColumn(#"Renamed Columns", "Pos", each if [element_type] = 1 then "GLK" else if [element_type] = 2 then "DEF" else if [element_type] = 3 then "MID" else "FWD"),
+				    #"Merged Queries" = Table.NestedJoin(#"Add position name", {"web_name"}, #"Name Count", {"web_name"}, "Player Totals (2)", JoinKind.LeftOuter),
+				    #"Expanded Player Totals (2)" = Table.ExpandTableColumn(#"Merged Queries", "Player Totals (2)", {"Count"}, {"Count"}),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Expanded Player Totals (2)",{{"Count", "Name Count"}}),
+				    #"Create Name" = Table.AddColumn(#"Renamed Columns4", "First Characters", each if [Name Count]>1 and [second_name] = [web_name]then [web_name]&"("&[first_name]&")" else if [Name Count]>1 and [first_name] = [web_name]then [web_name]&"("&[second_name]&")" else  if [Name Count]>1 then [web_name]&"("&[first_name]&")"else [web_name]),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Create Name",{"chance_of_playing_next_round", "chance_of_playing_this_round", "code", "cost_change_event", "cost_change_event_fall", "cost_change_start", "cost_change_start_fall", "dreamteam_count", "element_type", "ep_next", "ep_this", "event_points", "form", "id", "in_dreamteam", "news", "news_added", "Cost Short", "photo", "points_per_game", "selected_by_percent", "special", "squad_number", "status", "team", "team_code", "total_points", "transfers_in", "transfers_in_event", "transfers_out", "transfers_out_event", "value_form", "value_season", "minutes", "goals_scored", "assists", "clean_sheets", "goals_conceded", "own_goals", "penalties_saved", "penalties_missed", "yellow_cards", "red_cards", "saves", "bonus", "bps", "influence", "creativity", "threat", "ict_index", "expected_goals", "expected_assists", "expected_goal_involvements", "expected_goals_conceded", "influence_rank", "influence_rank_type", "creativity_rank", "creativity_rank_type", "threat_rank", "threat_rank_type", "ict_index_rank", "ict_index_rank_type", "corners_and_indirect_freekicks_order", "corners_and_indirect_freekicks_text", "direct_freekicks_order", "direct_freekicks_text", "penalties_order", "penalties_text", "expected_goals_per_90", "expected_assists_per_90", "expected_goals_conceded_per_90", "form_rank", "points_per_game_rank", "Image Url", "Cost", "Pos", "Name Count", "First Characters", "first_name", "second_name", "web_name"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Reordered Columns",{{"First Characters", "Name"}}),
+				    #"Added Custom2" = Table.AddColumn(#"Renamed Columns2", "Cost M", each Text.From([Cost Short])&"M"),
+				    #"Uppercased Text" = Table.TransformColumns(#"Added Custom2",{{"news", Text.Upper, type text}}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Uppercased Text","","100",Replacer.ReplaceValue,{"news"}),
+				    #"Fitness Logic" = Table.AddColumn(#"Replaced Value2", "Custom", each if Text.Contains([news],"JOINED") then -1 else 
+				if Text.Contains([news],"LEFT") then -1 else 
+				if Text.Contains([news],"LOAN") then -1 else
+				if Text.Contains([news],"TRANSFERRED") then -1 else
+				if Text.Contains([news],"EXPECTED") then 0 else 
+				if Text.Contains([news],"SUSPENDED") then 0 else 
+				if Text.Contains([news],"UNKNOWN") then 0 else
+				if Text.Contains([news],"null") then 100 
+				
+				else 
+				Text.Select([news],{"0".."9"})),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Fitness Logic",{{"Custom", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type1", each ([Custom] <> -1)),
+				    #"Inserted Division" = Table.AddColumn(#"Filtered Rows", "Division", each [Custom] / 100, type number),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Inserted Division",{{"Division", "Fitness"}}),
+				    FitFlag = Table.AddColumn(#"Renamed Columns3", "FitFlag", each if [Fitness]=1 then "Yes" else "No")
+				in
+				    FitFlag
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

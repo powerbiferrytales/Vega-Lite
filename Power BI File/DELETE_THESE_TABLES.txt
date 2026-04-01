@@ -1,0 +1,79 @@
+===============================================
+TABLES TO DELETE - SAFE DELETION LIST
+===============================================
+
+These 5 tables can be SAFELY DELETED from your Power BI model:
+
+1. Card Param
+   File: Deneb.SemanticModel\definition\tables\Card Param.tmdl
+   Reason: Field parameter, never used in any visual or DAX
+
+2. Current Age
+   File: Deneb.SemanticModel\definition\tables\Current Age.tmdl
+   Reason: Parameter table (GENERATESERIES), never used
+
+3. GW Target
+   File: Deneb.SemanticModel\definition\tables\GW Target.tmdl
+   Reason: Parameter table (GENERATESERIES), never used
+
+4. Player Comparison
+   File: Deneb.SemanticModel\definition\tables\Player Comparison.tmdl
+   Reason: Calculation group, never referenced
+
+5. UK County map
+   File: Deneb.SemanticModel\definition\tables\UK County map.tmdl
+   Reason: Geographic data table, never used in visuals or relationships
+
+===============================================
+HOW TO DELETE IN POWER BI DESKTOP
+===============================================
+
+1. Open your Deneb.pbip file in Power BI Desktop
+2. Go to "Model" view (left sidebar)
+3. In the Fields pane, right-click each table and select "Delete"
+4. Confirm the deletion
+5. Save your file
+
+OR via Model View:
+1. Click on the table in the canvas
+2. Press the Delete key
+3. Confirm deletion
+
+===============================================
+VERIFICATION BEFORE DELETION
+===============================================
+
+Before deleting, verify these tables are not used:
+- Check all report pages for visuals using these tables
+- Check all measures for references to these tables
+- Check the Relationships pane for any connections
+
+This analysis was performed on: 2026-01-17
+Analysis confirmed these tables have:
+  - No visual references
+  - No DAX references
+  - No relationships
+  - No dependencies
+
+===============================================
+EXPECTED RESULT AFTER DELETION
+===============================================
+
+- Cleaner field list (5 fewer tables)
+- Slightly smaller file size
+- No impact on existing visuals or functionality
+- Easier maintenance and navigation
+
+===============================================
+ROLLBACK IF NEEDED
+===============================================
+
+If you need to restore these tables:
+1. Close Power BI without saving
+2. Reopen your backup file
+3. Review which table you need
+4. Copy the table definition if needed
+
+===============================================
+
+Save this file for reference before proceeding with deletion.

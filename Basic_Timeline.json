@@ -1,0 +1,148 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "information": {
+      "uuid": "2864087b-c0f6-45c2-bdd1-2c3e470ad941",
+      "generated": "2025-12-17T17:52:06.865Z",
+      "previewImageBase64PNG": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=",
+      "name": "Basic Timeline",
+      "description": "A basic timelines used to show events over time",
+      "author": "Ben Ferry"
+    },
+    "deneb": {
+      "build": "1.8.2.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "6.4.1"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "selectionMode": "simple",
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "config": "{\r\n  \"view\": {\"stroke\": \"transparent\"},\r\n     \"font\":\"Verdana\",\r\n  \"axis\": {\r\n    \"domainColor\": \"#454545\",\r\n    \"domainWidth\": 0.5,\r\n    \"titleColor\": \"#333\",\r\n    \"tickColor\": \"#454545\",\r\n    \"ticks\": false,\r\n    \"domain\": false\r\n  },\r\n  \"axisX\": {\r\n    \"labelPadding\": 5,\r\n    \"labelAngle\": 0,\r\n    \"labelFontSize\": 8,\r\n    \"grid\": false,\r\n    \"title\": null,\r\n    \"ticks\": true,\r\n    \"domain\":true,\r\n    \"tickMinStep\":10,\r\n    \"tickCap\":\"round\"\r\n\r\n  },\r\n  \"axisY\": {\r\n    \"labelPadding\": 20,\r\n    \"labelAngle\": 0,\r\n    \"labelFontSize\": 8,\r\n    \"offset\": 0,\r\n    \"grid\": true,\r\n    \"title\": false,\r\n    \"orient\": \"right\",\r\n       \"tickMinStep\":150,\r\n    \"labelBaseline\": \"bottom\",\r\n    \"labelAlign\": \"right\"\r\n  },\r\n  \"scale\": {\"labelPadding\": 0},\r\n  \"legend\": {\r\n    \"title\": null,\r\n    \"labelFontSize\": 12,\r\n    \"labelColor\": \"#454545\",\r\n    \"symbolType\": \"square\",\r\n    \"symbolSize\": 200,\r\n    \"orient\": \"top\",\r\n    \"symbolStrokeWidth\": 2\r\n  }\r\n}",
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Date",
+        "description": "Time range for your timeline",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__1__",
+        "name": "Offset",
+        "description": "Value to indicate if your text will be above or below the axis line",
+        "kind": "column",
+        "type": "numeric"
+      },
+      {
+        "key": "__2__",
+        "name": "Event",
+        "description": "What happened on that date",
+        "kind": "column",
+        "type": "text"
+      }
+    ]
+  },
+  "data": {
+    "name": "dataset"
+  },
+  "title": {
+    "text": "Life Timeline",
+    "fontSize": 25,
+    "anchor": "start",
+    "color": "#454545",
+    "subtitleFontSize": 12,
+    "offset": 50,
+    "subtitleFontWeight": 600,
+    "subtitle": "  ",
+    "subtitleColor": "#454545"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#e4e4e4"
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "width": {
+          "band": 0.01
+        },
+        "color": "#c9c9c9"
+      },
+      "encoding": {
+        "y": {
+          "field": "__1__",
+          "type": "quantitative",
+          "axis": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "opacity": 1,
+        "size": 50,
+        "color": "#b5b2b2"
+      },
+      "encoding": {
+        "y": {
+          "field": "__1__",
+          "type": "quantitative",
+          "axis": null
+        }
+      }
+    },
+    //Event Mark
+    {
+      "mark": {
+        "type": "text",
+        "yOffset": {
+          "expr": "datum['__1__']  > 0 ? -15 : 15"
+        },
+        "fontWeight": 500,
+        "fontSize": 14
+      },
+      "encoding": {
+        "y": {
+          "field": "__1__",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "__2__"
+        }
+      }
+    },
+    //Year Mark
+    {
+      "mark": {
+        "type": "text",
+        "yOffset": {
+          "expr": "datum['__1__']  > 0 ? 10 : -10"
+        },
+        "fontWeight": 400,
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": {
+          "field": "__0__"
+        }
+      }
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "__0__",
+      "type": "temporal",
+      "axis": null
+    }
+  }
+}

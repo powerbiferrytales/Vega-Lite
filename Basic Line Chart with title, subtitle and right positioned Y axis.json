@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.6.2.1",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.16.3"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": true,
+      "highlight": true,
+      "dataPointLimit": 200
+    },
+    "information": {
+      "name": "Basic Line Chart with title, subtitle and right positioned Y axis",
+      "description": "Line chart sort of inspired by The Economist lie charts. Big title and gridlines on the Y axis.",
+      "author": "Ben Ferry",
+      "uuid": "cc3464d8-d0f2-45e7-846e-7d74370f7b71",
+      "generated": "2024-05-18T20:56:45.610Z"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "x_axis",
+        "description": "the time dimension",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "y_axis",
+        "description": "The value you want to measure",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "domainColor": "#454545",
+      "domainWidth": 0.5,
+      "titleColor": "#333",
+      "tickColor": "#454545",
+      "ticks": false,
+      "domain": false
+    },
+    "axisX": {
+      "labelPadding": 5,
+      "labelAngle": 0,
+      "labelFontSize": 8,
+      "grid": false,
+      "title": null,
+      "ticks": true,
+      "domain": true,
+      "tickMinStep": 10,
+      "tickCap": "round"
+    },
+    "axisY": {
+      "labelPadding": 0,
+      "labelAngle": 0,
+      "labelFontSize": 8,
+      "offset": 0,
+      "grid": true,
+      "title": false,
+      "orient": "right",
+      "labelBaseline": "bottom",
+      "labelAlign": "right"
+    },
+    "scale": {"labelPadding": 0},
+    "legend": {
+      "title": null,
+      "labelFontSize": 12,
+      "labelColor": "#454545",
+      "symbolType": "square",
+      "symbolSize": 200,
+      "orient": "top",
+      "symbolStrokeWidth": 2
+    }
+  },
+  "data": {"name": "dataset"},
+  "title": {
+    "text": "Profits",
+    "fontSize": 25,
+    "anchor": "start",
+    "color": "#454545",
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": 600,
+    "subtitle": "Week of Year, €",
+    "subtitleColor": "#454545"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "strokeCap": "__0__",
+        "color": "#fda633"
+      },
+      "encoding": {
+        "y": {
+          "field": "__1__",
+          "type": "quantitative"
+        },
+        "x": {
+          "field": "__0__",
+          "type": "quantitative"
+        }
+      }
+    }
+  ]
+}

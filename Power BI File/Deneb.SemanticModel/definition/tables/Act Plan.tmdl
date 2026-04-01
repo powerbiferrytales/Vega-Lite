@@ -1,0 +1,175 @@
+table 'Act Plan'
+	lineageTag: aa9693d0-3713-48ca-8d2d-bb794acd23b0
+
+	/// This measure is the sum of column 'Act Plan'[Reviews]
+	measure 'Sum of Reviews' = SUM('Act Plan'[Reviews])
+		formatString: 0
+		lineageTag: 4273b598-dac5-4ea5-bf6d-33294c314523
+
+	/// This measure is the sum of column 'Act Plan'[Orders]
+	measure 'Sum of Orders' = SUM('Act Plan'[Orders])
+		formatString: 0
+		lineageTag: 4547f612-7d3f-4413-afa0-112d78b21ba7
+
+	/// This measure is the sum of column 'Act Plan'[Customers]
+	measure 'Sum of Customers' = SUM('Act Plan'[Customers])
+		formatString: 0
+		lineageTag: 1d16a419-a448-4970-add9-513699db1666
+
+	column Date
+		dataType: dateTime
+		formatString: d.m.yy
+		lineageTag: 231d7d6a-8bae-4631-9857-908c10b7362d
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 9f006e85-2726-47e8-a270-46ed93c58100
+			defaultHierarchy: LocalDateTable_a5a5e1c0-5235-4274-92c4-cc31d77f1ddc.'Date Hierarchy'
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Actual
+		dataType: int64
+		formatString: 0
+		lineageTag: 55c3fca9-9600-4148-a6f4-d32cbb137cb0
+		summarizeBy: sum
+		sourceColumn: Actual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plan
+		dataType: int64
+		formatString: 0
+		lineageTag: 1602e54d-1c2b-4b8a-9be1-c7229d47b774
+		summarizeBy: sum
+		sourceColumn: Plan
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 540f0caa-a75f-466e-99c4-f236c51518d2
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: ab5f78c0-d2a5-4c9d-b059-581f88db2e57
+		summarizeBy: none
+		sourceColumn: Month Name
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 431248fb-221f-43c0-8cb0-0ac090d8911b
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d623fb4-7c42-4688-999c-d3f51a46e251
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: a4a7cabb-df81-4083-9b56-41951185d96f
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: bbe2edd7-2934-457c-8468-d66f752e71b5
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customers
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 773cb9af-a032-434a-a572-e776ce9f1604
+		summarizeBy: sum
+		sourceColumn: Customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reviews
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7ebe8ad0-63ff-4c93-b714-b453f688951f
+		summarizeBy: sum
+		sourceColumn: Reviews
+
+		annotation SummarizationSetBy = Automatic
+
+	column Orders
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 78535254-93be-47ca-819b-d445a93d62ac
+		summarizeBy: sum
+		sourceColumn: Orders
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Act Plan-f33aae0d-7e66-4563-b45f-b41a2b9a24ad' = m
+		mode: import
+		source =
+				let
+				    Source = List.Dates(#date(2022, 01, 01), 2000, #duration(1, 0, 0, 0)),
+				    #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Renamed Columns" = Table.RenameColumns(#"Converted to Table",{{"Column1", "Date"}}),
+				    #"Added Custom2" = Table.AddColumn(#"Renamed Columns", "Custom", each "A,B,C"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Added Custom2", "Custom", Splitter.SplitTextByDelimiter(",", QuoteStyle.Csv), {"Custom.1", "Custom.2", "Custom.3"}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Split Column by Delimiter", {"Date"}, "Attribute", "Value"),
+				    #"Removed Columns" = Table.RemoveColumns(#"Unpivoted Columns",{"Attribute"}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Removed Columns",{{"Value", "Category"}}),
+				    #"Added Custom1" = Table.AddColumn(#"Renamed Columns2", "Custom", each Number.RandomBetween(75,150)),
+				    #"Added Custom" = Table.AddColumn(#"Added Custom1", "Custom.1", each Number.RandomBetween(75,150)),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Added Custom",{{"Custom", "Actual"}, {"Custom.1", "Plan"}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns1",{{"Date", type date}, {"Actual", Int64.Type}, {"Plan", Int64.Type}}),
+				    #"Inserted Year" = Table.AddColumn(#"Changed Type", "Year", each Date.Year([Date]), Int64.Type),
+				    #"Inserted Month Name" = Table.AddColumn(#"Inserted Year", "Month Name", each Date.MonthName([Date]), type text),
+				    #"Inserted Month" = Table.AddColumn(#"Inserted Month Name", "Month", each Date.Month([Date]), Int64.Type),
+				    #"Inserted Day" = Table.AddColumn(#"Inserted Month", "Day", each Date.Day([Date]), Int64.Type),
+				    #"Inserted Age" = Table.AddColumn(#"Inserted Day", "Age", each Date.From(DateTime.LocalNow()) - [Date], type duration),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Inserted Age",{{"Age", Int64.Type}}),
+				    #"Added Custom3" = Table.AddColumn(#"Changed Type1", "Customers", each Number.RandomBetween(75,150)),
+				    #"Added Custom4" = Table.AddColumn(#"Added Custom3", "Reviews", each Number.RandomBetween(5,20)),
+				    #"Added Custom5" = Table.AddColumn(#"Added Custom4", "Orders", each Number.RandomBetween(50,200)),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom5",{{"Customers", Int64.Type}, {"Reviews", Int64.Type}, {"Orders", Int64.Type}}),
+				    #"Sorted Rows" = Table.Sort(#"Changed Type2",{{"Date", Order.Descending}})
+				in
+				    #"Sorted Rows"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

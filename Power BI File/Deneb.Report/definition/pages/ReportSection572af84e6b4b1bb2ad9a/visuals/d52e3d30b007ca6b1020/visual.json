@@ -1,0 +1,295 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "d52e3d30b007ca6b1020",
+  "position": {
+    "x": 0,
+    "y": 119.12831109186186,
+    "z": 1000,
+    "height": 216.76672814719345,
+    "width": 1106.1880978262161,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ThermoTest"
+                    }
+                  },
+                  "Property": "ThermoTest Value"
+                }
+              },
+              "queryRef": "ThermoTest.ThermoTest Value",
+              "displayName": "TV"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ThermoTest"
+                    }
+                  },
+                  "Property": "TValue"
+                }
+              },
+              "queryRef": "ThermoTest.TValue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DAX"
+                    }
+                  },
+                  "Property": "Target2"
+                }
+              },
+              "queryRef": "DAX.Target2"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ThermoTest"
+                  }
+                },
+                "Property": "ThermoTest Value"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "display": [
+        {
+          "properties": {}
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.8.2.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"data\": {\"name\": \"dataset\"},\n  \"layer\": [\n    {\n      \"mark\": {\n        \"type\": \"bar\",\n        \"stroke\": \"black\",\n        \"height\": 40,\n        \"cornerRadius\": 20,\n        \"color\": \"#b3b3b3\"\n      },\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"Target2\",\n          \"type\": \"quantitative\",\n          \"title\": null\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"point\",\n        \"shape\":\"M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z\",\n        \"color\": \"#454545\",\n       \"fill\":\"#454545\",\n        \"size\": 0.03,\n        \"stroke\":\"#454545\",\n        \"yOffset\":-23,\n            \"xOffset\":-23,\n        \"opacity\": 1\n      },\n      \"encoding\": {\n        \"x\": {\n          \"field\": \"TValue\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"dy\": -40,\n      \n       \"size\": {\n          \"expr\": \"datum.TV < datum.Target2? 16 : 16\"\n        },\n        \"fontWeight\": {\n          \"expr\": \"datum.TV < datum.Target2? 400 : 800\"\n        }\n      },\n      \"encoding\": {\n        \"text\": {\n          \"field\": \"TV\",\n          \"format\": \",.0f\"\n        },\n        \"x\": {\n          \"field\": \"TValue\",\n          \"type\": \"quantitative\"\n        }\n      }\n    },\n    {\n      \"mark\": {\n        \"type\": \"text\",\n        \"opacity\": {\n          \"expr\": \"datum.TV < datum.Target2? 0 : 1\"\n        },\n        \"size\":16,\n        \"fontWeight\":800\n      },\n      \"encoding\": {\n        \"text\": {\n          \"value\": \"We Have Surpassed our target!\"\n        }\n      }\n    }\n  ]\n        \n      \n}'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n  \"view\": {\"stroke\": \"transparent\"},\n  \"font\": \"Segoe UI\",\n  \"arc\": {},\n  \"area\": {\n    \"line\": true,\n    \"opacity\": 0.6\n  },\n  \"bar\": {},\n  \"line\": {\n    \"strokeWidth\": 3,\n    \"strokeCap\": \"round\",\n    \"strokeJoin\": \"round\"\n  },\n  \"path\": {},\n  \"point\": {\"filled\": true, \"size\": 75},\n  \"rect\": {},\n  \"shape\": {},\n  \"symbol\": {\n    \"strokeWidth\": 1.5,\n    \"size\": 50\n  },\n  \"text\": {\n    \"font\": \"Segoe UI\",\n    \"fontSize\": 12,\n    \"fill\": \"#605E5C\"\n  },\n  \"axis\": {\n    \"ticks\": false,\n    \"grid\": false,\n    \"domain\": false,\n    \"labelColor\": \"#605E5C\",\n    \"labelFontSize\": 12,\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\n    \"titleColor\": \"#252423\",\n    \"titleFontSize\": 16,\n    \"titleFontWeight\": \"normal\"\n  },\n  \"axisQuantitative\": {\n    \"tickCount\": 3,\n    \"grid\": false,\n    \"gridColor\": \"#C8C6C4\",\n    \"gridDash\": [1, 5],\n    \"labelFlush\": false\n  },\n  \"axisX\": {\"labelPadding\": 5},\n  \"axisY\": {\"labelPadding\": 10},\n  \"header\": {\n    \"titleFont\": \"wf_standard-font, helvetica, arial, sans-serif\",\n    \"titleFontSize\": 16,\n    \"titleColor\": \"#252423\",\n    \"labelFont\": \"Segoe UI\",\n    \"labelFontSize\": 13.333333333333332,\n    \"labelColor\": \"#605E5C\"\n  },\n  \"legend\": {\n    \"titleFont\": \"Segoe UI\",\n    \"titleFontWeight\": \"bold\",\n    \"titleColor\": \"#605E5C\",\n    \"labelFont\": \"Segoe UI\",\n    \"labelFontSize\": 13.333333333333332,\n    \"labelColor\": \"#605E5C\",\n    \"symbolType\": \"circle\",\n    \"symbolSize\": 75\n  }\n}'"
+                }
+              }
+            },
+            "isNewDialogOpen": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "206.76672814719345D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1096.188097826216D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "general": [
+        {
+          "properties": {
+            "keepLayerOrder": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ReportSectiond3e2730ec6c8b322b455'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "bf24144b2598d7d9bd4c",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "Filterad3557c5c1e0d5c7ca27",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ThermoTest"
+              }
+            },
+            "Property": "ThermoTest Value"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "Filter02dfbf55901d256a16b3",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ThermoTest"
+              }
+            },
+            "Property": "TValue"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "Filter82dc47983b23352ba62e",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DAX"
+              }
+            },
+            "Property": "Target2"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

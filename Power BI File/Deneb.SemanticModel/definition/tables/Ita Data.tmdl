@@ -1,0 +1,80 @@
+table 'Ita Data'
+	lineageTag: 3c95568a-86b9-479d-96ae-7e88c7c7d0cd
+
+	measure Ita_Pop =
+			
+			
+			SUM('Ita Data'[pop_resid])
+		lineageTag: eb11ddcd-0d05-418f-8a18-e47a15dc88fa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cod_reg
+		dataType: int64
+		formatString: 0
+		lineageTag: 28f70928-42f8-4844-96ed-5a2634501b5e
+		summarizeBy: sum
+		sourceColumn: cod_reg
+
+		annotation SummarizationSetBy = Automatic
+
+	column den_reg
+		dataType: string
+		lineageTag: e2e09887-9537-4c96-9cf6-0ecea863bf4e
+		summarizeBy: none
+		sourceColumn: den_reg
+
+		annotation SummarizationSetBy = Automatic
+
+	column gdp_tot
+		dataType: int64
+		formatString: 0
+		lineageTag: b68bc41e-7476-43cb-ae68-49ac1d147ed7
+		summarizeBy: sum
+		sourceColumn: gdp_tot
+
+		annotation SummarizationSetBy = Automatic
+
+	column gdp_procap
+		dataType: int64
+		formatString: 0
+		lineageTag: f11fed09-cda5-4bf1-9813-965e39a7b515
+		summarizeBy: sum
+		sourceColumn: gdp_procap
+
+		annotation SummarizationSetBy = Automatic
+
+	column pop_resid
+		dataType: int64
+		formatString: 0
+		lineageTag: 05854b4e-4ad2-4e2e-a4d3-2d464cc95620
+		summarizeBy: sum
+		sourceColumn: pop_resid
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Characters'
+		dataType: string
+		lineageTag: 1e407248-1fa2-4062-88ab-a42acdeaab32
+		summarizeBy: none
+		sourceColumn: First Characters
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Ita Data' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("VVS7bhtBDPwVQXVyWJL7LJ0gSWMDRuy4cVycZUE5QNIFejT++pDDtRUXlnn7GA6Hw318XNLy0/J2Wu/m/WmtIXETZg0kSAj6P0rKMWSNOEktQyh2qtgRomq3q+0tnz49Lm3xYdxu14uX3+cQuFzNx9NoIFEMQRIDkzjljAXOYWgW2E+Jtqd/AWii0fW8ex4PL5OBSM4p2rbUDhNCDgm3WGqWISfLBfqUwJksjoCzY/eH9f407efF1fakPy/TxmqORCGCRHAKoTAXXBdNMBhqMYJcGbW+MbSNh/V+fZqRMSWyFRFy5VpINQGwSkyD2CZn0y9lKw5KAshyfT9M5+20MLzXaVz8sC8vu+Gmobp4lJgDOHEcICwlw2Okj++ohn89bc4H4MRcKopoGjjfoJ01NpHywIQC0WiJHcfbaqe/7Sal8/nnvBs3+xHXSwQLSd0oMbVYLCdzTDx4kobussXtvRUW3c/H1ehIxIz+S0hAkqIc0WnmZpZDSRnaF0GD3mtE+Gv37DUyid+LzqmqUyBKjVml8ruG1j42kuzSzXhY/YEfQqswdc6ueOLExY60GGiQeqGDwtIFxxavx9cJhqipd44bcFItLcBCOj/CA6Not3R5A3LJyahePR/Or68zet8SehejMxKiVH0GqtBQoxvDRezN65QsvJm309FKy+witK50SJkKmqeDiPHJzX3/UR/b+Tru/o576EwhF1iO+igqGcoQVa8WnWmfRMutNuul9Y4Z9O154+4u7I8LVXd3DCpW6hyjPw7cnx8jmi849vllPKovV+PJjVR8QEN1Uln93PyhKDIIY83l+1heRXnbsdtIVBcoWnySSY3td2z0CKQIrY9w038GsK27aTV5dZq+wS0l9idBvxuSp6oOgO0VfYnHp8+II2G27vTtW/u8iSRw5/4uUxb1hJtdWQ7ByskVXioXwZ/+AQ==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [cod_reg = _t, den_reg = _t, gdp_tot = _t, gdp_procap = _t, pop_resid = _t, superf_kmq = _t, dens_ab = _t, num_com = _t, num_prov = _t, num_teams = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"cod_reg", Int64.Type}, {"den_reg", type text}, {"gdp_tot", Int64.Type}, {"gdp_procap", Int64.Type}, {"pop_resid", Int64.Type}, {"superf_kmq", type number}, {"dens_ab", Int64.Type}, {"num_com", Int64.Type}, {"num_prov", Int64.Type}, {"num_teams", Int64.Type}}),
+				    #"Inserted First Characters" = Table.AddColumn(#"Changed Type", "First Characters", each Text.Start([den_reg], 3), type text),
+				    #"Uppercased Text" = Table.TransformColumns(#"Inserted First Characters",{{"First Characters", Text.Upper, type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Uppercased Text",{"superf_kmq", "dens_ab", "num_com", "num_prov", "num_teams"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Columns","VAL","AOS",Replacer.ReplaceText,{"First Characters"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
